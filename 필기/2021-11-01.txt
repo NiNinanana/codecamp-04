@@ -124,3 +124,26 @@ git init 폴더 생성
 git add 임시저장
 git commit 저장확정
 git push 업로드
+
+git remote add origin 레
+git remoto -v 확인
+git add . 모든 폴더 저장
+git status 확인
+git commit -m "메시지"
+git push origin master 마스터 폴더에 업로드
+
+
+emotion 관련 퀴즈
+피그마
+자유게시판 게시물등록_비회원 만들기
+    윗부분은 똑같으니 만들지 말기
+    아래 흰색 가운데것만
+    freeboard_frontend에다가 만들기
+    사진은 모형으로
+    패딩으로 만들기
+    맨위 껍데기, 게시물 등록을 제외한 것들 껍데기 해서 패딩하고 높이는 고정하면 안됨
+    
+
+
+
+
