@@ -1,0 +1,86 @@
+오늘의 커리큘럼
+javscript map/filter -> 게시판 목록 만들기 -> refetch Queries -> 자유게시판 삭제
+
+:hover : 마우스가 올라갔을 때 / 자유게시판에 만들기
+
+삼항연산자
+=== true ? "" : ""
+? "" : "" 
+true는 명시안해줘도 됨
+
+writer === "" / writer가 비어있다면 === writer가 true라면
+!writer / writer가 거짓이라면
+둘이 같다
+
+writer !== "" / writer가 차있다면 === writer가 true라면
+writer / writer가 true라면
+이렇게 해도 같다
+
+---
+
+map 반복
+
+const classmates = ["철수", "영희", "훈이"]
+classmates.map((el) => el + "어린이")
+classmates.map((el) => {return (el + "어린이") })
+classmates.map(function(el){
+    return el + "어린이
+})
+첫번째 철수가 el로 들어가서 오른쪽 방향으로 가서 철수어린이가 된후 원래자리로 들어간다 / 여기서 el은 element, 바꿀 수는 있음
+
+el 앞에 return
+return 했기에 다시 들어가는 것이다
+
+
+
+const classmates = [
+    { name : "철수"}
+    { name : "영희"}
+    { name : "훈이"}
+]
+
+classmates.map((el) => ({name: `${el.name}어린이`}))
+
+classmates.map((el) => ({name: el.name, school: "다람쥐초등학교"}) )
+
+classmates.map((el) => ({name: el.name, age: el.age, school: "토끼초등학교"}))
+
+const classmates = [
+    { name: "철수", age: 13},
+    { name: "영희", age: 10},
+    { name: "훈이", age: 11}
+]
+
+---
+
+filter 
+
+const ages = [10, 13, 11]
+ages.filter((el) => (el >= 11))
+-> [13, 11]
+
+const classmates = [
+    {name: "철수", age: 10, school: "토끼초등학교"}
+    {name: "영희", age: 13, school: "다람쥐초등학교"}
+    {name: "훈이", age: 11, school: "토끼초등학교"}
+]
+
+const classmates = [
+    { name: "철수", age: 13},
+    { name: "영희", age: 10},
+    { name: "훈이", age: 11}
+]
+
+함수 안에 함수/ 함수가 인자로 들어감 : 콜백함수
+
+classmates
+    .filter((el) => (el.age >= 11)) // 철수랑 훈이만 남음(영희만 빼고)
+    .map((el) => ({ name: el.name, age: el.age, school: "다람쥐초등학교" })) // 철수와 훈이에게 school: "다람쥐초등학교"가 추가된다
+
+for 쓰고 if쓸것들을 훨씬 간단하게 만들 수가 있다
+
+
+포폴
+0. 목록보기
+1. 좋싫 버튼 연결
+2. 삭제하기 버튼 연결

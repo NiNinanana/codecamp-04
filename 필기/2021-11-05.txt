@@ -1,0 +1,41 @@
+`의류를 구매한 횟수는 총 count`
+
+`의류를 구매한 횧수는 총 ${count}회 입니다.`
+==
+"의류를 구매한 횟수는 총 " + count "회 입니다."
+
+-----
+
+오늘의 커리큘럼
+라우팅 -> 정적/동적 라우팅 -> 예외처리 -> 데이터 조회(Query)
+
+라우팅 : 페이지 이동 / next에서 가져옴(react를 업그레이드 해주는애)
+const router = useRouter()
+router.push("/이동할 페이지")
+
+.reload() .replace() .pathname 등등 여러가지 더 많은 기능들이 있음
+
+정적(static) 라우팅
+하나씩 폴더를 만들어서 그 안에 또 index.js 넣고...
+
+
+동적(dynamic) 라우팅
+[aaa]라는 폴더 : [] 안에 있는 것을 변수로 인식(이 폴더안에도 index.js는 하나뿐)
+ex) http://localhost:3000/boards/[aaa]
+
+const router = useRouter()
+router.query = {
+    aaa:1
+}
+
+useQuery는 페이지가 실행되면 다 실행됨
+그렇기에 variables를 useQuery에 바로 붙여야함
+
+조건부랜더링
+조건에 따라서 보여줌
+data && 를 통해서 함
+비동기 이기에 기다렸다가 해도 되지만
+다른것들은 미리 나오면 좋기에
+
+
+

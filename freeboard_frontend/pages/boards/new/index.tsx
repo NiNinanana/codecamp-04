@@ -1,0 +1,12 @@
+import { faExclamationCircle } from "@fortawesome/free-solid-svg-icons";
+import BoardWrite from "../../../src/components/units/board/write/BoardWrite.container";
+
+
+export default function BoardsNew() {
+    
+    return (
+        <>
+            <BoardWrite isEdit={false} />
+        </>
+    )
+}

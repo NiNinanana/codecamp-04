@@ -1,0 +1,67 @@
+input태그에 defaultValue 값을 주면 그 값이 이미 들어가 있게 된다.
+
+defaultValue가 있으면 그 값이 그대로 들어가지 안흔다
+onChange가 실행되지 않아 useState를 통해 아무것도 들어가지 않기 때문
+    1. defaultValue가 있으면, 해당하는 state를 자동으로 변경
+    2. 수정하기 뮤테이션 보낼 때, 변경된값만 전송 -> 이걸로 하는게 효율적
+
+----
+
+오늘의 커리큘럼
+타입스크립트 -> 변수/함수 타입
+
+타입스크립트
+자바스크립트의 타입을 강제시키는 언어
+
+let aaa = "안녕하세요"
+aaa = 123
+->>> 자바스크립트에서는 괜찮음
+
+let aaa:string = "안녕하세요"
+aaa = 123 
+->>> 타입스크립트에서는 error
+
+let aaa:string = "안녕하세요"
+let bbb:number = 123
+aaa에는 string만, bbb에는 number만
+
+Interface IProfile {
+    name: string;
+    age: number;
+    title?: string; // title은 있을 수도 있고 없을 수도 있고
+}
+let profile:IProfile = { name: "철수", age: 13 }
+
+
+----
+package.json에서 
+dependencies: 실행할 때 필요한거
+devDependencies: 실행전에 필요한거 // typescript는 브라우저에서 실행 못 시키기 때문에 미리 필요한 것
+
+yarn add typescript --dev 입력
+tsconfig.json 파일 만들기
+yarn dev 입력
+tsconfig.json에서 strict를 true로 바꾸기
+
+jsx : javascript XML
+xml : extensible markup language
+html : hyper text markup language
+
+jsx가 없는 것들은 확장자명을 ts, 있는 것들은 tsx
+
+
+따로 타입을 정하ㅣㅈ 않으면 처음 들어간게 타입이 되어버린다 : 타입스크립트의 타입 추론
+
+일단 any 타입으로 다 바꾸어보자
+
+함수인데 리턴이 없으면 void
+각 함수위에 마우스 올려보고 리턴값이 나오기에 그걸 복 ㅗ해보자
+
+1. 게시물 수정
+    defaultValue, fetchBoard
+2. 타입스크립트화 (js -> ts)
+    jsx가 있으면 tsx
+    안되면 일단 any!!
+
+알고리즘, 포트폴리오 등 발표
+

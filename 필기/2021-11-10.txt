@@ -1,0 +1,42 @@
+event.target.value
+
+event.currentTarget.value
+
+버튼으로 감싸고 안에 여러가지를 넣었을 때 안에것들을 누르면 안되는 경우들이 있다
+이럴 땐 위처럼 만들어줘서 부모인 버튼의 아이디 값을 자식들도 가져갈 수 있게 하는 것이다
+
+-----
+
+커리큘럼
+컴포넌트 재사용성 -> 수정하기 재사용
+
+각 페이지에는 유저가 보는 페이지와 관리자페이지가 있다
+
+new Date() 날짜 관련된 기능(js꺼)
+() 아무것도 없으면 오늘날짜
+ 넣으면 특정날짜
+
+const aaa = new Date()
+console.log(aaa.getFullYear())
+console.log(aaa.getMonth() + 1) / 1월이 0, 2월이 1 이라서 +1 해줘야함
+console.log(aaa.getDate())
+getDay는 요일
+getHours
+getMinutes 등등 여러가지가 있따
+
+----
+
+하나의 컴포넌트로 여러 페이지에서 임포트해서 사용
+
+그런데 컴포넌트가 등록하기로 되어있다면
+props로 하여 등록으로 되거나 수정으로 되거나를 하는 것이다
+
+isEdit=false / isEdit=true : true면 수정, false면 등록 / 조건부랜더링
+text="등록" / text="수정"
+
+props를 index에서 먼저 만들고
+컨테이너에서 받고
+프리젠터에서 받으면 쭉쭉 받는다
+
+/boards/[boardId]/edit
+

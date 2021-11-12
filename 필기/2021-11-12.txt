@@ -1,0 +1,86 @@
+오늘의 커리큘럼
+API 타입스크립트 -> 코드문법규칙 -> 코드 포멧 규칙 -> 안전한 git
+
+함수 내 return은 그 자리에서 바로 종료
+onClickUpdate: (event: MouseEvent<HTMLButtonElement>) => void
+onChangeMyContents: (event: ChangeEvent<HTMLTextAreaElement>) => void
+
+app.js 도 타입스크립트로 바꿔보자
+그러나 next에서 한 것들을 알 수 잇느 방법은 없기에 next에서 docs를 찾ㅇ사ㅓ 한번 넣어보자
+
+---
+
+API 응답 데이터
+GRAPHQL-CODEGEN
+
+API에 해당 된 타입스크립트
+
+야믈, 야멀 파일
+yml, yaml
+
+graphql-codegen 설치 후
+codegen.yml 파일 생성
+
+schema 스키마
+API 각각의 타입들
+그 위치를 묻는 것이기 때문에 example이나 backend04 등으롤 바꿔주도록 하자
+그 사이트로 가서 알아서 받아오게 된다
+
+src/commons/types/generated/types.~~~ 로 위치를 설정해주자
+npx graphql-codegen
+
+codegen.yml 파일에
+config:
+      typesPrefix: I
+      를 추가하여 types.d.ts에 있는 타입스크립트 앞에 I를 추가시켰다
+
+-----
+코드린터/ 코드포멧터
+eslint/prettier
+import 순서, ==금지, ===허용 -> 코드의 통일성 / 띄어쓰기 2칸, ~~길이 넘으면 줄바꿈
+eslint는 강력해서 어느정도의 포멧터도 갖고 있다
+
+eslint 설치
+강요하는 것, js(import/export), react, yes, node.js, browser, popular, standard, javascript, yes
+
+rm -rf node_modules
+package lock , yarn lock 제거
+yarn install
+yarn add eslint --dev
+yarn run eslint --init
+rm -rf node_modules
+yarn install
+
+package.json에 추가가 되었다
+
+_app.js 에 빨간줄이 생겼다
+
+
+prettier 설치
+yarn add --dev --exact prettier
+echo {}> .prettierrc.json
+npm install --save-dev eslint-config-prettier
+.eslintrc.js에 
+"extends": [
+    "prettier"
+  ]
+추가하기
+
+설정에서 formatonsave를 하는 순간 prettier에 맞춰서 전부 정렬 됨
+vscode설정을 파일화
+최상단에 .vscode설정을폴더 만든 후 settings.json
+이 소스코드를 가진 사람들은 설정이 저절로 맞춰진다
+prettier 설치
+
+node.js: js를 브라우저가 아닌 곳에서 실행시켜주는 도구
+
+npx eslint .
+eslint 어쩌고 하면 모든 오류를 뜨게 한다
+오류가 있다면 깃에 못올리게 해보자
+
+yarn add husky@4 --dev
+4버전으로 husky 설치
+
+yarn add lint-staged --dev
+
+.eslintignore 파일 생성

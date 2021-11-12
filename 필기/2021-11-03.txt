@@ -1,0 +1,119 @@
+조건문 if
+조건식이 true일 때 아래의 문법이 실행
+
+if(조건식){
+    실행식
+} else if(조건식){
+    실행식
+} else{
+    실행식
+}
+
+조건을 걸 때 예외상황을 먼저 실행시키면 좋음
+
+-----
+
+커리큘럼
+데이터 전송 -> API -> GARPHQL vs REST -> 실습
+
+git pull origin master : 업데이트 된 것들을 가져올 수 있음
+git log : 그동안 commit된 것들을 볼 수 있음
+q : 나갈 수 있음
+
+
+git stash 임시저장공간으로 옮기기
+git stash list 목록 확인
+최신버전 다운로드
+git stash pop 다시 꺼내오기
+
+function onChangeMyWriter(event) {
+    setMyWriter(event.target.value);
+    if (event.target.value !== "") {
+      setMyWriterError("");
+    }
+  }
+
+다시 작성되었을 때 에러글 없애기
+
+onChange={바인딩}
+onClick={바인딩}
+
+alert 단순경고창
+confirm 확인 취소 버튼이 있는 창
+
+커리큘럼) 두 컴퓨터 간 데이터 전송
+
+ftp : 파일 전송하는 길
+smtp : 간단한 메일 전송하는 길
+http: 텍스트/하이퍼텍스트(html) 전송하는 길
+전송할 때 길이 만들어짐
+
+http
+요청을하면 응답을 주는 방식
+요청
+
+1. 프론트엔드에서 state에 데이터 포장
+2. 백엔드에 텍스트 형태로 묶어서(객체) 요청
+3. 백엔드에서 검증
+4. 백엔드에서 데이터베이스로 저장
+5. 백엔드에서 프론트엔드에 텍스트로 응답
+
+프론트엔드, 백엔드, 데이터베이스는 각각이 컴퓨터임
+
+API : 요청을 받아주는 담당자
+백엔드 개발자들이 API를 하나하나 만들어야함
+
+http로 데이터를 주고 받는 방식
+REST와 GRAPHQL
+
+rest-api
+axios를 설치
+이름이 주소처럼 생김
+요청하면 원하는 부분이 아니라 준비한 것들 몽땅 가져와야함(속도가 느려지고 비용이 증가)
+객체 형태로 전송(JSON 자바스크립트 객체 표기법)
+독스(설명서) : 스웨거
+연습 : 포스트맨
+
+
+graphql-api
+apollo client를 설치
+이름이 일반 함수처럼 생김
+요청하면 원하는 부분만 뽑아서 가져올 수 있음
+독스 및 연습 : 플레이그라운드
+
+
+그러나 rest가 자리가 많이 잡아있어 둘다 아는 것이 좋다
+
+메인은 graphql로 공부
+
+
+crud : Api 옵션
+    react
+    생성 create : post
+    수정 update : put
+    삭제 delete : delete
+    조회 read : get
+
+    graphql은 생성 수정 삭제 모두 mutation
+        조회는 query
+        
+axios
+axios를 불러오고
+
+const result = axios.post(api 이름)
+
+const result = useMutation(api 이름)
+
+endpoint : api 이름(/users, /posts 처럼)
+
+/posts/:id : :id는 다 다르게 쓸 수 있음 
+/posts/19 19번 id를 가진 포스트를 요청함
+
+mutation {
+    api()
+}
+
+쉬프트 + 스페이스바 : 모두
+
+!가 있으면 필수 입력
+
