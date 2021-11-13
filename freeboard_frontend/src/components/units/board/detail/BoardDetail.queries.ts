@@ -31,3 +31,19 @@ export const DELETE_BOARD_COMMENT = gql`
     deleteBoardComment(password: $password, boardCommentId: $boardCommentId)
   }
 `;
+
+export const CREATE_BOARD_COMMENT = gql`
+  mutation createBoardComment(
+    $createBoardCommentInput: CreateBoardCommentInput!
+    $boardId: ID!
+  ) {
+    createBoardComment(
+      createBoardCommentInput: $createBoardCommentInput
+      boardId: $boardId
+    ) {
+      _id
+      writer
+      contents
+    }
+  }
+`;

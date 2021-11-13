@@ -1,16 +1,20 @@
 import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
+  margin-left: 48px;
+  margin-top: 48px;
+  margin-bottom: 48px;
+`;
+
+export const ContentsWrapper = styled.div`
   width: 960px;
   height: 1280px;
   border: 1px solid black;
-  margin-left: 48px;
-  margin-top: 48px;
   padding: 4px;
   background-color: #ffebfe;
   font-family: Helvetica;
   box-shadow: 5px 5px 20px grey;
-  margin-bottom: 48px;
+  margin-bottom: 50px;
 `;
 
 export const FreeBoard = styled.div`
@@ -244,17 +248,21 @@ export const Delete = styled.button`
   }
 `;
 
-export const CommentWrapper = styled.div``;
+export const CommentWrapper = styled.table`
+  width: 960px;
+`;
 
 export const Row = styled.tr`
   display: flex;
   flex-direction: row;
   // border: 1px solid black;
   text-align: center;
+  width: 960px;
+  background-color: yellow;
 `;
 
-export const Column = styled.td`
-  width: 20%;
+export const CommentDelete = styled.td`
+  width: 120px;
   // border-bottom: 1px solid black;
   font-size: 10px;
 `;
@@ -280,6 +288,19 @@ export const DeleteButton = styled.button`
 
 export const CommentWriter = styled.td`
   border-right: 1px solid black;
+  width: 100px;
 `;
 
-export const CommentContents = styled.td``;
+export const CommentContents = styled.td`
+  width: 700px;
+  text-align: left;
+  margin-left: 30px;
+`;
+
+export const CommentCreateWrapper = styled.div``;
+
+export const CommentCreateWriterInput = styled.input``;
+
+export const CommentCreateContentsInput = styled.input``;
+export const CommentCreatePasswordInput = styled.input``;
+export const CommentCreateButton = styled.button``;

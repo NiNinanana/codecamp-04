@@ -1,8 +1,10 @@
 import { useQuery, useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
+import { useState } from "react";
 import { DELETE_BOARD, DISLIKEBOARD, LIKEBOARD } from "./BoardDetail.mutations";
 import BoardDetailUI from "./BoardDetail.presenter";
 import {
+  CREATE_BOARD_COMMENT,
   DELETE_BOARD_COMMENT,
   FETCH_BOARD,
   FETCH_BOARD_COMMENTS,
@@ -21,11 +23,16 @@ export default function BoardDetail() {
       page: 1,
     },
   });
+  const [createBoardComment] = useMutation(CREATE_BOARD_COMMENT);
 
   const [deleteBoardComment] = useMutation(DELETE_BOARD_COMMENT);
   const [deleteBoard] = useMutation(DELETE_BOARD);
   const [likeBoard] = useMutation(LIKEBOARD);
   const [dislikeBoard] = useMutation(DISLIKEBOARD);
+
+  const [writer, setWriter] = useState("");
+  const [contents, setContents] = useState("");
+  const [password, setPassword] = useState("");
   // const [likeBoard] = useMutation(LIKE_BOARD)
 
   // async function likePlus(){
@@ -149,6 +156,28 @@ export default function BoardDetail() {
 
   // 비디오에 값이 없을 때 딸기달 뜨게 하기
 
+  function onChangeCommentWriter(event) {
+    setWriter(event.target.value);
+  }
+  function onChangeCommentContents(event) {
+    setContents(event.target.value);
+  }
+  function onChangeCommentPassword(event) {
+    setPassword(event.target.value);
+  }
+
+  async function onClickCreateComment() {
+    console.log(data);
+    try {
+      await createBoardComment({
+        variables: { writer: writer, contents: contents, password: password },
+        boardId: router.query.myId,
+      });
+    } catch (error) {
+      alert("error!");
+    }
+  }
+
   console.log(commentData);
   return (
     <>
@@ -176,6 +205,10 @@ export default function BoardDetail() {
         list={onClickList}
         update={onClickUpdate}
         deleteComment={onClickDeleteComment}
+        createComment={onClickCreateComment}
+        commentWriter={onChangeCommentWriter}
+        commentContetns={onChangeCommentContents}
+        commentPassword={onChangeCommentPassword}
       />
     </>
   );

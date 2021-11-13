@@ -4,8 +4,8 @@ import { IBoardDetailUIProps } from "./BoardDetail.types";
 
 export default function BoardDetailUI(props: IBoardDetailUIProps) {
   return (
-    <>
-      <S.Wrapper>
+    <S.Wrapper>
+      <S.ContentsWrapper>
         {/* <FreeBoard>자유게시판</FreeBoard> */}
         {/* <Title>{data ? data.fetchBoard.title : "잠시만 기다려주세요"}</Title> */}
         <S.Title>{props.dataTitle}</S.Title>
@@ -50,7 +50,27 @@ export default function BoardDetailUI(props: IBoardDetailUIProps) {
           <S.Delete onClick={props.delete}>삭제</S.Delete>
         </S.RemoteControler>
         <S.ThisAddress>글 아이디 : {props.dataId}</S.ThisAddress>
-      </S.Wrapper>
+      </S.ContentsWrapper>
+      <S.CommentCreateWrapper>
+        <S.CommentCreateWriterInput
+          type="text"
+          placeholder="작성자"
+          onChange={props.commentWriter}
+        ></S.CommentCreateWriterInput>
+        <S.CommentCreateContentsInput
+          type="text"
+          placeholder="내용"
+          onChange={props.commentContents}
+        ></S.CommentCreateContentsInput>
+        <S.CommentCreatePasswordInput
+          type="password"
+          placeholder="비밀번호"
+          onChange={props.commentPassword}
+        ></S.CommentCreatePasswordInput>
+        <S.CommentCreateButton onClick={props.createComment}>
+          등록하기
+        </S.CommentCreateButton>
+      </S.CommentCreateWrapper>
       <S.CommentWrapper>
         {/* <div>{props.commentDataWriter}</div>
         <div>{props.commentDataContents}</div> */}
@@ -59,14 +79,14 @@ export default function BoardDetailUI(props: IBoardDetailUIProps) {
             <S.CommentWriter>{el.writer}</S.CommentWriter>
             <S.CommentContents>{el.contents}</S.CommentContents>
             <S.Date>{getDate(el.createdAt)}</S.Date>
-            <S.Column>
+            <S.CommentDelete>
               <S.DeleteButton id={el._id} onClick={props.deleteComment}>
                 삭제
               </S.DeleteButton>
-            </S.Column>
+            </S.CommentDelete>
           </S.Row>
         ))}
       </S.CommentWrapper>
-    </>
+    </S.Wrapper>
   );
 }
