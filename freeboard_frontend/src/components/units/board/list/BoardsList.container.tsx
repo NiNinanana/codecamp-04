@@ -17,12 +17,7 @@ export default function BoardsList(props: IBoardsListProps) {
   const [deleteBoard] = useMutation(DELETE_BOARD);
   const router = useRouter();
 
-  let create: any = String(data?.fetchBoards.createdAt);
-  create = create.split("T").join("").split("");
-  console.log(create);
-  let createA = create.slice(0, 10).join("");
-  let createB = create.slice(10, 15).join("");
-  create = createA + " / " + createB + "(GMT)";
+  const create: any = String(data?.fetchBoards.createdAt);
 
   async function onClickDelete(event: any) {
     try {

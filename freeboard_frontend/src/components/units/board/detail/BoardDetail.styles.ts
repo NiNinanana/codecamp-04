@@ -4,6 +4,7 @@ export const Wrapper = styled.div`
   margin-left: 48px;
   margin-top: 48px;
   margin-bottom: 48px;
+  width: 960px;
 `;
 
 export const ContentsWrapper = styled.div`
@@ -297,10 +298,37 @@ export const CommentContents = styled.td`
   margin-left: 30px;
 `;
 
-export const CommentCreateWrapper = styled.div``;
+export const CommentCreateWrapper = styled.div`\
+  display:flex;
+  justify-content: space-between
+  
+`;
 
-export const CommentCreateWriterInput = styled.input``;
+export const CommentCreateWriterInput = styled.input`
+  width: 150px;
+  height: 30px;
+  margin-bottom: 10px;
+`;
+export const CommentCreatePasswordInput = styled.input`
+  width: 150px;
+  height: 30px;
+`;
 
-export const CommentCreateContentsInput = styled.input``;
-export const CommentCreatePasswordInput = styled.input``;
-export const CommentCreateButton = styled.button``;
+export const CommentCreateContentsInput = styled.input`
+  width: 800px;
+  height: 100px;
+  margin-bottom: 10px;
+`;
+export const CommentCreateButton = styled.button`
+  width: 70px;
+  height: 30px;
+`;
+export const CommentCreateFirstWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+export const CommentCreateSecondWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+`;

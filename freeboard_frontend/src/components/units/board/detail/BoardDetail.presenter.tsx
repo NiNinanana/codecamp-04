@@ -52,24 +52,28 @@ export default function BoardDetailUI(props: IBoardDetailUIProps) {
         <S.ThisAddress>글 아이디 : {props.dataId}</S.ThisAddress>
       </S.ContentsWrapper>
       <S.CommentCreateWrapper>
-        <S.CommentCreateWriterInput
-          type="text"
-          placeholder="작성자"
-          onChange={props.commentWriter}
-        ></S.CommentCreateWriterInput>
-        <S.CommentCreateContentsInput
-          type="text"
-          placeholder="내용"
-          onChange={props.commentContents}
-        ></S.CommentCreateContentsInput>
-        <S.CommentCreatePasswordInput
-          type="password"
-          placeholder="비밀번호"
-          onChange={props.commentPassword}
-        ></S.CommentCreatePasswordInput>
-        <S.CommentCreateButton onClick={props.createComment}>
-          등록하기
-        </S.CommentCreateButton>
+        <S.CommentCreateFirstWrapper>
+          <S.CommentCreateWriterInput
+            type="text"
+            placeholder="작성자"
+            onChange={props.commentWriter}
+          ></S.CommentCreateWriterInput>
+          <S.CommentCreatePasswordInput
+            type="password"
+            placeholder="비밀번호"
+            onChange={props.commentPassword}
+          ></S.CommentCreatePasswordInput>
+        </S.CommentCreateFirstWrapper>
+        <S.CommentCreateSecondWrapper>
+          <S.CommentCreateContentsInput
+            type="text"
+            placeholder="내용"
+            onChange={props.commentContents}
+          ></S.CommentCreateContentsInput>
+          <S.CommentCreateButton onClick={props.createComment}>
+            등록하기
+          </S.CommentCreateButton>
+        </S.CommentCreateSecondWrapper>
       </S.CommentCreateWrapper>
       <S.CommentWrapper>
         {/* <div>{props.commentDataWriter}</div>

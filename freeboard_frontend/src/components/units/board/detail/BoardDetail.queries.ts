@@ -44,6 +44,7 @@ export const CREATE_BOARD_COMMENT = gql`
       _id
       writer
       contents
+      rating
     }
   }
 `;

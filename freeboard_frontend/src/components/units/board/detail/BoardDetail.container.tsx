@@ -44,7 +44,6 @@ export default function BoardDetail() {
   //             // }
   //         })
   //         router.
-  //         console.log(likeResult)
   //     // } catch(error){
   //     //     alert("오류")
   //     // }
@@ -56,7 +55,6 @@ export default function BoardDetail() {
 
   // let create = String(data?.fetchBoard.createdAt)
   // create = create.split("T").join("").split("")
-  // console.log(create)
   // let createA = create.slice(0, 10).join("")
   // let createB = create.slice(10, 15).join("")
   // create = createA + " / " + createB + "(GMT)"
@@ -74,8 +72,8 @@ export default function BoardDetail() {
     }
   }
 
-  async function onClickDeleteComment(event) {
-    let passwordPrompt = prompt("비밀번호를 입력해주세요");
+  async function onClickDeleteComment(event: any) {
+    const passwordPrompt = prompt("비밀번호를 입력해주세요");
 
     try {
       await deleteBoardComment({
@@ -143,12 +141,11 @@ export default function BoardDetail() {
 
   abc = abc.split("watch?v=");
   abc = abc.join("embed/");
-  console.log(abc);
 
   const ddd = abc.length;
   let fff: boolean;
 
-  if (ddd > 1) {
+  if (abc.includes("youtube.com")) {
     fff = true;
   } else {
     fff = false;
@@ -156,29 +153,49 @@ export default function BoardDetail() {
 
   // 비디오에 값이 없을 때 딸기달 뜨게 하기
 
-  function onChangeCommentWriter(event) {
+  function onChangeCommentWriter(event: any) {
     setWriter(event.target.value);
   }
-  function onChangeCommentContents(event) {
+  function onChangeCommentContents(event: any) {
     setContents(event.target.value);
   }
-  function onChangeCommentPassword(event) {
+  function onChangeCommentPassword(event: any) {
     setPassword(event.target.value);
   }
 
   async function onClickCreateComment() {
-    console.log(data);
+    console.log(writer);
+    console.log(password);
+    console.log(contents);
+    console.log(data?.fetchBoard._id);
+    if (!writer || !password || !contents) {
+      alert("다시 확인해주세요.");
+      //   return;
+    }
     try {
       await createBoardComment({
-        variables: { writer: writer, contents: contents, password: password },
-        boardId: router.query.myId,
+        variables: {
+          createBoardCommentInput: {
+            writer: writer,
+            password: password,
+            contents: contents,
+            rating: 1,
+          },
+          boardId: router.query.myId,
+          refetchQueries: [
+            {
+              query: FETCH_BOARD_COMMENTS,
+              variables: { boardId: router.query.myId, page: 1 },
+            },
+          ],
+        },
       });
+      alert("등록되었습니다.");
     } catch (error) {
-      alert("error!");
+      alert(error.message);
     }
   }
 
-  console.log(commentData);
   return (
     <>
       <BoardDetailUI
@@ -207,7 +224,7 @@ export default function BoardDetail() {
         deleteComment={onClickDeleteComment}
         createComment={onClickCreateComment}
         commentWriter={onChangeCommentWriter}
-        commentContetns={onChangeCommentContents}
+        commentContents={onChangeCommentContents}
         commentPassword={onChangeCommentPassword}
       />
     </>
