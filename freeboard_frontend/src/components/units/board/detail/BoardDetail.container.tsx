@@ -137,15 +137,9 @@ export default function BoardDetail() {
     router.push(`/boards/${router.query.myId}/edit`);
   }
 
-  let abc: string | string[] = String(data?.fetchBoard.youtubeUrl);
-
-  abc = abc.split("watch?v=");
-  abc = abc.join("embed/");
-
-  const ddd = abc.length;
   let fff: boolean;
 
-  if (abc.includes("youtube.com")) {
+  if (data?.fetchBoard.youtubeUrl?.includes("youtube.com")) {
     fff = true;
   } else {
     fff = false;
@@ -191,6 +185,7 @@ export default function BoardDetail() {
         },
       });
       alert("등록되었습니다.");
+      location.reload(); // 페이지 리로드
     } catch (error) {
       alert(error.message);
     }
@@ -203,8 +198,7 @@ export default function BoardDetail() {
         dataWriter={data?.fetchBoard.writer}
         dataContents={data?.fetchBoard.contents}
         dataId={data?.fetchBoard._id}
-        dataYoutube={abc}
-        ddd={ddd}
+        dataYoutube={data?.fetchBoard.youtubeUrl}
         fff={fff}
         // commentDataWriter={commentData?.fetchBoardComments[0].writer}
         // commentDataContents={commentData?.fetchBoardComments[0].contents}

@@ -1,5 +1,5 @@
 import * as S from "./BoardDetail.styles";
-import { getDate } from "../../../../commons/libraries/utils";
+import { getDate, youtubeUrl } from "../../../../commons/libraries/utils";
 import { IBoardDetailUIProps } from "./BoardDetail.types";
 
 export default function BoardDetailUI(props: IBoardDetailUIProps) {
@@ -27,7 +27,9 @@ export default function BoardDetailUI(props: IBoardDetailUIProps) {
           </S.ImageWrapper>
           <S.YoutubeWrapper>
             <S.ContentsWrite>- Video -</S.ContentsWrite>
-            {props.fff && <S.Youtube src={props.dataYoutube}></S.Youtube>}
+            {props.fff && (
+              <S.Youtube src={youtubeUrl(props.dataYoutube)}></S.Youtube>
+            )}
             {!props.fff && (
               <S.Youtube src="../../../videos/아이유 딸기달.mp4"></S.Youtube>
             )}
@@ -67,7 +69,7 @@ export default function BoardDetailUI(props: IBoardDetailUIProps) {
         <S.CommentCreateSecondWrapper>
           <S.CommentCreateContentsInput
             type="text"
-            placeholder="내용"
+            placeholder="타인의 권리를 침해하거나 명예를 훼손하는 댓글은 제재를 받을 수 있습니다."
             onChange={props.commentContents}
           ></S.CommentCreateContentsInput>
           <S.CommentCreateButton onClick={props.createComment}>

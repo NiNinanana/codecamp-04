@@ -137,7 +137,6 @@ export default function BoardWrite(props: BoardWriteProps) {
         },
       });
       console.log(result.data);
-      result.data.createBoard._id;
       router.push(`/boards/${result.data.createBoard._id}`);
     } catch (error) {
       alert("오류");
@@ -230,6 +229,7 @@ export default function BoardWrite(props: BoardWriteProps) {
 
     if (title !== "") updateTemp.updateBoardInput.title = title;
     if (content !== "") updateTemp.updateBoardInput.contents = content;
+    if (youtube !== "") updateTemp.updateBoardInput.youtubeUrl = youtube;
 
     const result = await updateBoard({
       variables: updateTemp,

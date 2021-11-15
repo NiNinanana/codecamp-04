@@ -57,6 +57,7 @@ export const WriteDate = styled.div`
   font-size: 24px;
   color: grey;
   padding-left: 8px;
+  padding-top: 3px;
 `;
 
 export const Contents = styled.div`
@@ -251,6 +252,7 @@ export const Delete = styled.button`
 
 export const CommentWrapper = styled.table`
   width: 960px;
+  border-top: 1px solid #d4f4fa;
 `;
 
 export const Row = styled.tr`
@@ -259,7 +261,9 @@ export const Row = styled.tr`
   // border: 1px solid black;
   text-align: center;
   width: 960px;
-  background-color: yellow;
+  border-bottom: 1px solid #c0c0c0;
+  padding-top: 5px;
+  padding-bottom: 5px;
 `;
 
 export const CommentDelete = styled.td`
@@ -288,7 +292,7 @@ export const DeleteButton = styled.button`
 `;
 
 export const CommentWriter = styled.td`
-  border-right: 1px solid black;
+  // border-right: 1px solid black;
   width: 100px;
 `;
 
@@ -300,7 +304,8 @@ export const CommentContents = styled.td`
 
 export const CommentCreateWrapper = styled.div`\
   display:flex;
-  justify-content: space-between
+  justify-content: space-between;
+  padding-bottom: 20px;
   
 `;
 
@@ -308,20 +313,26 @@ export const CommentCreateWriterInput = styled.input`
   width: 150px;
   height: 30px;
   margin-bottom: 10px;
+  padding-left: 5px;
 `;
 export const CommentCreatePasswordInput = styled.input`
   width: 150px;
   height: 30px;
+  padding-left: 5px;
 `;
 
 export const CommentCreateContentsInput = styled.input`
   width: 800px;
   height: 100px;
   margin-bottom: 10px;
+  padding-bottom: 60px;
+  padding-left: 10px;
 `;
 export const CommentCreateButton = styled.button`
   width: 70px;
   height: 30px;
+  border: none;
+  background-color: #ffebfe;
 `;
 export const CommentCreateFirstWrapper = styled.div`
   display: flex;
