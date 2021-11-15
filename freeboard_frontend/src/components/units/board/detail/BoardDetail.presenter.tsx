@@ -53,46 +53,6 @@ export default function BoardDetailUI(props: IBoardDetailUIProps) {
         </S.RemoteControler>
         <S.ThisAddress>글 아이디 : {props.dataId}</S.ThisAddress>
       </S.ContentsWrapper>
-      <S.CommentCreateWrapper>
-        <S.CommentCreateFirstWrapper>
-          <S.CommentCreateWriterInput
-            type="text"
-            placeholder="작성자"
-            onChange={props.commentWriter}
-          ></S.CommentCreateWriterInput>
-          <S.CommentCreatePasswordInput
-            type="password"
-            placeholder="비밀번호"
-            onChange={props.commentPassword}
-          ></S.CommentCreatePasswordInput>
-        </S.CommentCreateFirstWrapper>
-        <S.CommentCreateSecondWrapper>
-          <S.CommentCreateContentsInput
-            type="text"
-            placeholder="타인의 권리를 침해하거나 명예를 훼손하는 댓글은 제재를 받을 수 있습니다."
-            onChange={props.commentContents}
-          ></S.CommentCreateContentsInput>
-          <S.CommentCreateButton onClick={props.createComment}>
-            등록하기
-          </S.CommentCreateButton>
-        </S.CommentCreateSecondWrapper>
-      </S.CommentCreateWrapper>
-      <S.CommentWrapper>
-        {/* <div>{props.commentDataWriter}</div>
-        <div>{props.commentDataContents}</div> */}
-        {props.commentData?.fetchBoardComments.map((el: any) => (
-          <S.Row key={el._id}>
-            <S.CommentWriter>{el.writer}</S.CommentWriter>
-            <S.CommentContents>{el.contents}</S.CommentContents>
-            <S.Date>{getDate(el.createdAt)}</S.Date>
-            <S.CommentDelete>
-              <S.DeleteButton id={el._id} onClick={props.deleteComment}>
-                삭제
-              </S.DeleteButton>
-            </S.CommentDelete>
-          </S.Row>
-        ))}
-      </S.CommentWrapper>
     </S.Wrapper>
   );
 }

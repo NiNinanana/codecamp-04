@@ -91,11 +91,11 @@ export const BestContentsPop = styled.div`
   padding-left: 25px;
 `;
 export const BestTitle = styled.div`
-  font-size: 20px;
+  font-size: 17px;
 `;
 
 export const BestWriter = styled.div`
-  font-size: 15px;
+  font-size: 12px;
   color: black;
 `;
 
@@ -107,13 +107,14 @@ export const TitleWriterCreatedAt = styled.div`
 `;
 
 export const BestCreatedAt = styled.div`
-  font-size: 12px;
+  font-size: 10px;
   color: #bdbdbd;
 `;
 
 export const BestLikeCount = styled.div`
   padding-top: 25px;
   color: black;
+  font-size: 15px;
 `;
 
 export const LatestBoards = styled.div`
@@ -124,10 +125,11 @@ export const LatestBoards = styled.div`
 export const Latest = styled.div``;
 
 export const LatestContents = styled.table`
-  width: 390px;
-  border: 1px solid black;
+  width: 360px;
+  border: none;
   background-color: white;
   border-radius: 10px;
+  margin-top: 10px;
   // border-width: 1px 0px 1px 0px;
 `;
 export const LatestContentsBack = styled.div`
@@ -151,7 +153,7 @@ export const Row = styled.tr`
 `;
 
 export const Column = styled.td`
-  width: 20%;
+  width: 60px;
   // border-bottom: 1px solid black;
   font-size: 10px;
 `;
@@ -168,11 +170,11 @@ export const Lating = styled.td`
 export const LatestTitle = styled.td`
   // border-bottom: 1px solid black;
   width: 130px;
-  font-size: 15px;
+  font-size: 13px;
 `;
 export const Title = styled.td`
   width: 130px;
-  font-size: 12px;
+  font-size: 10px;
   // border: 1px solid black;
 `;
 
@@ -191,7 +193,7 @@ export const TitleButton = styled.button`
 export const LatestDate = styled.td`
   width: 160px;
   // border-bottom: 1px solid black;
-  font-size: 15px;
+  font-size: 13px;
   // padding-top: 3px;
 `;
 
@@ -204,9 +206,9 @@ export const Date = styled.td`
 `;
 
 export const LatestDelete = styled.td`
-  width: 20%;
+  width: 60px;
   // border: 1px solid black;
-  font-size: 15px;
+  font-size: 13px;
   // padding-top: 3px;
   border-left: none;
   border-right: none;
@@ -232,7 +234,7 @@ export const DeleteButton = styled.button`
 `;
 
 export const PageIndex = styled.div`
-  width: 170px;
+  width: 190px;
   display: flex;
   justify-content: space-between;
   padding-top: 10px;
@@ -252,7 +254,7 @@ export const PageIndexButton = styled.button`
 export const PageIndexButton1 = styled.button`
   background-color: transparent;
   border: none;
-  font-size: 14px;
+  font-size: 13px;
   cursor: pointer;
   font-weight: bold;
 `;

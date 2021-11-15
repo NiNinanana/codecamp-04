@@ -176,20 +176,22 @@ export default function BoardDetail() {
             rating: 1,
           },
           boardId: router.query.myId,
-          refetchQueries: [
-            {
-              query: FETCH_BOARD_COMMENTS,
-              variables: { boardId: router.query.myId, page: 1 },
-            },
-          ],
         },
+        refetchQueries: [
+          {
+            query: FETCH_BOARD_COMMENTS,
+            variables: { boardId: router.query.myId },
+          },
+        ],
       });
       alert("등록되었습니다.");
-      location.reload(); // 페이지 리로드
+      // location.reload(); // 페이지 리로드
     } catch (error) {
       alert(error.message);
     }
   }
+
+  function onClickUpdateComment() {}
 
   return (
     <>
@@ -204,7 +206,6 @@ export default function BoardDetail() {
         // commentDataContents={commentData?.fetchBoardComments[0].contents}
         commentData={commentData}
         // 여기서 data = {data}까지만 하고 presenter에서 {props.data?.fetchBoard.title}]해서 할 수 있다.
-
         create={data?.fetchBoard.createdAt}
         like={like}
         dislike={dislike}
@@ -220,6 +221,8 @@ export default function BoardDetail() {
         commentWriter={onChangeCommentWriter}
         commentContents={onChangeCommentContents}
         commentPassword={onChangeCommentPassword}
+        ddd={0}
+        updateComment={onClickUpdateComment}
       />
     </>
   );

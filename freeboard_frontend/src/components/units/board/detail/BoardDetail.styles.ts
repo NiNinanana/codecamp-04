@@ -3,13 +3,14 @@ import styled from "@emotion/styled";
 export const Wrapper = styled.div`
   margin-left: 48px;
   margin-top: 48px;
-  margin-bottom: 48px;
+  margin-bottom: 80px;
   width: 960px;
+  height: 1280px;
 `;
 
 export const ContentsWrapper = styled.div`
   width: 960px;
-  height: 1280px;
+  height: 1310px;
   border: 1px solid black;
   padding: 4px;
   background-color: #ffebfe;
@@ -46,6 +47,7 @@ export const WriterWrapper = styled.div`
   padding-top: 4px;
   padding-bottom: 4px;
 `;
+
 export const Writer = styled.div`
   font-size: 25px;
   color: grey;
@@ -283,7 +285,7 @@ export const DeleteButton = styled.button`
   border: none;
   background-color: transparent;
   font-size: 12px;
-  padding-top: 4px;
+  padding-top: 3px;
   cursor: pointer;
   :hover {
     color: #dbc000;
@@ -306,6 +308,7 @@ export const CommentCreateWrapper = styled.div`\
   display:flex;
   justify-content: space-between;
   padding-bottom: 20px;
+  width: 960px;
   
 `;
 
@@ -342,4 +345,16 @@ export const CommentCreateSecondWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+`;
+
+export const CommentUpdate = styled.td`
+  width: 120px;
+  // border-bottom: 1px solid black;
+  font-size: 12px;
+  padding-top: 3px;
+  cursor: pointer;
+  :hover {
+    color: #dbc000;
+    text-decoration: underline;
+  }
 `;
