@@ -3,13 +3,21 @@ import { getDate } from "../../../../commons/libraries/utils";
 import { IBoardsListUIProps } from "./BoardsList.types";
 
 export default function BoardsListUI(props: IBoardsListUIProps) {
+  function enterkey() {
+    if (window.event.keyCode === 13) {
+      props.onClickSearch();
+    }
+  }
+
   return (
     <S.Wrapper>
-      <S.List>게시글시게</S.List>
+      <S.List onClick={props.main}>게시글시게</S.List>
       <S.SearchBoards>
         <S.SearchBox
           type="text"
-          placeholder="검색어를 입력하세요"
+          placeholder="제목을 입력하세요"
+          onChange={props.searchBox}
+          onKeyUp={enterkey}
         ></S.SearchBox>
         <S.SearchButton onClick={props.search}>검색</S.SearchButton>
         <S.WriteButton onClick={props.write}>글쓰기</S.WriteButton>
@@ -119,11 +127,11 @@ export default function BoardsListUI(props: IBoardsListUIProps) {
             </S.LatestContents>
             <S.PageIndex>
               <S.PageIndexButton1>이전</S.PageIndexButton1>
-              <S.PageIndexButton>1</S.PageIndexButton>
-              <S.PageIndexButton>2</S.PageIndexButton>
-              <S.PageIndexButton>3</S.PageIndexButton>
-              <S.PageIndexButton>4</S.PageIndexButton>
-              <S.PageIndexButton>5</S.PageIndexButton>
+              <S.PageIndexButton onClick={props.list1}>1</S.PageIndexButton>
+              <S.PageIndexButton onClick={props.list2}>2</S.PageIndexButton>
+              <S.PageIndexButton onClick={props.list3}>3</S.PageIndexButton>
+              <S.PageIndexButton onClick={props.list4}>4</S.PageIndexButton>
+              <S.PageIndexButton onClick={props.list5}>5</S.PageIndexButton>
               <S.PageIndexButton1>다음</S.PageIndexButton1>
             </S.PageIndex>
           </S.LatestContentsBack>

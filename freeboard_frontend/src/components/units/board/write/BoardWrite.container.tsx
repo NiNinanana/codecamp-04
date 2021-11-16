@@ -4,6 +4,7 @@ import { ChangeEvent, useState } from "react";
 import { useRouter } from "next/router";
 import { CREATE_BOARD, FETCH_BOARD, UPDATE_BOARD } from "./BoardWrite.queries";
 import { BoardWriteProps, IUpdateTemp } from "./BoardWrite.types";
+import { Modal } from "antd";
 
 export default function BoardWrite(props: BoardWriteProps) {
   const router = useRouter();
@@ -103,15 +104,6 @@ export default function BoardWrite(props: BoardWriteProps) {
       console.log(title);
       console.log(content);
 
-      if (
-        writer.length >= 1 &&
-        password.length >= 1 &&
-        title.length >= 1 &&
-        content.length >= 1
-      ) {
-        confirm("게시물을 등록하시겠습니까?");
-      }
-
       if (writer.length < 1) {
         setErrorWriter("작성자를 입력하세요.");
       }
@@ -137,107 +129,37 @@ export default function BoardWrite(props: BoardWriteProps) {
         },
       });
       console.log(result.data);
+      Modal.success({
+        content: "게시물이 등록되었습니다.",
+      });
       router.push(`/boards/${result.data.createBoard._id}`);
     } catch (error) {
       alert("오류");
     }
   }
 
-  // async function update(){
-  //     try {
-  //         console.log(writer)
-  //         console.log(password)
-  //         console.log(title)
-  //         console.log(content)
-
-  //         if(writer.length >= 1 && password.length >= 1 && title.length >= 1 && content.length >= 1){
-  //             confirm("게시물을 수정하시겠습니까?")
-  //         }
-
-  //         if(writer.length < 1){
-  //             setErrorWriter("작성자를 입력하세요.")
-  //         }
-  //         if(password.length < 1){
-  //             setErrorPassword("비밀번호를 입력하세요.")
-  //         }
-  //         if(title.length < 1){
-  //             setErrorTitle("제목을 입력하세요.")
-  //         }
-  //         if(content.length < 1){
-  //             setErrorContent("내용을 입력하세요.")
-
-  //         }
-
-  //         const myVariables: IMyVariables = {
-  //             boardId: router.query.myId,
-  //             password: password
-  //         }
-
-  //         if(writer !== "") myVariables.updateBoardInput.writer = writer
-  //         // 실행문이 한줄만 있을 때는 중괄호 생략 가능
-
-  //         if(title !== ""){
-  //             myVariables.updateBoardInput.title = title
-  //         }
-
-  //         if(content !== ""){
-  //             myVariables.updateBoardInput.contents = content
-  //         }
-
-  //         const result = await updateBoard({
-  //             variables: myVariables
-  //         })
-
-  //         console.log(result.data.updateBoard._id)
-  //         router.push(`/boards/${result.data.updateBoard._id}`)
-
-  //         // const result = await updateBoard({
-  //         //     variables: {
-  //         //         updateBoardInput: {
-  //         //             title: title,
-  //         //             contents: content
-  //         //         },
-  //         //         password: password,
-  //         //         boardId: router.query.myId
-  //         //     }
-  //         // })
-
-  //         // const result = await createBoard({
-  //         //     variables: {
-  //         //         createBoardInput: {
-  //         //             writer: writer,
-  //         //             password: password,
-  //         //             title: title,
-  //         //             contents: content
-  //         //         }
-  //         //     }
-
-  //         // })
-  //         // result.data.createBoard._id
-  //         // router.push(`/boards/${result.data.createBoard._id}`)
-
-  //     } catch(error){
-  //         // alert(error.message)
-  //     }
-  // }
   const update = async () => {
-    const updateTemp: IUpdateTemp = {
-      updateBoardInput: {},
-      password,
-      boardId: router.query.myId,
-    };
+    try {
+      const updateTemp: IUpdateTemp = {
+        updateBoardInput: {},
+        password,
+        boardId: router.query.myId,
+      };
 
-    if (title !== "") updateTemp.updateBoardInput.title = title;
-    if (content !== "") updateTemp.updateBoardInput.contents = content;
-    if (youtube !== "") updateTemp.updateBoardInput.youtubeUrl = youtube;
+      if (title !== "") updateTemp.updateBoardInput.title = title;
+      if (content !== "") updateTemp.updateBoardInput.contents = content;
+      if (youtube !== "") updateTemp.updateBoardInput.youtubeUrl = youtube;
 
-    const result = await updateBoard({
-      variables: updateTemp,
-    });
+      const result = await updateBoard({
+        variables: updateTemp,
+      });
 
-    router.push(`/boards/${router.query.myId}`);
+      router.push(`/boards/${router.query.myId}`);
 
-    console.log(result);
+      console.log(result);
+    } catch (error) {
+      alert(error.message);
+    }
   };
 
   return (

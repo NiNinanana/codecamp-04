@@ -2,16 +2,63 @@ import { getDate } from "../../../../../../commons/libraries/utils";
 import * as S from "./CommentList.styles";
 import CommentWriteUI from "../write/CommentWrite.presenter";
 import { useState } from "react";
+import { Modal } from "antd";
+import {
+  DELETE_BOARD_COMMENT,
+  FETCH_BOARD_COMMENTS,
+} from "../../BoardDetail.queries";
+
+import { useMutation, useQuery } from "@apollo/client";
+import { useRouter } from "next/router";
 
 export default function CommentListUIItem(props) {
   const [isEdit, setIsEdit] = useState(false);
+  const [password, setPassword] = useState("");
+
+  const router = useRouter();
+
+  const [deleteBoardComment] = useMutation(DELETE_BOARD_COMMENT);
+
+  let pass = 0;
   function onClickUpdateComment() {
     setIsEdit(true);
   }
-
-  function ona() {
-    alert("Assdfsddf");
+  function onChangePassword(event) {
+    setPassword(event.target.value);
+    console.log(password);
+    pass = event.target.value;
   }
+
+  function info() {
+    Modal.info({
+      title: "비밀번호를 입력하세요!!!",
+      content: <input type="password" onChange={onChangePassword} />,
+      onOk() {
+        console.log(pass);
+        onClickDeleteComment();
+      },
+    });
+  }
+
+  async function onClickDeleteComment() {
+    // const passwordPrompt = prompt("비밀번호를 입력해주세요");
+    setIsEdit(false);
+
+    try {
+      await deleteBoardComment({
+        variables: {
+          password: pass,
+          boardCommentId: props.el?._id,
+        },
+        // refetchQueries: [{query: FETCH_BOARD, variables: {_id: data?.fetchBoard._id}}]
+      });
+      alert("삭제되었습니다.");
+      router.push(`/boards/${router.query.myId}`);
+    } catch (error) {
+      alert(error.message);
+    }
+  }
+
   return (
     <>
       {isEdit || (
@@ -23,7 +70,7 @@ export default function CommentListUIItem(props) {
           <S.Date>{getDate(props.el?.createdAt)}</S.Date>
           <S.CommentUpdate onClick={onClickUpdateComment}>수정</S.CommentUpdate>
           <S.CommentDelete>
-            <S.DeleteButton id={props.el?._id} onClick={props.deleteComment}>
+            <S.DeleteButton id={props.el?._id} onClick={info}>
               삭제
             </S.DeleteButton>
           </S.CommentDelete>
@@ -35,7 +82,6 @@ export default function CommentListUIItem(props) {
           setIsEdit={setIsEdit}
           el={props.el}
           key={props.key}
-          updateComment={ona}
         />
       )}
     </>

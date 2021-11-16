@@ -26,8 +26,25 @@ import {
   SettingInput,
 } from "./BoardWrite.styles";
 import { BoardWriteUIProps } from "./BoardWrite.types";
+import { Modal, Button } from "antd";
+import { useState } from "react";
+import DaumPostcode from "react-daum-postcode";
 
 export default function BoardWriteUI(props: BoardWriteUIProps) {
+  const [isOpen, setIsOpen] = useState(false);
+  const [myAddress, setMyAddress] = useState("");
+  const [myZonecode, setMyZonecode] = useState("");
+
+  const onToggleModal = () => {
+    setIsOpen((prev) => !prev);
+  };
+
+  const handleComplete = (data: any) => {
+    console.log(data);
+    setMyAddress(data.address);
+    setMyZonecode(data.zonecode);
+    setIsOpen((prev) => !prev);
+  };
   return (
     <>
       <HeadTitle>게시물 {props.isEdit ? "수정" : "등록"}</HeadTitle>
@@ -76,10 +93,25 @@ export default function BoardWriteUI(props: BoardWriteUIProps) {
         <div>
           <SmallText>주소</SmallText>
           <AddressWrapper>
-            <Address type="text" placeholder="07250" />
-            <SearchButton>우편번호 검색</SearchButton>
+            <Address
+              type="text"
+              placeholder="07250"
+              defaultValue={myZonecode}
+              readOnly
+            />
+            <Button onClick={onToggleModal}>우편번호 검색</Button>
+            {isOpen && (
+              <Modal
+                title="우편번호 검색"
+                visible={true}
+                onOk={onToggleModal}
+                onCancel={onToggleModal}
+              >
+                <DaumPostcode onComplete={handleComplete} />
+              </Modal>
+            )}
           </AddressWrapper>
-          <MediumInput type="text" />
+          <MediumInput type="text" defaultValue={myAddress} readOnly />
           <AddressWrapperTwo>
             <MediumInput type="text" />
           </AddressWrapperTwo>

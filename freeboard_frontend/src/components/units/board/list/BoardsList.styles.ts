@@ -9,6 +9,7 @@ export const Wrapper = styled.div`
   margin-left: 30px;
   margin-top: 30px;
   font-family: 넥슨Lv1고딕 OTF;
+  cursor: pointer;
 `;
 
 export const List = styled.div`
