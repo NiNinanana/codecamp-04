@@ -15,6 +15,12 @@ export default function CommentWriteUI(props: any) {
   const [password, setPassword] = useState("");
   const [value, setValue] = useState(0);
   const router = useRouter();
+  // const { data } = useQuery(FETCH_BOARD_COMMENTS, {
+  //   variables: {
+  //     boardId: router.query.myId,
+  //   },
+  // });
+
   const desc = ["1/5", "2/5", "3/5", "4/5", "5/5"];
   function handleChange(value: number) {
     setValue(value);
@@ -81,12 +87,12 @@ export default function CommentWriteUI(props: any) {
         refetchQueries: [
           {
             query: FETCH_BOARD_COMMENTS,
-            variables: { boardId: router.query.myId },
+            variables: { boardId: router.query.myId, page: 1 },
           },
         ],
       });
       alert("수정되었습니다.");
-      location.reload(); // 페이지 리로드
+      // location.reload(); // 페이지 리로드
     } catch (error) {
       if (error instanceof Error) alert(error.message);
     }

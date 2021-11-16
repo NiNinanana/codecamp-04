@@ -1,13 +1,19 @@
 import styled from "@emotion/styled";
 
-export const CommentWrapper = styled.table`
+export const Wrapper = styled.div`
+  // margin-bottom: 48px;
+  padding-bottom: 100px;
+`;
+export const CommentWrapper = styled.div`
   width: 960px;
   border-top: 1px solid #d4f4fa;
   margin-left: 48px;
-  margin-bottom: 48px;
+  margin-bottom: 10px;
+  // padding-bottom: 50px;
+  padding-top: 10px;
 `;
 
-export const Row = styled.tr`
+export const Row = styled.div`
   display: flex;
   flex-direction: row;
   // border: 1px solid black;
@@ -45,7 +51,7 @@ export const DeleteButton = styled.button`
 
 export const CommentWriter = styled.td`
   // border-right: 1px solid black;
-  width: 100px;
+  width: 150px;
 `;
 
 export const CommentContents = styled.td`
