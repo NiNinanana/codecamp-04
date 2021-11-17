@@ -1,0 +1,32 @@
+오늘의 커리큘럼
+레이아웃 구조 -> 글로벌 스타일 -> 캐러셀 이미지
+
+레이아웃: UI의 배치
+
+고정되는 부분과 변경되는 부분이 있다
+
+app.js의 <componenet {...pageProps} />
+어느 페이지든 app.js가 먼저 실행되고 index.js가 실행되는 것
+
+app.js의 리턴에 컴포넌트를 통해서 내 페이지가 실행되는 것
+따라서 이 컴포넌트 부분은 변경되는 부분
+그 위 아래에 고정되는 부분을 박아주면 동시에 실행되게 된다
+
+보통 헤더, 배너, 내비, 푸터 등이 고정
+
+props.childern -> 자동으로 들어가는 것
+
+<BoardWrite isEdit = {true}>
+    <div></div>
+</BoardWrite>
+
+BoardWrite에 들어가서
+props.isEdit 은 true
+props.childern 은 <div>/<div>가 자동으로 만들어진다.
+
+Globalstyle
+
+폰트
+경량화 버전(우리가 안쓰는 궭 쉙 같은 단어들은 적용이 안되는 버전)을 받아야함
+깃허브에 느리게 올라간다
+

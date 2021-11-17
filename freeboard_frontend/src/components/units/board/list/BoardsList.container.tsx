@@ -12,6 +12,8 @@ import { useState } from "react";
 
 export default function BoardsList(props: IBoardsListProps) {
   const [search, setSearch] = useState("");
+  const [startDate, setStartDate] = useState(undefined);
+  const [endDate, setEndDate] = useState(undefined);
   const [page, setPage] = useState(1);
   const { data } = useQuery(FETCH_BOARDS, {
     variables: {
@@ -22,11 +24,14 @@ export default function BoardsList(props: IBoardsListProps) {
   const { data: data3 } = useQuery(FETCH_BOARDS_SEARCH, {
     variables: {
       search: search,
+      endDate: endDate,
+      startDate: startDate,
     },
   });
 
   const [deleteBoard] = useMutation(DELETE_BOARD);
   const [isList, setIsList] = useState(true);
+
   const router = useRouter();
 
   const create: any = String(data?.fetchBoards.createdAt);
@@ -82,10 +87,23 @@ export default function BoardsList(props: IBoardsListProps) {
 
   function onChangeSearchBox(event) {
     setIsList(true);
-    setSearch(event.target.value);
   }
 
-  console.log(search);
+  function onSearch(value) {
+    setIsList(false);
+    setSearch(value);
+  }
+
+  function onChangeDate(value) {
+    console.log(value);
+    if (value !== null) {
+      setStartDate(String(value[0]._d).split("").slice(4, 15).join(""));
+      setEndDate(String(value[1]._d).split("").slice(4, 15).join(""));
+    } else {
+      setStartDate(undefined);
+      setEndDate(undefined);
+    }
+  }
 
   function onClickList1() {
     setPage(1);
@@ -125,6 +143,9 @@ export default function BoardsList(props: IBoardsListProps) {
         list4={onClickList4}
         list5={onClickList5}
         onClickSearch={onClickSearch}
+        onSearch={onSearch}
+        onChangeSearchBox={onChangeSearchBox}
+        onChangeDate={onChangeDate}
       />
     </>
   );

@@ -1,25 +1,43 @@
 import * as S from "./BoardsList.styles";
 import { getDate } from "../../../../commons/libraries/utils";
 import { IBoardsListUIProps } from "./BoardsList.types";
+import { Input, DatePicker } from "antd";
 
 export default function BoardsListUI(props: IBoardsListUIProps) {
   function enterkey() {
     if (window.event.keyCode === 13) {
-      props.onClickSearch();
+      props.onSearch();
     }
   }
+
+  const { Search } = Input;
 
   return (
     <S.Wrapper>
       <S.List onClick={props.main}>게시글시게</S.List>
       <S.SearchBoards>
-        <S.SearchBox
-          type="text"
-          placeholder="제목을 입력하세요"
-          onChange={props.searchBox}
-          onKeyUp={enterkey}
-        ></S.SearchBox>
-        <S.SearchButton onClick={props.search}>검색</S.SearchButton>
+        <S.DateSearch>
+          <Input.Group compact>
+            {/* <Input style={{ width: "30%" }} defaultValue="input content" /> */}
+            <DatePicker.RangePicker
+              style={{ width: "600px" }}
+              onChange={props.onChangeDate}
+            />
+          </Input.Group>
+          <Search
+            placeholder="제목을 입력하세요"
+            onSearch={props.onSearch}
+            onChange={props.onChangeSearchBox}
+            enterButton
+          />
+          {/* <S.SearchBox
+            type="text"
+            placeholder="제목을 입력하세요"
+            onChange={props.searchBox}
+            onKeyUp={enterkey}
+          ></S.SearchBox> */}
+        </S.DateSearch>
+        {/* <S.SearchButton onClick={props.search}>검색</S.SearchButton> */}
         <S.WriteButton onClick={props.write}>글쓰기</S.WriteButton>
       </S.SearchBoards>
       <S.BoardsWrapper>
@@ -41,29 +59,6 @@ export default function BoardsListUI(props: IBoardsListUIProps) {
                 </S.BestContentsPop>
               </S.BestContentsButton>
             ))}
-            {/* <S.Row> */}
-            {/* <S.CheckBox><input type="checkbox" /></S.CheckBox> */}
-            {/* <S.Title>제목</S.Title> */}
-            {/* <S.Column>작성자</S.Column> */}
-            {/* <S.Lating>평가</S.Lating> */}
-            {/* <S.Date>작성날짜</S.Date> */}
-            {/* <S.Column>삭제하기</S.Column> */}
-            {/* </S.Row> */}
-            {/* {props.data2?.fetchBoardsOfTheBest.map((el, index) => ( */}
-            {/* <S.Row key={el._id}> */}
-            {/* unique한 키값을 넣어주고 체크박스를 체크한 후 삭제하면 체크박스 체크 해제됨 */}
-            {/* <S.CheckBox><input type="checkbox" /></S.CheckBox> */}
-            {/* <S.Column>{index+1}</S.Column> */}
-            {/* <S.Title>{el.title}</S.Title> */}
-            {/* <S.Column>{el.writer}</S.Column> */}
-            {/* <S.Lating>{el.likeCount-el.dislikeCount}</S.Lating> */}
-            {/* <S.Date>{el.createdAt}</S.Date>  */}
-            {/* el과 props같이 쓰는 법 생각해보자 */}
-            {/* <S.Column> */}
-            {/* <button id={el._id} onClick={props.deleteBest}>삭제하기</button> */}
-            {/* </S.Column> */}
-            {/* </S.Row> */}
-            {/* ))} */}
           </S.BestContents>
         </S.BestBoards>
         <S.LatestBoards>

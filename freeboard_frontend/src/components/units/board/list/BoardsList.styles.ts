@@ -9,11 +9,11 @@ export const Wrapper = styled.div`
   margin-left: 30px;
   margin-top: 30px;
   font-family: 넥슨Lv1고딕 OTF;
-  cursor: pointer;
 `;
 
 export const List = styled.div`
   font-size: 40px;
+  cursor: pointer;
 `;
 export const BoardsWrapper = styled.div`
   width: 920px;
@@ -25,16 +25,19 @@ export const BoardsWrapper = styled.div`
 `;
 
 export const SearchBoards = styled.div`
-  width: 715px;
+  width: 800px;
   display: flex;
   justify-content: space-between;
 `;
+
+export const DateSearch = styled.div``;
 
 export const WriteButton = styled.button`
   height: 30px;
   font-size: 13px;
   background-color: black;
   color: white;
+  margin-top: 50px;
   :hover {
     text-decoration: underline;
   }
@@ -51,6 +54,7 @@ export const SearchBox = styled.input`
 export const SearchButton = styled.button`
   height: 30px;
   font-size: 13px;
+  margin-top: 50px;
 `;
 
 export const BestBoards = styled.div`
