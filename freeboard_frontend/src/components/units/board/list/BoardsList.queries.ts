@@ -39,3 +39,9 @@ export const FETCH_BOARDS_SEARCH = gql`
     }
   }
 `;
+
+export const FETCH_BOARDS_COUNT = gql`
+  query fetchBoardsCount {
+    fetchBoardsCount
+  }
+`;

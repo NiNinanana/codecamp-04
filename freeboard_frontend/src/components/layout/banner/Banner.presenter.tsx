@@ -1,17 +1,17 @@
-import { Banner } from "./Banner.styles";
+import { Banner, Contents, ContentsTitle } from "./Banner.styles";
 import { Component } from "react";
 import Slider from "react-slick";
 import router, { useRouter } from "next/router";
 
 export default function BannerUI(props) {
   const router = useRouter();
-  var settings = {
-    dots: true,
+  let settings = {
+    dots: false,
     infinite: true,
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 2000,
+    autoplaySpeed: 1800,
     pauseOnHover: true,
   };
   function onClickOne() {
@@ -29,26 +29,25 @@ export default function BannerUI(props) {
 
   return (
     <>
-      <Banner>Banner!!!</Banner>
-      <div>
-        <h2>베스트 게시글</h2>
+      <Banner>
+        <ContentsTitle>베스트 게시글</ContentsTitle>
         <Slider {...settings}>
-          <div>
+          <Contents>
             <h3 onClick={onClickOne}>
               1. {props.data?.fetchBoardsOfTheBest[0].title}
             </h3>
-          </div>
-          <div onClick={onClickTwo}>
+          </Contents>
+          <Contents onClick={onClickTwo}>
             <h3>2. {props.data?.fetchBoardsOfTheBest[1].title}</h3>
-          </div>
-          <div onClick={onClickThree}>
+          </Contents>
+          <Contents onClick={onClickThree}>
             <h3>3. {props.data?.fetchBoardsOfTheBest[2].title}</h3>
-          </div>
-          <div onClick={onClickFour}>
+          </Contents>
+          <Contents onClick={onClickFour}>
             <h3>4. {props.data?.fetchBoardsOfTheBest[3].title}</h3>
-          </div>
+          </Contents>
         </Slider>
-      </div>
+      </Banner>
     </>
   );
 }

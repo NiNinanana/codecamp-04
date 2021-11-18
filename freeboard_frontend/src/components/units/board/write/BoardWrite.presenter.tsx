@@ -20,15 +20,17 @@ import {
   MediumInput,
   BigInput,
   Address,
-  SearchButton,
   YoutubeInput,
   PhotoButton,
   SettingInput,
+  Wrapper,
+  SearchButton,
 } from "./BoardWrite.styles";
 import { BoardWriteUIProps } from "./BoardWrite.types";
 import { Modal, Button } from "antd";
 import { useState } from "react";
 import DaumPostcode from "react-daum-postcode";
+import styled from "@emotion/styled";
 
 export default function BoardWriteUI(props: BoardWriteUIProps) {
   const [isOpen, setIsOpen] = useState(false);
@@ -46,7 +48,7 @@ export default function BoardWriteUI(props: BoardWriteUIProps) {
     setIsOpen((prev) => !prev);
   };
   return (
-    <>
+    <Wrapper>
       <HeadTitle>게시물 {props.isEdit ? "수정" : "등록"}</HeadTitle>
       <BodyWrapper>
         <UserWrapper>
@@ -99,13 +101,14 @@ export default function BoardWriteUI(props: BoardWriteUIProps) {
               defaultValue={myZonecode}
               readOnly
             />
-            <Button onClick={onToggleModal}>우편번호 검색</Button>
+            <SearchButton onClick={onToggleModal}>우편번호 검색</SearchButton>
             {isOpen && (
               <Modal
                 title="우편번호 검색"
                 visible={true}
                 onOk={onToggleModal}
                 onCancel={onToggleModal}
+                // style={{ backgroundColor: "yellow" }}
               >
                 <DaumPostcode onComplete={handleComplete} />
               </Modal>
@@ -155,6 +158,6 @@ export default function BoardWriteUI(props: BoardWriteUIProps) {
           </UploadButton>
         )}
       </FootButton>
-    </>
+    </Wrapper>
   );
 }

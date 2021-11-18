@@ -4,11 +4,14 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  // background-color: yellow;
-  width: 1000px;
+  background-color: #fff2f2;
   margin-left: 30px;
+  margin-right: 30px;
   margin-top: 30px;
   font-family: 넥슨Lv1고딕 OTF;
+  color: #5d5d5d;
+  border: 1px dotted black;
+  padding-bottom: 100px;
 `;
 
 export const List = styled.div`
@@ -73,7 +76,7 @@ export const BestContents = styled.table`
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  background-color: #ffebfe;
+  background-color: #ffe3e3;
 `;
 export const BestContentsButton = styled.button`
   background-color: transparent;
@@ -101,7 +104,7 @@ export const BestTitle = styled.div`
 
 export const BestWriter = styled.div`
   font-size: 12px;
-  color: black;
+  // color: black;
 `;
 
 export const TitleWriterCreatedAt = styled.div`
@@ -118,7 +121,7 @@ export const BestCreatedAt = styled.div`
 
 export const BestLikeCount = styled.div`
   padding-top: 25px;
-  color: black;
+  // color: black;
   font-size: 15px;
 `;
 
@@ -140,14 +143,13 @@ export const LatestContents = styled.table`
 export const LatestContentsBack = styled.div`
   height: 340px;
   width: 400px;
-  background-color: #bdbdbd;
   display: flex;
   flex-direction: column;
   align-items: center;
   border: none;
   border-radius: 10px;
   justify-content: center;
-  background-color: #ffebfe;
+  background-color: #ffe3e3;
 `;
 
 export const Row = styled.tr`
@@ -239,7 +241,7 @@ export const DeleteButton = styled.button`
 `;
 
 export const PageIndex = styled.div`
-  width: 190px;
+  width: 250px;
   display: flex;
   justify-content: space-between;
   padding-top: 10px;

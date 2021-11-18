@@ -3,34 +3,34 @@ import styled from "@emotion/styled";
 export const CommentCreateWrapper = styled.div`\
   display:flex;
   justify-content: space-between;
-  padding-bottom: 20px;
-  width: 960px;
-  margin-left: 48px;
+  padding-bottom: 18px;
+  width: 860px;
+  margin-left: 100px;
   
 `;
 
 export const CommentCreateWriterInput = styled.input`
-  width: 150px;
-  height: 30px;
-  margin-bottom: 10px;
+  width: 135px;
+  height: 27px;
+  margin-bottom: 9px;
   padding-left: 5px;
 `;
 export const CommentCreatePasswordInput = styled.input`
-  width: 150px;
-  height: 30px;
+  width: 135px;
+  height: 27px;
   padding-left: 5px;
 `;
 
 export const CommentCreateContentsInput = styled.input`
-  width: 800px;
-  height: 100px;
-  margin-bottom: 10px;
-  padding-bottom: 60px;
-  padding-left: 10px;
+  width: 720px;
+  height: 90px;
+  margin-bottom: 9px;
+  padding-bottom: 54px;
+  padding-left: 9px;
 `;
 export const CommentCreateButton = styled.button`
-  width: 70px;
-  height: 30px;
+  width: 63px;
+  height: 27px;
   border: none;
   background-color: #ffebfe;
 `;

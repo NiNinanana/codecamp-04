@@ -5,7 +5,6 @@ export default function NavigationUI() {
   const router = useRouter();
   function onClickList() {
     router.push(`/boards/list`);
-    alert("asdf");
   }
   return (
     <>

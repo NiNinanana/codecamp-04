@@ -14,13 +14,13 @@ export default function BoardsListUI(props: IBoardsListUIProps) {
 
   return (
     <S.Wrapper>
-      <S.List onClick={props.main}>게시글시게</S.List>
+      {/* <S.List onClick={props.main}>게시글시게</S.List> */}
       <S.SearchBoards>
         <S.DateSearch>
           <Input.Group compact>
             {/* <Input style={{ width: "30%" }} defaultValue="input content" /> */}
             <DatePicker.RangePicker
-              style={{ width: "600px" }}
+              style={{ width: "250px" }}
               onChange={props.onChangeDate}
             />
           </Input.Group>
@@ -28,7 +28,8 @@ export default function BoardsListUI(props: IBoardsListUIProps) {
             placeholder="제목을 입력하세요"
             onSearch={props.onSearch}
             onChange={props.onChangeSearchBox}
-            enterButton
+            // enterButton
+            style={{ width: "700px" }}
           />
           {/* <S.SearchBox
             type="text"
@@ -121,13 +122,28 @@ export default function BoardsListUI(props: IBoardsListUIProps) {
               )}
             </S.LatestContents>
             <S.PageIndex>
-              <S.PageIndexButton1>이전</S.PageIndexButton1>
-              <S.PageIndexButton onClick={props.list1}>1</S.PageIndexButton>
+              <S.PageIndexButton1 onClick={props.prevButton}>
+                이전
+              </S.PageIndexButton1>
+              {new Array(5).fill(1).map(
+                (el, index) =>
+                  props.startPage + index <= props.lastPage && (
+                    <S.PageIndexButton
+                      onClick={props.list}
+                      id={String(props.startPage + index)}
+                    >
+                      {props.startPage + index}
+                    </S.PageIndexButton>
+                  )
+              )}
+              {/* <S.PageIndexButton onClick={props.list1}>1</S.PageIndexButton>
               <S.PageIndexButton onClick={props.list2}>2</S.PageIndexButton>
               <S.PageIndexButton onClick={props.list3}>3</S.PageIndexButton>
               <S.PageIndexButton onClick={props.list4}>4</S.PageIndexButton>
-              <S.PageIndexButton onClick={props.list5}>5</S.PageIndexButton>
-              <S.PageIndexButton1>다음</S.PageIndexButton1>
+              <S.PageIndexButton onClick={props.list5}>5</S.PageIndexButton> */}
+              <S.PageIndexButton1 onClick={props.nextButton}>
+                다음
+              </S.PageIndexButton1>
             </S.PageIndex>
           </S.LatestContentsBack>
         </S.LatestBoards>

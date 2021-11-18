@@ -1,9 +1,11 @@
-import { Footer } from "./Footer.styles";
+import { Footer, FooterText } from "./Footer.styles";
 
 export default function FooterUI() {
   return (
     <>
-      <Footer>Footer!!!!!!!!</Footer>
+      <Footer>
+        <FooterText>© 2088 GitHub</FooterText>
+      </Footer>
     </>
   );
 }
