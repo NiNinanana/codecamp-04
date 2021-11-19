@@ -25,7 +25,7 @@ const Sidebar = styled.div`
 const HIDDEN_HEADERS = [];
 // 01-01-emotion에서만 헤더가 안나오게
 
-const HIDDEN_NAVIGATION = ["/boards/list", "/boards/new"];
+const HIDDEN_NAVIGATION = ["/boards/new"];
 const HIDDEN_BANNER = ["/boards/list", "/boards/new"];
 
 interface ILayoutProps {

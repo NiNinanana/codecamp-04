@@ -27,10 +27,9 @@ import {
   SearchButton,
 } from "./BoardWrite.styles";
 import { BoardWriteUIProps } from "./BoardWrite.types";
-import { Modal, Button } from "antd";
+import { Modal } from "antd";
 import { useState } from "react";
 import DaumPostcode from "react-daum-postcode";
-import styled from "@emotion/styled";
 
 export default function BoardWriteUI(props: BoardWriteUIProps) {
   const [isOpen, setIsOpen] = useState(false);

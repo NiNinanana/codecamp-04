@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import { CREATE_BOARD, FETCH_BOARD, UPDATE_BOARD } from "./BoardWrite.queries";
 import { BoardWriteProps, IUpdateTemp } from "./BoardWrite.types";
 import { Modal } from "antd";
+// import {} from "@material-ui/lab/Alert";
 
 export default function BoardWrite(props: BoardWriteProps) {
   const router = useRouter();

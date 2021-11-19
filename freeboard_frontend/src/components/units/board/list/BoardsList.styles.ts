@@ -5,13 +5,14 @@ export const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   background-color: #fff2f2;
-  margin-left: 30px;
-  margin-right: 30px;
+  margin-left: 100px;
+  margin-right: 100px;
   margin-top: 30px;
   font-family: 넥슨Lv1고딕 OTF;
   color: #5d5d5d;
   border: 1px dotted black;
   padding-bottom: 100px;
+  width: 860px;
 `;
 
 export const List = styled.div`
@@ -19,8 +20,10 @@ export const List = styled.div`
   cursor: pointer;
 `;
 export const BoardsWrapper = styled.div`
-  width: 920px;
+  width: 850px;
   padding-top: 10px;
+  /* padding-right: 5px;
+  padding-left: 5px; */
 
   // background-color: blue;
   display: flex;
