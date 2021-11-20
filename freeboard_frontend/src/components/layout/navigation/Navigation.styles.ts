@@ -14,15 +14,18 @@ export const Navigation = styled.div`
 export const ListButton = styled.button``;
 
 export const Wrapper = styled.div`
-  position: relative;
+  /* position: relative; */
 `;
 
-export const NavigationImg = styled.img`
-  width: 320px;
-  height: 180px;
-`;
+// export const NavigationImg = styled.img`
+//   width: 320px;
+//   height: 180px;
+// `;
 
 export const TextWrapper = styled.div`
-  position: absolute;
-  top: 50%;
+  /* position: absolute;
+  top: 50%; */
+  display: flex;
+  width: 300px;
+  justify-content: space-between;
 `;

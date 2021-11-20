@@ -32,7 +32,8 @@ export const CommentCreateButton = styled.button`
   width: 63px;
   height: 27px;
   border: none;
-  background-color: #ffebfe;
+  border-radius: 7px;
+  background-color: #ffe3e3;
 `;
 export const CommentCreateFirstWrapper = styled.div`
   display: flex;

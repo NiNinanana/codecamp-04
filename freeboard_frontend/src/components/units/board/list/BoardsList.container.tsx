@@ -10,13 +10,15 @@ import { DELETE_BOARD } from "./BoardsList.mutations";
 import { useRouter } from "next/router";
 import { IBoardsListProps } from "./BoardsList.types";
 import { useState } from "react";
-import { IQuery } from "../../../../commons/types/generated/types";
+import {
+  IQuery,
+  IQueryFetchBoardsArgs,
+} from "../../../../commons/types/generated/types";
 
 export default function BoardsList(props: IBoardsListProps) {
   const [search, setSearch] = useState("");
   const [startDate, setStartDate] = useState(undefined);
   const [endDate, setEndDate] = useState(undefined);
-  const [page, setPage] = useState(1);
   const [startPage, setStartPage] = useState(1);
   // const { data } = useQuery(FETCH_BOARDS, {
   //   variables: {
@@ -93,10 +95,6 @@ export default function BoardsList(props: IBoardsListProps) {
   function onClickSearch() {
     // alert("페이지 공사중입니다");
     setIsList(false);
-    try {
-    } catch (error) {
-      // alert(error.message)
-    }
   }
 
   function onClickMain() {
@@ -113,7 +111,7 @@ export default function BoardsList(props: IBoardsListProps) {
   }
 
   function onChangeDate(value) {
-    console.log(value);
+    // console.log(value);
     if (value !== null) {
       setStartDate(String(value[0]._d).split("").slice(4, 15).join(""));
       setEndDate(String(value[1]._d).split("").slice(4, 15).join(""));
@@ -151,6 +149,11 @@ export default function BoardsList(props: IBoardsListProps) {
   // }
   // function onClickList5() {
   //   setPage(5);
+  // }
+  console.log(data2?.fetchBoardsOfTheBest.title);
+
+  // if (data2?.fetchBoardsOfTheBest.title.length > 14) {
+  //   data2?.fetchBoardsOfTheBest.title.slice(0, 14);
   // }
 
   return (

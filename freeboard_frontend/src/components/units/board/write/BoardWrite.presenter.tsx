@@ -32,20 +32,6 @@ import { useState } from "react";
 import DaumPostcode from "react-daum-postcode";
 
 export default function BoardWriteUI(props: BoardWriteUIProps) {
-  const [isOpen, setIsOpen] = useState(false);
-  const [myAddress, setMyAddress] = useState("");
-  const [myZonecode, setMyZonecode] = useState("");
-
-  const onToggleModal = () => {
-    setIsOpen((prev) => !prev);
-  };
-
-  const handleComplete = (data: any) => {
-    console.log(data);
-    setMyAddress(data.address);
-    setMyZonecode(data.zonecode);
-    setIsOpen((prev) => !prev);
-  };
   return (
     <Wrapper>
       <HeadTitle>게시물 {props.isEdit ? "수정" : "등록"}</HeadTitle>
@@ -97,25 +83,27 @@ export default function BoardWriteUI(props: BoardWriteUIProps) {
             <Address
               type="text"
               placeholder="07250"
-              defaultValue={myZonecode}
+              defaultValue={props.myZonecode}
               readOnly
             />
-            <SearchButton onClick={onToggleModal}>우편번호 검색</SearchButton>
-            {isOpen && (
+            <SearchButton onClick={props.onToggleModal}>
+              우편번호 검색
+            </SearchButton>
+            {props.isOpen && (
               <Modal
                 title="우편번호 검색"
                 visible={true}
-                onOk={onToggleModal}
-                onCancel={onToggleModal}
+                onOk={props.onToggleModal}
+                onCancel={props.onToggleModal}
                 // style={{ backgroundColor: "yellow" }}
               >
-                <DaumPostcode onComplete={handleComplete} />
+                <DaumPostcode onComplete={props.handleComplete} />
               </Modal>
             )}
           </AddressWrapper>
-          <MediumInput type="text" defaultValue={myAddress} readOnly />
+          <MediumInput type="text" defaultValue={props.myAddress} readOnly />
           <AddressWrapperTwo>
-            <MediumInput type="text" />
+            <MediumInput type="text" placeholder="상세주소를 입력하세요." />
           </AddressWrapperTwo>
         </div>
         <YoutubeWrapper>

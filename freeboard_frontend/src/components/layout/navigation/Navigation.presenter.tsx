@@ -1,14 +1,7 @@
-import {
-  TextWrapper,
-  Navigation,
-  Wrapper,
-  NavigationImg,
-} from "./Navigation.styles";
+import { TextWrapper, Navigation, Wrapper } from "./Navigation.styles";
 import Typography from "@material-ui/core/Typography";
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import Link from "@material-ui/core/Link";
-import { Avatar } from "antd";
-import { UserOutlined } from "@ant-design/icons";
 
 export default function NavigationUI(props) {
   return (
@@ -16,9 +9,9 @@ export default function NavigationUI(props) {
       <Navigation>
         <Breadcrumbs aria-label="breadcrumb">
           <Wrapper>
-            <div>
+            {/* <div>
               <NavigationImg src="/images/아이유 딸기달.png" />
-            </div>
+            </div> */}
             <TextWrapper>
               <Link color="textPrimary" href="/" onClick={props.clickFree}>
                 자유게시판
@@ -30,9 +23,9 @@ export default function NavigationUI(props) {
               >
                 중고마켓
               </Link>
-              <Typography color="inherit" onClick={props.clickMyPgae}>
+              <Link color="inherit" onClick={props.clickMyPgae}>
                 마이페이지
-              </Typography>
+              </Link>
             </TextWrapper>
           </Wrapper>
         </Breadcrumbs>

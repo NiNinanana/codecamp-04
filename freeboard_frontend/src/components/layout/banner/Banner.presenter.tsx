@@ -2,6 +2,7 @@ import { Banner, Contents, ContentsTitle } from "./Banner.styles";
 import { Component } from "react";
 import Slider from "react-slick";
 import router, { useRouter } from "next/router";
+import BannerTitleUI from "./Banner.presenter.UI";
 
 export default function BannerUI(props) {
   const router = useRouter();
@@ -27,25 +28,23 @@ export default function BannerUI(props) {
     router.push(`/boards/${props.data?.fetchBoardsOfTheBest[3]._id}`);
   }
 
+  function onClickTitle() {
+    router.push(`/boards/${props.data?.fetchBoarfdsOfTheBest}`);
+  }
+
   return (
     <>
       <Banner>
         <ContentsTitle>베스트 게시글</ContentsTitle>
         <Slider {...settings}>
-          <Contents>
-            <h3 onClick={onClickOne}>
-              1. {props.data?.fetchBoardsOfTheBest[0].title}
-            </h3>
-          </Contents>
-          <Contents onClick={onClickTwo}>
-            <h3>2. {props.data?.fetchBoardsOfTheBest[1].title}</h3>
-          </Contents>
-          <Contents onClick={onClickThree}>
-            <h3>3. {props.data?.fetchBoardsOfTheBest[2].title}</h3>
-          </Contents>
-          <Contents onClick={onClickFour}>
-            <h3>4. {props.data?.fetchBoardsOfTheBest[3].title}</h3>
-          </Contents>
+          {props.data?.fetchBoardsOfTheBest.map((el, index) => (
+            // <Contents key={el._id}>
+            //   <h3 onClick={onClickOne}>
+            //     {index + 1}. {el.title}
+            //   </h3>
+            // </Contents>
+            <BannerTitleUI el={el} index={index} key={el._id} />
+          ))}
         </Slider>
       </Banner>
     </>

@@ -15,12 +15,14 @@ export default function BoardWrite(props: BoardWriteProps) {
   const { data } = useQuery(FETCH_BOARD, {
     variables: { boardId: router.query.myId },
   });
-
+  const [isOpen, setIsOpen] = useState(false);
   const [writer, setWriter] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [title, setTitle] = useState<string>("");
   const [content, setContent] = useState<string>("");
   const [youtube, setYoutube] = useState<string>("");
+  const [myAddress, setMyAddress] = useState("");
+  const [myZonecode, setMyZonecode] = useState("");
 
   const [errorWriter, setErrorWriter] = useState<string>("");
   const [errorPassword, setErrorPassword] = useState<string>("");
@@ -126,6 +128,7 @@ export default function BoardWrite(props: BoardWriteProps) {
             title: title,
             contents: content,
             youtubeUrl: youtube,
+            // boardAddress: myAddress,
           },
         },
       });
@@ -135,7 +138,7 @@ export default function BoardWrite(props: BoardWriteProps) {
       });
       router.push(`/boards/${result.data.createBoard._id}`);
     } catch (error) {
-      alert("오류");
+      alert(error.message);
     }
   }
 
@@ -163,6 +166,17 @@ export default function BoardWrite(props: BoardWriteProps) {
     }
   };
 
+  const handleComplete = (data: any) => {
+    console.log(data);
+    setMyAddress(data.address);
+    setMyZonecode(data.zonecode);
+    setIsOpen((prev) => !prev);
+  };
+
+  const onToggleModal = () => {
+    setIsOpen((prev) => !prev);
+  };
+
   return (
     <>
       <BoardWriteUI
@@ -181,6 +195,11 @@ export default function BoardWrite(props: BoardWriteProps) {
         data={data}
         youtube={youtube}
         isEdit={props.isEdit}
+        myAddress={myAddress}
+        myZonecode={myZonecode}
+        handleComplete={handleComplete}
+        onToggleModal={onToggleModal}
+        isOpen={isOpen}
       />
     </>
   );

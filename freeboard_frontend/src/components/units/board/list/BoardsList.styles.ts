@@ -13,6 +13,7 @@ export const Wrapper = styled.div`
   border: 1px dotted black;
   padding-bottom: 100px;
   width: 860px;
+  padding-top: 40px;
 `;
 
 export const List = styled.div`
@@ -39,11 +40,15 @@ export const SearchBoards = styled.div`
 export const DateSearch = styled.div``;
 
 export const WriteButton = styled.button`
-  height: 30px;
-  font-size: 13px;
-  background-color: black;
-  color: white;
-  margin-top: 50px;
+  width: 56px;
+  height: 32px;
+  font-size: 14px;
+  color: black;
+  margin-top: 20px;
+  margin-left: 750px;
+  border-radius: 5px;
+  border: none;
+  background-color: #c9ccd5;
   :hover {
     text-decoration: underline;
   }

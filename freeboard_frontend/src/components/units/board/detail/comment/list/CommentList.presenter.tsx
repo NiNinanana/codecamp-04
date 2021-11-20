@@ -3,12 +3,9 @@ import * as S from "./CommentList.styles";
 import CommentWriteUI from "../write/CommentWrite.presenter";
 import { useState } from "react";
 import { Modal } from "antd";
-import {
-  DELETE_BOARD_COMMENT,
-  FETCH_BOARD_COMMENTS,
-} from "../../BoardDetail.queries";
+import { DELETE_BOARD_COMMENT } from "../../BoardDetail.queries";
 
-import { useMutation, useQuery } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
 
 export default function CommentListUIItem(props) {

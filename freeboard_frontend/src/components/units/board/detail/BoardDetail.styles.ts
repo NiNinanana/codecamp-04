@@ -166,12 +166,12 @@ export const Count = styled.div`
 export const ThisAddress = styled.div`
   font-size: 11px;
   text-align: right;
-  margin-right: 20px;
+  /* margin-right: 20px; */
   background-color: white;
-  margin-left: 620px;
+  /* margin-left: 620px; */
   border-radius: 7px;
   margin-top: 15px;
-  padding-right: 7px;
+  /* padding-right: 7px; */
 `;
 
 export const PreviousButton = styled.button`
@@ -357,4 +357,15 @@ export const CommentUpdate = styled.td`
     color: #dbc000;
     text-decoration: underline;
   }
+`;
+
+export const AddressId = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 20px;
+`;
+
+export const Address = styled.div`
+  margin-top: 12px;
+  margin-right: 10px;
 `;

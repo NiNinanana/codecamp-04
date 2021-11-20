@@ -33,31 +33,9 @@ export default function BoardDetail() {
   const [writer, setWriter] = useState("");
   const [contents, setContents] = useState("");
   const [password, setPassword] = useState("");
-  // const [likeBoard] = useMutation(LIKE_BOARD)
-
-  // async function likePlus(){
-
-  //     // try {
-  //         const likeResult = await likeBoard({
-  //             // variables: {
-  //             //     boardId
-  //             // }
-  //         })
-  //         router.
-  //     // } catch(error){
-  //     //     alert("오류")
-  //     // }
-
-  // } 좋아요 버튼 눌렀을 때 올라가게 / 더 배우고 해야할 듯
 
   const like: number = data?.fetchBoard.likeCount;
   const dislike: number = data?.fetchBoard.dislikeCount;
-
-  // let create = String(data?.fetchBoard.createdAt)
-  // create = create.split("T").join("").split("")
-  // let createA = create.slice(0, 10).join("")
-  // let createB = create.slice(10, 15).join("")
-  // create = createA + " / " + createB + "(GMT)"
 
   async function onClickDelete() {
     try {
@@ -190,6 +168,7 @@ export default function BoardDetail() {
       alert(error.message);
     }
   }
+  console.log(data?.fetchBoard);
 
   function onClickUpdateComment() {}
 
@@ -201,6 +180,7 @@ export default function BoardDetail() {
         dataContents={data?.fetchBoard.contents}
         dataId={data?.fetchBoard._id}
         dataYoutube={data?.fetchBoard.youtubeUrl}
+        dataAddress={data?.fetchBoard.boardAddress}
         fff={fff}
         // commentDataWriter={commentData?.fetchBoardComments[0].writer}
         // commentDataContents={commentData?.fetchBoardComments[0].contents}

@@ -1,14 +1,48 @@
 import * as S from "./BoardDetail.styles";
 import { getDate, youtubeUrl } from "../../../../commons/libraries/utils";
 import { IBoardDetailUIProps } from "./BoardDetail.types";
+import { AimOutlined } from "@ant-design/icons";
+import { Menu, Dropdown } from "antd";
 
 export default function BoardDetailUI(props: IBoardDetailUIProps) {
+  const menu = (
+    <Menu>
+      <Menu.Item>
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://www.antgroup.com"
+        >
+          주소뜨게 하고 그 주소로 지도 링크 연결하기!
+        </a>
+      </Menu.Item>
+    </Menu>
+  );
+
+  let dataTitle = props.dataTitle;
+  // const dataTitleLength = dataTitle.length;
+  // console.log(dataTitle.length);
+  // function onClickTitle() {
+  //   if (dataTitleLength > 31) {
+  //     console.log("dataTitle");
+  //     console.log(dataTitle);
+  //     console.log(props.dataTitle);
+
+  //     dataTitle = props.dataTitle;
+  //     alert("Asdf");
+  //   }
+  // }
+
+  // if (dataTitleLength > 31) {
+  //   dataTitle = dataTitle.slice(0, 31) + "...";
+  // }
+
   return (
     <S.Wrapper>
       <S.ContentsWrapper>
         {/* <FreeBoard>자유게시판</FreeBoard> */}
         {/* <Title>{data ? data.fetchBoard.title : "잠시만 기다려주세요"}</Title> */}
-        <S.Title>{props.dataTitle}</S.Title>
+        <S.Title>{dataTitle}</S.Title>
         <S.WriterWrapper>
           <S.Writer>{props.dataWriter}</S.Writer>
           <S.WriteDate>{getDate(props.create)}</S.WriteDate>
@@ -51,7 +85,14 @@ export default function BoardDetailUI(props: IBoardDetailUIProps) {
           <S.Update onClick={props.update}>수정</S.Update>
           <S.Delete onClick={props.delete}>삭제</S.Delete>
         </S.RemoteControler>
-        <S.ThisAddress>글 아이디 : {props.dataId}</S.ThisAddress>
+        <S.AddressId>
+          <S.Address>
+            <Dropdown overlay={menu}>
+              <AimOutlined />
+            </Dropdown>
+          </S.Address>
+          <S.ThisAddress>글 아이디 : {props.dataId}</S.ThisAddress>
+        </S.AddressId>
       </S.ContentsWrapper>
     </S.Wrapper>
   );
