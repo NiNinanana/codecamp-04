@@ -4,6 +4,7 @@ import Header from "./header/Header.contatiner";
 import Banner from "./banner/Banner.container";
 import Navigation from "./navigation/Navigation.container";
 import Footer from "./footer/Footer.contatiner";
+import Sidebar from "./sidebar/Sidebar.contatiner";
 import { useRouter } from "next/router";
 
 const Wrapper = styled.div`
@@ -16,11 +17,12 @@ const Body = styled.div`
 const BodyWrapper = styled.div`
   display: flex;
 `;
-const Sidebar = styled.div`
-  width: 200px;
-  height: 400px;
-  background-color: yellow;
-`;
+
+// const Sidebar = styled.div`
+//   width: 200px;
+//   height: 400px;
+//   background-color: yellow;
+// `;
 
 const HIDDEN_HEADERS = [];
 // 01-01-emotion에서만 헤더가 안나오게
@@ -49,6 +51,7 @@ export default function Layout(props: ILayoutProps) {
       {!isHiddenBanner && <Banner />}
       {!isHiddenNavigation && <Navigation />}
       <BodyWrapper>
+        <Sidebar></Sidebar>
         <Body>{props.children}</Body>
       </BodyWrapper>
       <Footer />

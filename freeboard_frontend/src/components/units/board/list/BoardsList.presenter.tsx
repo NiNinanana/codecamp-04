@@ -83,23 +83,6 @@ export default function BoardsListUI(props: IBoardsListUIProps) {
               ) : (
                 <div>
                   {props.data3?.fetchBoards.map((el: any) => (
-                    // <S.Row key={el._id}>
-                    //   {/* unique한 키값을 넣어주고 체크박스를 체크한 후 삭제하면 체크박스 체크 해제됨 */}
-                    //   <S.CheckBox>
-                    //     <input type="checkbox" />
-                    //   </S.CheckBox>
-                    //   {/* <S.Column>{index+1}</S.Column> */}
-                    //   <S.TitleButton id={el._id} onClick={props.justContents}>
-                    //     <S.Title>{el.title}</S.Title>
-                    //   </S.TitleButton>
-                    //   {/* <S.Column>{el.writer}</S.Column> */}
-                    //   <S.Date>{getDate(el.createdAt)}</S.Date>
-                    //   <S.Column>
-                    //     <S.DeleteButton id={el._id} onClick={props.delete}>
-                    //       삭제
-                    //     </S.DeleteButton>
-                    //   </S.Column>
-                    // </S.Row>
                     <BoardsListSearchUI
                       el={el}
                       key={el._id}

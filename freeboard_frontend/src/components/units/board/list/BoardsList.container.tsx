@@ -63,8 +63,10 @@ export default function BoardsList(props: IBoardsListProps) {
         refetchQueries: [{ query: FETCH_BOARDS }],
         // refetchQueries: [{ query: FETCH_BOARDS_OF_THE_BEST }] // 새로고침격 , variables가 잇다면 이런식으로 뒤에 더 붙여야함 {variables: {id: 123}}
       });
+      alert("삭제되었습니다!");
+      location.reload();
     } catch (error) {
-      alert("error.message");
+      alert(error.message);
     }
   }
 
