@@ -51,8 +51,8 @@ export default function Layout(props: ILayoutProps) {
       {!isHiddenBanner && <Banner />}
       {!isHiddenNavigation && <Navigation />}
       <BodyWrapper>
-        <Sidebar></Sidebar>
         <Body>{props.children}</Body>
+        <Sidebar></Sidebar>
       </BodyWrapper>
       <Footer />
     </Wrapper>

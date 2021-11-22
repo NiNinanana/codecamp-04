@@ -65,7 +65,7 @@ export default function BoardDetail() {
       alert("삭제되었습니다.");
       router.push(`/boards/${router.query.myId}`);
     } catch (error) {
-      alert(error.message);
+      if (error instanceof Error) alert(error.message);
     }
   }
 
@@ -79,7 +79,7 @@ export default function BoardDetail() {
         ],
       });
     } catch (error) {
-      alert("error");
+      if (error instanceof Error) alert(error.message);
     }
   }
 
@@ -93,7 +93,7 @@ export default function BoardDetail() {
         // refetchQueries: [{query: FETCH_BOARD, variables: {_id: data?.fetchBoard._id}}]
       });
     } catch (error) {
-      alert("error");
+      if (error instanceof Error) alert(error.message);
     }
   }
 
@@ -165,7 +165,7 @@ export default function BoardDetail() {
       alert("등록되었습니다.");
       // location.reload(); // 페이지 리로드
     } catch (error) {
-      alert(error.message);
+      if (error instanceof Error) alert(error.message);
     }
   }
   console.log(data?.fetchBoard);

@@ -1,9 +1,9 @@
 import { TextWrapper, Navigation, Wrapper } from "./Navigation.styles";
-import Typography from "@material-ui/core/Typography";
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import Link from "@material-ui/core/Link";
+import { INavigationUIProps } from "./Navigation.types";
 
-export default function NavigationUI(props) {
+export default function NavigationUI(props: INavigationUIProps) {
   return (
     <>
       <Navigation>
@@ -13,18 +13,32 @@ export default function NavigationUI(props) {
               <NavigationImg src="/images/아이유 딸기달.png" />
             </div> */}
             <TextWrapper>
-              <Link color="textPrimary" href="/" onClick={props.clickFree}>
+              <Link
+                color={props.isFree === true ? "textPrimary" : "inherit"}
+                href="/"
+                onClick={props.clickFree}
+              >
                 자유게시판
               </Link>
               <Link
-                color="inherit"
+                color={props.isCarrot === true ? "textPrimary" : "inherit"}
                 href="/getting-started/installation/"
                 onClick={props.clickCarrot}
               >
                 중고마켓
               </Link>
-              <Link color="inherit" onClick={props.clickMyPgae}>
+              <Link
+                color={props.isMyPage === true ? "textPrimary" : "inherit"}
+                onClick={props.clickMyPgae}
+              >
                 마이페이지
+              </Link>
+
+              <Link
+                color={props.isCat === true ? "textPrimary" : "inherit"}
+                onClick={props.clickCat}
+              >
+                냥이
               </Link>
             </TextWrapper>
           </Wrapper>

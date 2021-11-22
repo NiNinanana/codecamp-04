@@ -1,10 +1,10 @@
 import { ChangeEvent } from "react";
 
-export interface BoardWriteProps {
+export interface IBoardWriteProps {
   isEdit: boolean;
 }
 
-export interface BoardWriteUIProps {
+export interface IBoardWriteUIProps {
   myAddress: string | number | readonly string[] | undefined;
   upup: boolean;
   isEdit: boolean;
@@ -21,6 +21,10 @@ export interface BoardWriteUIProps {
   update: () => void;
   data?: any;
   youtube: string;
+  handleComplete: (data: any) => void;
+  onToggleModal: () => void;
+  isOpen: boolean;
+  myZoneCode: string | number | readonly string[] | undefined;
 }
 
 export interface IUploadButtonProps {

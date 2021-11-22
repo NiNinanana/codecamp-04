@@ -263,6 +263,7 @@ export const PageIndexButton = styled.button`
   color: grey;
   :hover {
     color: black;
+    text-decoration: underline;
   }
 `;
 

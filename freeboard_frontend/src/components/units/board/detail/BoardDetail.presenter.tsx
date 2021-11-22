@@ -19,7 +19,7 @@ export default function BoardDetailUI(props: IBoardDetailUIProps) {
     </Menu>
   );
 
-  let dataTitle = props.dataTitle;
+  const dataTitle = props.dataTitle;
   // const dataTitleLength = dataTitle.length;
   // console.log(dataTitle.length);
   // function onClickTitle() {

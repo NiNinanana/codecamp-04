@@ -1,3 +1,5 @@
+import { ChangeEvent } from "react";
+
 export interface IBoardDetailUIProps {
   dataTitle: string;
   dataWriter: string;
@@ -8,18 +10,20 @@ export interface IBoardDetailUIProps {
   dislike: number;
   previous: () => void;
   next: () => void;
-  delete: any;
-  likeCount: any;
-  dislikeCount: any;
-  list: any;
-  update: any;
+  delete: () => void;
+  likeCount: () => void;
+  dislikeCount: () => void;
+  list: () => void;
+  update: () => void;
   dataYoutube: any;
   ddd: number;
   fff: boolean;
   commentData: any;
-  deleteComment: (event: any) => void;
-  createComment: (event: any) => void;
-  commentWriter: (event: any) => void;
-  commentContents: (event: any) => void;
-  commentPassword: (event: any) => void;
+  deleteComment: (event: ChangeEvent<HTMLInputElement>) => void;
+  createComment: (event: ChangeEvent<HTMLInputElement>) => void;
+  commentWriter: (event: ChangeEvent<HTMLInputElement>) => void;
+  commentContents: (event: ChangeEvent<HTMLInputElement>) => void;
+  commentPassword: (event: ChangeEvent<HTMLInputElement>) => void;
+  dataAddress: string;
+  updateComment: () => void;
 }

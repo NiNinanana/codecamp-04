@@ -1,15 +1,16 @@
 import * as S from "./CommentWrite.styles";
 import { Rate } from "antd";
-import { useState } from "react";
+import { useState, ChangeEvent } from "react";
 import {
   UPDATE_BOARD_COMMENT,
   FETCH_BOARD_COMMENTS,
   CREATE_BOARD_COMMENT,
 } from "../../BoardDetail.queries";
-import { useMutation, useQuery } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
+import { ICommentWriteUIProps } from "./CommentWrite.types";
 
-export default function CommentWriteUI(props: any) {
+export default function CommentWriteUI(props: ICommentWriteUIProps) {
   const [writer, setWriter] = useState("");
   const [contents, setContents] = useState("");
   const [password, setPassword] = useState("");
@@ -25,13 +26,13 @@ export default function CommentWriteUI(props: any) {
   function handleChange(value: number) {
     setValue(value);
   }
-  function onChangeCommentWriter(event: any) {
+  function onChangeCommentWriter(event: ChangeEvent<HTMLInputElement>) {
     setWriter(event.target.value);
   }
-  function onChangeCommentContents(event: any) {
+  function onChangeCommentContents(event: ChangeEvent<HTMLInputElement>) {
     setContents(event.target.value);
   }
-  function onChangeCommentPassword(event: any) {
+  function onChangeCommentPassword(event: ChangeEvent<HTMLInputElement>) {
     setPassword(event.target.value);
   }
 
@@ -65,7 +66,7 @@ export default function CommentWriteUI(props: any) {
       alert("등록되었습니다.");
       location.reload(); // 페이지 리로드
     } catch (error) {
-      alert(error.message);
+      if (error instanceof Error) alert(error.message);
     }
   }
 

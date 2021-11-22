@@ -1,7 +1,7 @@
-export default function SidebarUI() {
+export default function SidebarUI(props) {
   return (
     <>
-      <div>button</div>
+      <div onClick={props.topButton}>button</div>
     </>
   );
 }

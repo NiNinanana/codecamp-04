@@ -1,0 +1,76 @@
+4주차 커리큘럼
+컴포넌트 생명주기 -> 백엔드 구조 -> 이미지 업로드
+
+오늘의 커리큘럼
+컴포넌트 생명주기 -> ref -> useEffect와 의존성배열 -> useEffect 주의사항
+
+컴포넌트 생명주기
+언제 나타나고 언제 사라지고
+
+클래스(class): 물건 만드는 설명서
+class안에는 변수도 들어갈 수도 있찌만 함수도 들어갈 수 있다. 그 함수를 메서드라고 부른다.
+
+class 붕어빵{
+    //만드는 방법
+}
+
+new 붕어빵()
+//붕어빵 생성
+
+class 컴포넌트 {
+    //만드는 방법
+}
+
+new 컴포넌트()
+붕어빵 객체, 컴포넌트 객체라고 편하게 부른다.
+
+내장 객체 Date
+const date = new Date()
+    date.getFullYear()
+    date.getMonth()
+    date.getDate()
+이것도 하나의 설명서이다.
+
+class Date {
+    getFullYear(){
+        //년도 추출 기능
+    }
+    getMonth(){
+        //월 추출 기능
+    }
+    getDate(){
+        //일 추출 기능
+    }
+    /
+    .
+    .
+    .
+}
+
+객체지향프로그래밍-OOP
+
+
+hook: useState등, 함수만 가지고 컴포넌트를 못만들기에 hook과 함수를 같이 사용해서 컴포넌트를 만들어낸다.
+
+
+
+
+컴포넌트 생명주기
+1. 그리기 render
+2. 그리고 난 뒤 componentDidMount
+3. 그리고 난 뒤 변경됐을 때 componenetDidUpdate
+4. 그리고 난 뒤 사라질 때 componenetWillUnmount => ex)채팅방에서 누가 나갔을 때 컴포넌트가 사라지면서 api요청을 해서 채팅방 인원을 조정 등을 할 수 있겠다.
+
+deprecated 지원안하는
+deprecated된 컴포넌트들
+
+페이지에 접속하자마자 깜빡깜빡하는 것
+componentDidMount (그리고 난뒤) => 포커스 (깜빡깜빡)
+
+ref : 태그를 변수에 넣는다
+
+
+public api를 검색해서 무료 퍼블릭 api를 이곳에서 받아갈 수 있다.
+
+1. open api 연습해보기
+2. 포폴에서 나브바에 버튼 하나 만들어서 api하나 사용해서 강아지 목록 처럼 여러가지 나오게 해보기(무한스크롤 해볼까)

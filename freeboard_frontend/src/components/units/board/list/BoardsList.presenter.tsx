@@ -1,5 +1,4 @@
 import * as S from "./BoardsList.styles";
-import { getDate } from "../../../../commons/libraries/utils";
 import { IBoardsListUIProps } from "./BoardsList.types";
 import { Input, DatePicker } from "antd";
 import BoardsListBestUIItem from "./BoardsListBestList.presenter.map";
@@ -33,6 +32,7 @@ export default function BoardsListUI(props: IBoardsListUIProps) {
             onChange={props.onChangeSearchBox}
             // enterButton
             style={{ width: "700px" }}
+            ref={props.inputRef}
           />
           {/* <S.SearchBox
             type="text"
@@ -108,11 +108,6 @@ export default function BoardsListUI(props: IBoardsListUIProps) {
                     </S.PageIndexButton>
                   )
               )}
-              {/* <S.PageIndexButton onClick={props.list1}>1</S.PageIndexButton>
-              <S.PageIndexButton onClick={props.list2}>2</S.PageIndexButton>
-              <S.PageIndexButton onClick={props.list3}>3</S.PageIndexButton>
-              <S.PageIndexButton onClick={props.list4}>4</S.PageIndexButton>
-              <S.PageIndexButton onClick={props.list5}>5</S.PageIndexButton> */}
               <S.PageIndexButton1 onClick={props.nextButton}>
                 다음
               </S.PageIndexButton1>

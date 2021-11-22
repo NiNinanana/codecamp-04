@@ -5,12 +5,10 @@ import { useMutation } from "@apollo/client";
 import {
   CREATE_BOARD_COMMENT,
   FETCH_BOARD_COMMENTS,
-  UPDATE_BOARD_COMMENT,
 } from "../../BoardDetail.queries";
-import CommentListUI from "../list/CommentList.presenter";
-import CommentListUIItem from "../list/CommentList.presenter";
+import { ICommentWriteProps } from "./CommentWrite.types";
 
-export default function CommentWrite(props) {
+export default function CommentWrite(props: ICommentWriteProps) {
   const [writer, setWriter] = useState("");
   const [contents, setContents] = useState("");
   const [password, setPassword] = useState("");
@@ -26,7 +24,6 @@ export default function CommentWrite(props) {
   }
 
   const [createBoardComment] = useMutation(CREATE_BOARD_COMMENT);
-  const [updateBoardComment] = useMutation(UPDATE_BOARD_COMMENT);
 
   async function onClickCreateComment() {
     if (!writer || !password || !contents) {
@@ -54,7 +51,7 @@ export default function CommentWrite(props) {
       alert("등록되었습니다.");
       location.reload(); // 페이지 리로드
     } catch (error) {
-      alert(error.message);
+      if (error instanceof Error) alert(error.message);
     }
     alert("Asdf");
   }

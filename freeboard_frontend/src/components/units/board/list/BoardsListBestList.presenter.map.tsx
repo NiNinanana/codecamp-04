@@ -1,7 +1,10 @@
 import * as S from "./BoardsList.styles";
 import { getDate } from "../../../../commons/libraries/utils";
+import { IBoardsListBestUIItemProps } from "./BoardsList.types";
 
-export default function BoardsListBestUIItem(props) {
+export default function BoardsListBestUIItem(
+  props: IBoardsListBestUIItemProps
+) {
   let abc = props.el.title;
 
   if (abc.length > 14) {

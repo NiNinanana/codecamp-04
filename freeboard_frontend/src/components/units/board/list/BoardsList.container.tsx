@@ -9,7 +9,7 @@ import { useQuery, useMutation } from "@apollo/client";
 import { DELETE_BOARD } from "./BoardsList.mutations";
 import { useRouter } from "next/router";
 import { IBoardsListProps } from "./BoardsList.types";
-import { useState } from "react";
+import { useState, MouseEvent, ChangeEvent, useRef, useEffect } from "react";
 import {
   IQuery,
   IQueryFetchBoardsArgs,
@@ -25,6 +25,12 @@ export default function BoardsList(props: IBoardsListProps) {
   //     page: page,
   //   },
   // });
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    inputRef.current?.focus();
+  });
+
   const { data: data2 } = useQuery(FETCH_BOARDS_OF_THE_BEST);
   const { data: data3 } = useQuery(FETCH_BOARDS_SEARCH, {
     variables: {
@@ -56,7 +62,7 @@ export default function BoardsList(props: IBoardsListProps) {
 
   const create: any = String(data?.fetchBoards.createdAt);
 
-  async function onClickDelete(event: any) {
+  async function onClickDelete(event: ChangeEvent<HTMLInputElement>) {
     try {
       await deleteBoard({
         variables: { boardId: event.target.id },
@@ -66,27 +72,27 @@ export default function BoardsList(props: IBoardsListProps) {
       alert("삭제되었습니다!");
       location.reload();
     } catch (error) {
-      alert(error.message);
+      if (error instanceof Error) alert(error.message);
     }
   }
 
-  async function onClickBestDelete(event: any) {
+  async function onClickBestDelete(event: ChangeEvent<HTMLInputElement>) {
     try {
       await deleteBoard({
         variables: { boardId: event.target.id },
         refetchQueries: [{ query: FETCH_BOARDS_OF_THE_BEST }], // 새로고침격 , variables가 잇다면 이런식으로 뒤에 더 붙여야함 {variables: {id: 123}}
       });
     } catch (error) {
-      alert("error.message");
+      if (error instanceof Error) alert(error.message);
     }
   }
 
-  function onClickBestContents(event: any) {
+  function onClickBestContents(event: ChangeEvent<HTMLInputElement>) {
     // router.push(`/boards/${data2?.fetchBoardsOfTheBest[0]._id}`)
     router.push(`/boards/${event.currentTarget.id}`);
   }
 
-  function onClickJustContents(event: any) {
+  function onClickJustContents(event: ChangeEvent<HTMLInputElement>) {
     router.push(`/boards/${event.currentTarget.id}`);
   }
 
@@ -103,16 +109,16 @@ export default function BoardsList(props: IBoardsListProps) {
     location.reload();
   }
 
-  function onChangeSearchBox(event) {
+  function onChangeSearchBox() {
     setIsList(true);
   }
 
-  function onSearch(value) {
+  function onSearch(value: string) {
     setIsList(false);
     setSearch(value);
   }
 
-  function onChangeDate(value) {
+  function onChangeDate(value: string) {
     // console.log(value);
     if (value !== null) {
       setStartDate(String(value[0]._d).split("").slice(4, 15).join(""));
@@ -188,6 +194,7 @@ export default function BoardsList(props: IBoardsListProps) {
         list={onClickPage}
         prevButton={onClickPrevButton}
         nextButton={onClickNextButton}
+        inputRef={inputRef}
       />
     </>
   );

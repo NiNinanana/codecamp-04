@@ -1,7 +1,8 @@
 import * as S from "./BoardsList.styles";
 import { getDate } from "../../../../commons/libraries/utils";
+import { IBoardsListSearchUIProps } from "./BoardsList.types";
 
-export default function BoardsListSearchUI(props) {
+export default function BoardsListSearchUI(props: IBoardsListSearchUIProps) {
   let abc = props.el.title;
 
   if (abc.length > 11) {

@@ -26,12 +26,11 @@ import {
   Wrapper,
   SearchButton,
 } from "./BoardWrite.styles";
-import { BoardWriteUIProps } from "./BoardWrite.types";
+import { IBoardWriteUIProps } from "./BoardWrite.types";
 import { Modal } from "antd";
-import { useState } from "react";
 import DaumPostcode from "react-daum-postcode";
 
-export default function BoardWriteUI(props: BoardWriteUIProps) {
+export default function BoardWriteUI(props: IBoardWriteUIProps) {
   return (
     <Wrapper>
       <HeadTitle>게시물 {props.isEdit ? "수정" : "등록"}</HeadTitle>
@@ -83,7 +82,7 @@ export default function BoardWriteUI(props: BoardWriteUIProps) {
             <Address
               type="text"
               placeholder="07250"
-              defaultValue={props.myZonecode}
+              defaultValue={props.myZoneCode}
               readOnly
             />
             <SearchButton onClick={props.onToggleModal}>

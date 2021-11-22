@@ -3,11 +3,11 @@ import { useMutation, useQuery } from "@apollo/client";
 import { ChangeEvent, useState } from "react";
 import { useRouter } from "next/router";
 import { CREATE_BOARD, FETCH_BOARD, UPDATE_BOARD } from "./BoardWrite.queries";
-import { BoardWriteProps, IUpdateTemp } from "./BoardWrite.types";
+import { IBoardWriteProps, IUpdateTemp } from "./BoardWrite.types";
 import { Modal } from "antd";
 // import {} from "@material-ui/lab/Alert";
 
-export default function BoardWrite(props: BoardWriteProps) {
+export default function BoardWrite(props: IBoardWriteProps) {
   const router = useRouter();
   const [createBoard] = useMutation(CREATE_BOARD);
   const [updateBoard] = useMutation(UPDATE_BOARD);
@@ -138,7 +138,7 @@ export default function BoardWrite(props: BoardWriteProps) {
       });
       router.push(`/boards/${result.data.createBoard._id}`);
     } catch (error) {
-      alert(error.message);
+      if (error instanceof Error) alert(error.message);
     }
   }
 
@@ -162,7 +162,7 @@ export default function BoardWrite(props: BoardWriteProps) {
 
       console.log(result);
     } catch (error) {
-      alert(error.message);
+      if (error instanceof Error) alert(error.message);
     }
   };
 
@@ -196,10 +196,10 @@ export default function BoardWrite(props: BoardWriteProps) {
         youtube={youtube}
         isEdit={props.isEdit}
         myAddress={myAddress}
-        myZonecode={myZonecode}
         handleComplete={handleComplete}
         onToggleModal={onToggleModal}
         isOpen={isOpen}
+        myZoneCode={myZonecode}
       />
     </>
   );

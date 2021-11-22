@@ -1,7 +1,8 @@
 import * as S from "./BoardsList.styles";
 import { getDate } from "../../../../commons/libraries/utils";
+import { IBoardsListLastUIItemProps } from "./BoardsList.types";
 
-export default function BoardsListLastUI(props) {
+export default function BoardsListLastUI(props: IBoardsListLastUIItemProps) {
   let abc = props.el.title;
 
   if (abc.length > 11) {
