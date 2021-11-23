@@ -1,0 +1,13 @@
+import { BaseEntity, Entity, Column, PrimaryGeneratedColumn } from "typeorm";
+
+@Entity() // @ : 데코레이터
+export default class Board extends BaseEntity {
+  @PrimaryGeneratedColumn("increment")
+  number!: number;
+  @Column({ type: "text" })
+  writer!: string;
+  @Column({ type: "text" })
+  title!: string;
+  @Column({ type: "integer" })
+  age!: number;
+}

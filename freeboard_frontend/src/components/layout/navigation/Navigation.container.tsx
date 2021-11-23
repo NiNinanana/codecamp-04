@@ -49,6 +49,11 @@ export default function Navigation() {
     router.push(`/cats`);
   }
 
+  function onClickLogin() {
+    toggle();
+    router.push(`/signIn`);
+  }
+
   return (
     <NavigationUI
       isFree={isFree}
@@ -59,6 +64,7 @@ export default function Navigation() {
       clickCarrot={onClickCarrot}
       clickMyPage={onClickMyPage}
       clickCat={onClickCat}
+      clickLogin={onClickLogin}
     />
   );
 }

@@ -40,6 +40,7 @@ export default function NavigationUI(props: INavigationUIProps) {
               >
                 냥이
               </Link>
+              <Link onClick={props.clickLogin}>로그인</Link>
             </TextWrapper>
           </Wrapper>
         </Breadcrumbs>

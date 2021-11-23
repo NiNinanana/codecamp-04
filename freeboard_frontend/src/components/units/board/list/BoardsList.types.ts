@@ -1,8 +1,15 @@
-import { MouseEvent, ChangeEvent, MouseEventHandler } from "react";
+import {
+  MouseEvent,
+  ChangeEvent,
+  MouseEventHandler,
+  SetStateAction,
+  Dispatch,
+} from "react";
 import { IQuery } from "../../../../commons/types/generated/types";
 
 export interface IBoardsListProps {
   isList: boolean;
+  startDate: string | undefined;
 }
 
 export interface IBoardsListUIProps {

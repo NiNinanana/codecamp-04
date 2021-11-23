@@ -121,7 +121,8 @@ export default function BoardsList(props: IBoardsListProps) {
   function onChangeDate(value: string) {
     // console.log(value);
     if (value !== null) {
-      setStartDate(String(value[0]._d).split("").slice(4, 15).join(""));
+      const aaaa = String(value[0]._d).split("").slice(4, 15).join("");
+      setStartDate(aaaa);
       setEndDate(String(value[1]._d).split("").slice(4, 15).join(""));
     } else {
       setStartDate(undefined);
