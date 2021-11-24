@@ -43,6 +43,10 @@ export default function SignIn() {
     }
   };
 
+  const onClickResetPassword = () => {
+    router.push(`/resetPassword`);
+  };
+
   const onClickSignUp = () => {
     router.push(`/signUp`);
   };
@@ -53,7 +57,8 @@ export default function SignIn() {
       loginButton={onClickLoginButton}
       myIdChange={onChangeMyId}
       myPasswordChange={onChangeMyPassword}
-      signUp={onClickSignUp}
+      resetPassword={onClickResetPassword}
+      signUP={onClickSignUp}
     />
   );
 }

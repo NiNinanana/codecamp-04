@@ -10,4 +10,6 @@ export default class Board extends BaseEntity {
   title!: string;
   @Column({ type: "integer" })
   age!: number;
+  @Column({ type: "timestamp", default: null, nullable: true }) // nullable: 빈칸을 허용할 것인가
+  deletedAt?: Date;
 }

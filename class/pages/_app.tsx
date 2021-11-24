@@ -6,6 +6,24 @@ import { AppProps } from "next/dist/shared/lib/router/router";
 import Layout from "../src/components/commons/layout";
 import { globalStyles } from "../src/commons/styles/globalStyles";
 
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyDBt7ZJymmyZTJR7UlvjfIlRpUnySxXj3o",
+  authDomain: "codecamp-04-sun.firebaseapp.com",
+  projectId: "codecamp-04-sun",
+  storageBucket: "codecamp-04-sun.appspot.com",
+  messagingSenderId: "519266644635",
+  appId: "1:519266644635:web:b308178ac8276f8edbcc3e",
+};
+
+// Initialize Firebase
+export const firebaseApp = initializeApp(firebaseConfig);
+
 function MyApp({ Component, pageProps }: AppProps) {
   const client = new ApolloClient({
     uri: "http://backend04.codebootcamp.co.kr/graphql",

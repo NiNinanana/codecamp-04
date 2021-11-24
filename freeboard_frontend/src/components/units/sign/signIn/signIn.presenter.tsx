@@ -4,8 +4,13 @@ import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import Link from "@material-ui/core/Link";
 import * as S from "./signIn.styles";
 import { ISignInUIProps } from "./signIn.types";
+import ReactDOM from "react-dom";
+import { GoogleLogin } from "react-google-login";
 
 export default function SignInUI(props: ISignInUIProps) {
+  const responseGoogle = (response) => {
+    console.log(response);
+  };
   return (
     <S.Wrapper>
       <S.LoginWrapper>
@@ -28,13 +33,22 @@ export default function SignInUI(props: ISignInUIProps) {
       </S.LoginWrapper>
       <S.LinkWrapper>
         <Breadcrumbs aria-label="breadcrumb">
-          <Link color="inherit">비밀번호 찾기</Link>
+          <Link color="inherit" onClick={props.resetPassword}>
+            비밀번호 찾기
+          </Link>
           <Link color="inherit">아이디 찾기</Link>
-          <Link color="inherit" onClick={props.signUp}>
+          <Link color="inherit" onClick={props.signUP}>
             회원가입
           </Link>
         </Breadcrumbs>
       </S.LinkWrapper>
+      <GoogleLogin
+        clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
+        buttonText="Google 로그인"
+        onSuccess={responseGoogle}
+        onFailure={responseGoogle}
+        cookiePolicy={"single_host_origin"}
+      />
     </S.Wrapper>
   );
 }

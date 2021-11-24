@@ -1,5 +1,3 @@
-import { gql, useQuery, useMutation } from "@apollo/client";
-
 // import { YoutubeWrapper } from "../../../styles/boardsNew";
 
 // const LIKE_BOARD = gql`
@@ -17,7 +15,7 @@ export default function MutationFreeboardPage() {
   return (
     <>
       <BoardDetail />
-      <CommentWrite />
+      <CommentWrite isEdit={false} />
       <CommentList />
     </>
   );

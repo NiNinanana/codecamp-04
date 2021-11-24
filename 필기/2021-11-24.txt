@@ -1,0 +1,30 @@
+apollo-server / graphql
+
+f 서버
+b 서버
+db 서버
+
+백엔드 서버 개발자 === 서버개발자
+
+매개변수(parameter)
+function add(a, b, c){
+
+}
+a, b, c들이 매개변수 이고 
+각각에 들어가는 값이 인자이다.
+
+
+BAAS => Backend As A Service
+
+Firebase(BAAS 미리 만들어진 백엔드)
+봉투형태, NoSQL
+row하나하나가 문서
+
+Firebase docs
+빌드의
+실시간 데이터베이스 : realtime databse
+cloud firestore : firestore
+
+
+
+파이어베이스를 활용해서 페이지 하나 만들기
