@@ -25,6 +25,7 @@ import {
   SettingInput,
   Wrapper,
   SearchButton,
+  Image,
 } from "./BoardWrite.styles";
 import { IBoardWriteUIProps } from "./BoardWrite.types";
 import { Modal } from "antd";
@@ -117,10 +118,9 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
         <PhotoWrapper>
           <SmallText>사진 첨부</SmallText>
           <PhoWrapper>
-            <PhotoButton></PhotoButton>
-            <PhotoButton></PhotoButton>
-            <PhotoButton></PhotoButton>
+            <Image src={`https://storage.googleapis.com/${props.images[0]}`} />
           </PhoWrapper>
+          <input type="file" onChange={props.uploadImage} />
         </PhotoWrapper>
         <div>
           <SmallText>메인 설정</SmallText>

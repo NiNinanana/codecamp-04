@@ -17,6 +17,7 @@ export default function BoardDetail() {
       boardId: router.query.myId,
     },
   });
+  console.log(data);
   const { data: commentData } = useQuery(FETCH_BOARD_COMMENTS, {
     variables: {
       boardId: router.query.myId,
@@ -136,10 +137,6 @@ export default function BoardDetail() {
   }
 
   async function onClickCreateComment() {
-    console.log(writer);
-    console.log(password);
-    console.log(contents);
-    console.log(data?.fetchBoard._id);
     if (!writer || !password || !contents) {
       alert("다시 확인해주세요.");
       //   return;
@@ -168,9 +165,10 @@ export default function BoardDetail() {
       if (error instanceof Error) alert(error.message);
     }
   }
-  console.log(data?.fetchBoard);
 
   function onClickUpdateComment() {}
+  console.log("asdf");
+  console.log(data?.fetchBoard.images[0]);
 
   return (
     <>
@@ -181,6 +179,7 @@ export default function BoardDetail() {
         dataId={data?.fetchBoard._id}
         dataYoutube={data?.fetchBoard.youtubeUrl}
         dataAddress={data?.fetchBoard.boardAddress}
+        dataImage={data?.fetchBoard.images}
         fff={fff}
         // commentDataWriter={commentData?.fetchBoardComments[0].writer}
         // commentDataContents={commentData?.fetchBoardComments[0].contents}

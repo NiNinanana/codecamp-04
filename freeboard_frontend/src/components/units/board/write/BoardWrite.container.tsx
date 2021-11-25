@@ -2,7 +2,12 @@ import BoardWriteUI from "./BoardWrite.presenter";
 import { useMutation, useQuery } from "@apollo/client";
 import { ChangeEvent, useState } from "react";
 import { useRouter } from "next/router";
-import { CREATE_BOARD, FETCH_BOARD, UPDATE_BOARD } from "./BoardWrite.queries";
+import {
+  CREATE_BOARD,
+  FETCH_BOARD,
+  UPDATE_BOARD,
+  UPLOAD_FILE,
+} from "./BoardWrite.queries";
 import { IBoardWriteProps, IUpdateTemp } from "./BoardWrite.types";
 import { Modal } from "antd";
 // import {} from "@material-ui/lab/Alert";
@@ -11,6 +16,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
   const router = useRouter();
   const [createBoard] = useMutation(CREATE_BOARD);
   const [updateBoard] = useMutation(UPDATE_BOARD);
+  const [uploadFile] = useMutation(UPLOAD_FILE);
 
   const { data } = useQuery(FETCH_BOARD, {
     variables: { boardId: router.query.myId },
@@ -23,6 +29,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
   const [youtube, setYoutube] = useState<string>("");
   const [myAddress, setMyAddress] = useState("");
   const [myZonecode, setMyZonecode] = useState("");
+  const [images, setImages] = useState([""]);
 
   const [errorWriter, setErrorWriter] = useState<string>("");
   const [errorPassword, setErrorPassword] = useState<string>("");
@@ -128,6 +135,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
             title: title,
             contents: content,
             youtubeUrl: youtube,
+            images: images,
             // boardAddress: myAddress,
           },
         },
@@ -177,6 +185,16 @@ export default function BoardWrite(props: IBoardWriteProps) {
     setIsOpen((prev) => !prev);
   };
 
+  const onChangeImage = async (event) => {
+    const myFile = event?.target.files?.[0];
+    const result = await uploadFile({
+      variables: {
+        file: myFile,
+      },
+    });
+    setImages([result.data?.uploadFile.url]);
+  };
+
   return (
     <>
       <BoardWriteUI
@@ -200,6 +218,8 @@ export default function BoardWrite(props: IBoardWriteProps) {
         onToggleModal={onToggleModal}
         isOpen={isOpen}
         myZoneCode={myZonecode}
+        uploadImage={onChangeImage}
+        images={images}
       />
     </>
   );

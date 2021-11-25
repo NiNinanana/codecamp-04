@@ -57,7 +57,15 @@ export default function BoardDetailUI(props: IBoardDetailUIProps) {
           </S.ContentsText>
           <S.ImageWrapper>
             <S.ContentsWrite>- Image -</S.ContentsWrite>
-            <S.Image src="../../../images/아이유 딸기달.png" />
+            <S.Image
+              src={`https://storage.googleapis.com/${props.dataImage?.[0]}`}
+            />
+            <S.Image
+              src={`https://storage.googleapis.com/${props.dataImage?.[1]}`}
+            />
+            <S.Image
+              src={`https://storage.googleapis.com/${props.dataImage?.[2]}`}
+            />
           </S.ImageWrapper>
           <S.YoutubeWrapper>
             <S.ContentsWrite>- Video -</S.ContentsWrite>

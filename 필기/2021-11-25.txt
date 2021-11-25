@@ -1,0 +1,32 @@
+큰 것들을 저장할 때 storage를 사용한다
+db중에서 큰 용량들을 담을 수 있는 db
+
+gcp가 싼편. aws는 조금 비싸다
+
+물론 db에도 저장을 할 수는 있지만 용량이 금방 꽉 차버릴 수 있기에 storage에 저장한다
+
+br에서 b에 uploadFile이라는 api를 요청
+파일이 db가 아니라 storage에 저장
+파일을 storage에 올리면 주소를 b에 준다
+그 주소를 br에 넘긴다
+
+br에서 b에 createBoard라는 api 요청
+이때 writer, title, contents, images를 보내는데
+images는 ["주소1", "주소2", ...]
+위에서 받은 주소를 보내는 것이다.
+파일이 들어가는 것이 아니다.
+
+백엔드에서 google storage를 npm에서 다운받아서 사용해보자
+
+
+이미지 같은 파일들은 다른 틀들이 불러오진 후 그 다음에 src를 불러오게 된다.
+
+
+apollo-upload-client를 설치해야한다.
+yarn add apollo-upload-client
+yarn add -D @types/apollo-upload-client (type설치)
+
+_app.tsx
+
+https://storage.googleapis.com/
+

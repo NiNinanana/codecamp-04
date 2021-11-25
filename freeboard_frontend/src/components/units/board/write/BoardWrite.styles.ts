@@ -58,15 +58,16 @@ export const YoutubeInput = styled.input`
   padding-left: 9px;
 `;
 
-export const PhotoButton = styled.button`
+export const PhotoButton = styled.div`
   width: 65px;
   height: 65px;
   background-color: #bdbdbd;
 `;
 export const PhoWrapper = styled.div`
-  width: 254px;
-  display: flex;
-  justify-content: space-between;
+  border: 1px solid black;
+  width: 320px;
+  background-color: lightgrey;
+  margin-bottom: 10px;
 `;
 
 export const SettingInput = styled.input``;
@@ -138,4 +139,9 @@ export const SettingInputWrapper = styled.div`
 
 export const ErrorText = styled.div`
   color: red;
+`;
+
+export const Image = styled.img`
+  width: 320px;
+  height: 180px;
 `;
