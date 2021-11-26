@@ -116,12 +116,36 @@ export default function BoardDetail() {
     router.push(`/boards/${router.query.myId}/edit`);
   }
 
-  let fff: boolean;
+  let fff = false;
 
   if (data?.fetchBoard.youtubeUrl?.includes("youtube.com")) {
     fff = true;
   } else {
     fff = false;
+  }
+
+  let ggg = true;
+  if (
+    data?.fetchBoard.images.length < 2 ||
+    data?.fetchBoard.images?.[0] === ""
+  ) {
+    ggg = false;
+  }
+
+  let hhh = true;
+  if (
+    data?.fetchBoard.images.length < 3 ||
+    data?.fetchBoard.images?.[1] === ""
+  ) {
+    hhh = false;
+  }
+
+  let iii = true;
+  if (
+    data?.fetchBoard.images.length < 4 ||
+    data?.fetchBoard.images?.[2] === ""
+  ) {
+    iii = false;
   }
 
   // 비디오에 값이 없을 때 딸기달 뜨게 하기
@@ -202,6 +226,9 @@ export default function BoardDetail() {
         commentPassword={onChangeCommentPassword}
         ddd={0}
         updateComment={onClickUpdateComment}
+        ggg={ggg}
+        hhh={hhh}
+        iii={iii}
       />
     </>
   );

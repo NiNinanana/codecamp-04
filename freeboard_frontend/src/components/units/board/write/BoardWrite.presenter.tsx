@@ -21,17 +21,44 @@ import {
   BigInput,
   Address,
   YoutubeInput,
-  PhotoButton,
   SettingInput,
   Wrapper,
   SearchButton,
-  Image,
 } from "./BoardWrite.styles";
 import { IBoardWriteUIProps } from "./BoardWrite.types";
-import { Modal } from "antd";
+import { Modal, Upload, message } from "antd";
 import DaumPostcode from "react-daum-postcode";
+import { InboxOutlined } from "@ant-design/icons";
 
 export default function BoardWriteUI(props: IBoardWriteUIProps) {
+  const { Dragger } = Upload;
+
+  const propaa = {
+    name: "file",
+    multiple: true,
+    // action: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
+    onChange(info) {
+      console.log(info.file);
+      const { status } = info.file;
+      if (status !== "uploading") {
+        // console.log(info.file, info.fileList);
+      }
+      if (status === "done") {
+        message.success(`${info.file.name} file uploaded successfully.`);
+      } else if (status === "error") {
+        message.error(`${info.file.name} file upload failed.`);
+      }
+      // props.uploadImage();
+      // console.log(props.images);
+    },
+    onDrop(e) {
+      console.log(e.dataTransfer.files);
+
+      // props.uploadImage();
+      // console.log(props.images);
+    },
+  };
+
   return (
     <Wrapper>
       <HeadTitle>게시물 {props.isEdit ? "수정" : "등록"}</HeadTitle>
@@ -118,9 +145,16 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
         <PhotoWrapper>
           <SmallText>사진 첨부</SmallText>
           <PhoWrapper>
-            <Image src={`https://storage.googleapis.com/${props.images[0]}`} />
+            {/* <Image src={`https://storage.googleapis.com/${props.images[0]}`} /> */}
           </PhoWrapper>
-          <input type="file" onChange={props.uploadImage} />
+          <input type="file" onChange={props.propaa} />
+          <Dragger {...propaa}>
+            <p className="ant-upload-drag-icon">
+              <InboxOutlined />
+            </p>
+            <p className="ant-upload-text">끌어서 업로드</p>
+            <p className="ant-upload-hint">png, jpeg, gif만 가능합니다</p>
+          </Dragger>
         </PhotoWrapper>
         <div>
           <SmallText>메인 설정</SmallText>

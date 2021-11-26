@@ -26,4 +26,8 @@ export interface IBoardDetailUIProps {
   commentPassword: (event: ChangeEvent<HTMLInputElement>) => void;
   dataAddress: string;
   updateComment: () => void;
+  ggg: boolean;
+  hhh: boolean;
+  iii: boolean;
+  dataImage: string[];
 }
