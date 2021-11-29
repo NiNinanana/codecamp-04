@@ -24,12 +24,13 @@ const BodyWrapper = styled.div`
 //   background-color: yellow;
 // `;
 
-const HIDDEN_HEADERS: string | string[] = [];
+const HIDDEN_HEADERS: string | string[] = [`/`];
 // 01-01-emotion에서만 헤더가 안나오게
 
-const HIDDEN_NAVIGATION = ["/boards/new", `/signIn`];
-const HIDDEN_BANNER = ["/boards/list", "/boards/new", `/signIn`];
-const HIDDEN_SIDEBAR = [`/signIn`];
+const HIDDEN_NAVIGATION = ["/boards/new", `/signIn`, `/`];
+const HIDDEN_BANNER = ["/boards/list", "/boards/new", `/signIn`, `/`];
+const HIDDEN_SIDEBAR = [`/signIn`, `/`];
+const HIDDEN_FOOTER = [`/`];
 
 interface ILayoutProps {
   children: ReactChild;
@@ -45,6 +46,7 @@ export default function Layout(props: ILayoutProps) {
   const isHiddenNavigation = HIDDEN_NAVIGATION.includes(router.asPath);
   const isHiddenBanner = HIDDEN_BANNER.includes(router.asPath);
   const isHiddenSidebar = HIDDEN_SIDEBAR.includes(router.asPath);
+  const isHiddenFooter = HIDDEN_FOOTER.includes(router.asPath);
 
   return (
     <Wrapper>
@@ -56,7 +58,7 @@ export default function Layout(props: ILayoutProps) {
         <Body>{props.children}</Body>
         {!isHiddenSidebar && <Sidebar />}
       </BodyWrapper>
-      <Footer />
+      {!isHiddenFooter && <Footer />}
     </Wrapper>
   );
 }

@@ -9,7 +9,7 @@ import {
   UPLOAD_FILE,
 } from "./BoardWrite.queries";
 import { IBoardWriteProps, IUpdateTemp } from "./BoardWrite.types";
-import { Modal, Upload, message } from "antd";
+import { Modal, message } from "antd";
 // import {} from "@material-ui/lab/Alert";
 
 export default function BoardWrite(props: IBoardWriteProps) {
@@ -185,7 +185,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
     setIsOpen((prev) => !prev);
   };
 
-  const onChangeImage = async (event) => {
+  const onChangeImage = async (event: ChangeEvent<HTMLInputElement>) => {
     const myFile = event?.target.files?.[0];
     const result = await uploadFile({
       variables: {
@@ -195,7 +195,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
     setImages([result.data?.uploadFile.url]);
   };
 
-  const onChangeDragger = async (event) => {
+  const onChangeDragger = async (event: ChangeEvent<HTMLInputElement>) => {
     console.log(event?.target);
     const myFile = event?.target;
     const result = await uploadFile({

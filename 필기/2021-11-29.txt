@@ -1,0 +1,89 @@
+이번주 커리큘럼
+글로벌 스테이트 -> 로그인 권한분기 -> 폼 라이브러리
+
+오늘의 커리큘럼
+props data prev -> 정규표현식 -> 글로벌 스테이트 -> context API
+
+117e347b1bc9481cab857b1eacfcae11
+
+props라는 것은 결국엔 그저 불러오는 용도일 뿐이다.
+
+props, el, index, state 등등
+다 그저 매개변수일 뿐이다.
+asdf, aaa, bbb 등 무얼 쓰든 상관이 없다.
+
+그럼에도 우리가 알던데로 쓰자
+
+graphql-variables
+
+mutation createBoard($asdf: String){
+    createBoard(writer: $asdf){
+        _id
+    }
+}
+
+asdf자리가 원래 writer로 썼었지만 이것도 바꿔쓸 수 있게 된다.
+
+위 mutation 옆에 있는 createBoard도 원하는 글자를 쓸 수 있다.
+
+언더페칭
+api 결과물이 여러개 필요하다.
+rest-api는 하나하나 따로 불러와줘야하는데
+graphql-api는 한번에 가져와서 뿌려줄 수 있다.
+
+오버페칭
+createBoard(writer: $asdf){
+    _id
+    writer
+    title
+    contents
+}
+
+4개를 준다고 했을 때 rest-api는 다 받아야 하는데
+graphql은 원하는 것만 골라서 받을 수 있다.
+
+정규표현식
+\w 문자
+\w+ 문자 한 개 또는 그 이상
+. 모든 것
+\. 그냥 쩜
+\d 숫자
+\d{3} 숫자 3개
+\d{3,4} 숫자 3개 또는 4개
+패턴이 맞는 부분이 있으면 true가 나와버린다
+^ 시작
+$ 끝
+
+/\w+@\w+\.\w+/.test("aaa@aaa.com")
+true
+/\w@\w+\.\w+/.test("aaa@aaa.com")
+true(a@aaa.com 으로 인식)
+/^\w@\w+\.\w+/.test("aaa@aaa.com")
+false
+
+
+글로벌 스테이트
+여러 컴포넌트에서 공통된 스테이트를 쓰고 싶을 때
+프롭스를 하나하나 거쳐서 가는 것이 아닌
+맨 위에서 한번에 관통해서 받아가는 것
+
+Redux
+state
+    1. 내부에서 사용할 state
+    2. api로 받은 데이터
+
+ApolloCache, Context-API(react 자체 지원)
+state
+    1. 내부: context-api
+    2. api로 받은: apollo
+
+리덕스를 쓰면 아폴로캐시가 해주는 것을 직접 작성해야함
+그래서 mobX가 나왓고, SWR이 나왔고, React-Query나오고
+
+fetchPolicy
+"cache-first"/"network-only"
+
+
+
+
+
