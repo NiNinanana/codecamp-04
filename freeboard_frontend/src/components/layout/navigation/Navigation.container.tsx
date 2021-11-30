@@ -1,9 +1,11 @@
 import { useRouter } from "next/router";
-import { useState, MouseEvent, useEffect } from "react";
+import { useState, MouseEvent, useEffect, useContext } from "react";
 import NavigationUI from "./Navigation.presenter";
+import { GlobalContext } from "../../../../pages/_app";
 
 export default function Navigation() {
   const router = useRouter();
+  const { accessToken, setAccessToken } = useContext(GlobalContext);
   const [isFree, setIsFree] = useState(true);
   const [isCarrot, setIsCarrot] = useState(false);
   const [isMyPage, setIsMyPage] = useState(false);
@@ -36,10 +38,16 @@ export default function Navigation() {
   }
 
   function onClickMyPage(event: MouseEvent<HTMLAnchorElement, MouseEvent>) {
+    if (!accessToken) {
+      alert("로그인 고고");
+      router.push(`/signIn`);
+      return;
+    }
     toggle();
     setIsMyPage(true);
-    event.preventDefault();
-    alert("공사중입니다");
+    // event.preventDefault();
+    console.log("Asdfasdfasdf");
+    router.push(`/myPage`);
     // router.push(`/boards/list`);
   }
 
@@ -54,6 +62,12 @@ export default function Navigation() {
     router.push(`/signIn`);
   }
 
+  function onClickLogout() {
+    setAccessToken("");
+    alert("로그아웃");
+    router.push(`/boards/list`);
+  }
+
   return (
     <NavigationUI
       isFree={isFree}
@@ -65,6 +79,7 @@ export default function Navigation() {
       clickMyPage={onClickMyPage}
       clickCat={onClickCat}
       clickLogin={onClickLogin}
+      clickLogout={onClickLogout}
     />
   );
 }

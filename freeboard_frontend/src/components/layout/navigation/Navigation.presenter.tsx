@@ -2,8 +2,11 @@ import { TextWrapper, Navigation, Wrapper } from "./Navigation.styles";
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import Link from "@material-ui/core/Link";
 import { INavigationUIProps } from "./Navigation.types";
+import { useContext } from "react";
+import { GlobalContext } from "../../../../pages/_app";
 
 export default function NavigationUI(props: INavigationUIProps) {
+  const { accessToken } = useContext(GlobalContext);
   return (
     <>
       <Navigation>
@@ -29,7 +32,7 @@ export default function NavigationUI(props: INavigationUIProps) {
               </Link>
               <Link
                 color={props.isMyPage === true ? "textPrimary" : "inherit"}
-                onClick={props.clickMyPgae}
+                onClick={props.clickMyPage}
               >
                 마이페이지
               </Link>
@@ -40,7 +43,8 @@ export default function NavigationUI(props: INavigationUIProps) {
               >
                 냥이
               </Link>
-              <Link onClick={props.clickLogin}>로그인</Link>
+              {!accessToken && <Link onClick={props.clickLogin}>로그인</Link>}
+              {accessToken && <Link onClick={props.clickLogout}>로그아웃</Link>}
             </TextWrapper>
           </Wrapper>
         </Breadcrumbs>

@@ -12,7 +12,7 @@ import { AppProps } from "next/dist/shared/lib/router/router";
 import { initializeApp } from "firebase/app";
 import { getDatabase } from "firebase/database";
 import { createUploadLink } from "apollo-upload-client";
-
+import { useState, createContext } from "react";
 // Set the configuration for your app
 // TODO: Replace with your project's config object
 const firebaseConfig = {
@@ -30,9 +30,20 @@ const app = initializeApp(firebaseConfig);
 // Get a reference to the database service
 export const database = getDatabase(app);
 
+export const GlobalContext = createContext(null);
+
 function MyApp({ Component, pageProps }: AppProps) {
+  const [accessToken, setAccessToken] = useState("");
+  const myValue = {
+    accessToken,
+    setAccessToken,
+  };
+
   const uploadLink = createUploadLink({
     uri: "http://backend04.codebootcamp.co.kr/graphql",
+    headers: {
+      authorization: `Bearer ${accessToken}`,
+    },
   });
 
   const client = new ApolloClient({
@@ -41,11 +52,13 @@ function MyApp({ Component, pageProps }: AppProps) {
   });
 
   return (
-    <ApolloProvider client={client}>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </ApolloProvider>
+    <GlobalContext.Provider value={myValue}>
+      <ApolloProvider client={client}>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </ApolloProvider>
+    </GlobalContext.Provider>
   );
 }
 

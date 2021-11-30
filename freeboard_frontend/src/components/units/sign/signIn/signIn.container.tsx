@@ -1,10 +1,12 @@
 import { useMutation } from "@apollo/client";
 import router from "next/router";
-import { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent, useContext } from "react";
 import SignInUI from "./signIn.presenter";
 import { LOGIN_USER } from "./signIn.queries";
+import { GlobalContext } from "../../../../../pages/_app";
 
 export default function SignIn() {
+  const { accessToken, setAccessToken } = useContext(GlobalContext);
   const [myEmail, setMyEmail] = useState("");
   const [myPassword, setMyPassword] = useState("");
   const [errorText, setErrorText] = useState("");
@@ -35,7 +37,8 @@ export default function SignIn() {
         },
       });
       console.log(result);
-      alert("로그인 되었습니다.");
+      setAccessToken(result.data?.loginUser.accessToken);
+      alert(accessToken);
       router.push(`/boards/list`);
     } catch (error) {
       setErrorText("이메일 또는 비밀번호가 잘못 입력 되었습니다.");

@@ -4,13 +4,17 @@ import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import Link from "@material-ui/core/Link";
 import * as S from "./signIn.styles";
 import { ISignInUIProps } from "./signIn.types";
-import ReactDOM from "react-dom";
 import { GoogleLogin } from "react-google-login";
 
 export default function SignInUI(props: ISignInUIProps) {
   const responseGoogle = (response) => {
     console.log(response);
   };
+  function enterkey() {
+    if (window.event.keyCode === 13) {
+      props.loginButton();
+    }
+  }
   return (
     <S.Wrapper>
       <S.LoginWrapper>
@@ -26,6 +30,7 @@ export default function SignInUI(props: ISignInUIProps) {
           placeholder="비밀번호"
           onChange={props.myPasswordChange}
           prefix={<LockOutlined />}
+          // onKeyUp={enterkey()}
         />
         <Checkbox>로그인 상태 유지</Checkbox>
         <S.ErrorText>{props.errorText}</S.ErrorText>

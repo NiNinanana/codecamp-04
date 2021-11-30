@@ -32,13 +32,16 @@ export default function BoardsList(props: IBoardsListProps) {
   });
 
   const { data: data2 } = useQuery(FETCH_BOARDS_OF_THE_BEST);
-  const { data: data3 } = useQuery(FETCH_BOARDS_SEARCH, {
-    variables: {
-      search: search,
-      endDate: endDate,
-      startDate: startDate,
-    },
-  });
+  const { data: data3, refetch: searchRefetch } = useQuery(
+    FETCH_BOARDS_SEARCH,
+    {
+      variables: {
+        search: search,
+        endDate: endDate,
+        startDate: startDate,
+      },
+    }
+  );
   const { data: dataBoardsCount } =
     useQuery<Pick<IQuery, "fetchBoardsCount">>(FETCH_BOARDS_COUNT);
 
