@@ -1,0 +1,44 @@
+오늘의 커리큘럼
+권한분기와 관리자 -> 클로저 -> HOC & HOF
+
+hocs
+
+로그인을 했는지 안했는지 검증하는 컴포넌트를 만든다.
+withAuth.tsx 처럼
+
+hoc(상위 컴포넌트)
+
+props넘어갈 때도 withAuth를 거쳐서 가게 될것이다
+
+.eslint에다가 이거 넣어주자
+react/display-name : off
+
+container에서 presenter로 props를 보냈었따
+그 사이에 withAuth가 끼게 된다면
+container에서 withAuth로 props보내고
+withAuth에서 presenter로 props를 보낸다
+
+export default 하고 있는 것은
+얼마든지 이름을 바꿔서 받을 수도 있다.
+
+withAuth를 어디든 붙일 수는 있지만
+index.tsx 즉 page에다가 붙여주도록 하자
+
+리턴 부분에 jsx가 있으면 함수형 컴포넌트 (HOC)
+리턴 부분에 jsx가 없으면 함수 (HOF)
+
+HOF
+
+
+
+
+br에서 실행 
+1. f 에서 한번 그림
+br로 html, css, js 보내줌
+br에서 그림(1번과 비교 = diffing)
+최종적으로 그려냄 hydration
+
+localStorage는 br에 있는 것
+그런데 f에서 먼저 한번 그리니까
+localStorage가 뭔지 모르겠다고 하는 것
+
