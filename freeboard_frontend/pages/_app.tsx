@@ -12,7 +12,7 @@ import { AppProps } from "next/dist/shared/lib/router/router";
 import { initializeApp } from "firebase/app";
 import { getDatabase } from "firebase/database";
 import { createUploadLink } from "apollo-upload-client";
-import { useState, createContext } from "react";
+import { useState, createContext, SetStateAction, Dispatch } from "react";
 // Set the configuration for your app
 // TODO: Replace with your project's config object
 const firebaseConfig = {
@@ -30,7 +30,12 @@ const app = initializeApp(firebaseConfig);
 // Get a reference to the database service
 export const database = getDatabase(app);
 
-export const GlobalContext = createContext(null);
+interface IGlobalContext {
+  accessToken?: string;
+  setAccessToken?: Dispatch<SetStateAction<string>>;
+}
+
+export const GlobalContext = createContext<IGlobalContext>({});
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [accessToken, setAccessToken] = useState("");

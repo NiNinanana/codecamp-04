@@ -38,11 +38,11 @@ export default function Navigation() {
   }
 
   function onClickMyPage(event: MouseEvent<HTMLAnchorElement, MouseEvent>) {
-    if (!accessToken) {
-      alert("로그인 고고");
-      router.push(`/signIn`);
-      return;
-    }
+    // if (!accessToken) {
+    //   alert("로그인 고고");
+    //   router.push(`/signIn`);
+    //   return;
+    // }
     toggle();
     setIsMyPage(true);
     // event.preventDefault();

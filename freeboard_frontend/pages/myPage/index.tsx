@@ -1,5 +1,8 @@
+import { withAuth } from "../../src/components/commons/withAuth";
 import MyPage from "../../src/components/units/myPage/myPage.container";
 
-export default function MyPagePage() {
+function MyPagePage() {
   return <MyPage />;
 }
+
+export default withAuth(MyPagePage);

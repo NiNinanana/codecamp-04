@@ -1,5 +1,5 @@
 import { ChangeEvent, useContext, useState } from "react";
-import { gql, useMutation } from "@apollo/client";
+import { gql, useApolloClient, useMutation } from "@apollo/client";
 import {
   IMutation,
   IMutationLoginUserArgs,
@@ -15,8 +15,17 @@ const LOGIN_USER = gql`
   }
 `;
 
+const FETCH_USER_LOGGED_IN = gql`
+  query fetchUserLoggedIn {
+    fetchUserLoggedIn {
+      email
+      name
+    }
+  }
+`;
+
 export default function LoginPage() {
-  const { setAccessToken } = useContext(GlobalContext);
+  const { setAccessToken, setUserInfo } = useContext(GlobalContext);
   const router = useRouter();
   const [myEmail, setMyEmail] = useState("");
   const [myPassword, setMyPassword] = useState("");
@@ -25,6 +34,8 @@ export default function LoginPage() {
     Pick<IMutation, "loginUser">,
     IMutationLoginUserArgs
   >(LOGIN_USER);
+
+  const client = useApolloClient();
 
   const onChangeMyEmail = (event: ChangeEvent<HTMLInputElement>) => {
     setMyEmail(event.target.value);
@@ -42,17 +53,25 @@ export default function LoginPage() {
           password: myPassword,
         },
       });
-      localStorage.setItem(
-        "accessToken",
-        result.data?.loginUser.accessToken || ""
-      );
-      setAccessToken?.(result.data?.loginUser.accessToken || "");
+      const accessToken = result.data?.loginUser.accessToken;
+      localStorage.setItem("accessToken", accessToken || "");
+      setAccessToken?.(accessToken || "");
       // 여기서 글로벌 스테이트에 넣을 setAccessToken 필요
 
-      // const result = fetchUserLoggedIn()
-      // setUserInfo(result.data?.fetchUserLoggedIn)
+      // const result = await axios.get(`koreanjosn.com/posts/1`)
+      const resultUserInfo = await client.query({
+        query: FETCH_USER_LOGGED_IN,
+        context: {
+          headers: {
+            authorization: `Bearer ${accessToken}`,
+          },
+        },
+      });
 
-      router.push(`/23-05-login-success`);
+      setUserInfo?.(resultUserInfo.data?.fetchUserLoggedIn);
+
+      console.log("asdf", resultUserInfo.data?.fetchUserLoggedIn);
+      router.push(`/24-02-login-success`);
     } catch (error) {
       alert(error.message);
     }

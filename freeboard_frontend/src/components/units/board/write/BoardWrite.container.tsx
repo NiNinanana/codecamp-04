@@ -221,13 +221,13 @@ export default function BoardWrite(props: IBoardWriteProps) {
       } else if (status === "error") {
         message.error(`${info.file.name} file upload failed.`);
       }
-      // props.uploadImage();
+      onChangeImage();
       // console.log(props.images);
     },
     onDrop(e) {
       console.log(e.dataTransfer.files);
 
-      // props.uploadImage();
+      uploadImage();
       // console.log(props.images);
     },
   };

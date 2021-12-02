@@ -40,6 +40,12 @@ export const firebaseApp = initializeApp(firebaseConfig);
 interface IGlobalContext {
   accessToken?: string;
   setAccessToken?: Dispatch<SetStateAction<string>>;
+  userInfo?: {
+    name?: string;
+    email?: string;
+    picture?: string;
+  };
+  setUserInfo?: Dispatch<SetStateAction<{}>>;
 }
 
 export const GlobalContext = createContext<IGlobalContext>({});
@@ -54,12 +60,12 @@ function MyApp({ Component, pageProps }: AppProps) {
     userInfo: myUserInfo,
     setUserInfo: setMyUserInfo,
   };
-  // 브라우저가 없다면 == 서버라면
-  if (typeof window === "undefined") {
-  }
-  // 브라우저라면
-  if (process.browser) {
-  }
+  // 브라우저가 없다면 = 서버라면
+  // if (typeof window === "undefined") {
+  // }
+  // // 브라우저라면
+  // if (process.browser) {
+  // }
   // useEffect를 사용하면 어차피 브라우저에서 실행되는 것
 
   useEffect(() => {

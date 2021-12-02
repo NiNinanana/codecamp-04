@@ -1,27 +1,37 @@
-import axios from "axios";
-import { useState } from "react";
+import { Map, GoogleApiWrapper, Marker } from "google-maps-react";
+import styled from "@emotion/styled";
 
-export default function Test() {
-  const [data, setData] = useState(null);
+const mapStyles = {
+  width: "800px",
+  height: "450px",
+};
 
-  const onClickGet = async () => {
-    try {
-      const response = await axios.get(
-        "https://newsapi.org/v2/top-headlines?country=kr&apiKey=117e347b1bc9481cab857b1eacfcae11"
-      );
-      setData(response?.data);
-    } catch (error) {
-      alert(error.message);
-    }
-  };
+const Wrapper = styled.div`
+  width: 300px;
+  height: 400px;
+  display: flex;
+  margin-left: 130px;
+  margin-top: 30px;
+`;
 
+const MyMap = (props) => {
   return (
-    <>
-      <button onClick={onClickGet}>불러오기</button>
-      {data && <div>{data}</div>}
-      {data?.map((el, index) => (
-        <div key={index}>{el.articles[index].title}</div>
-      ))}
-    </>
+    <Wrapper>
+      <Map
+        google={props.google}
+        zoom={10}
+        style={mapStyles}
+        initialCenter={{ lat: 37.556, lng: 126.972 }}
+      >
+        <Marker position={{ lat: 37.485, lng: 126.896 }} />
+        <Marker position={{ lat: 37.556, lng: 126.972 }} />
+      </Map>
+    </Wrapper>
   );
-}
+};
+
+export default GoogleApiWrapper({
+  apiKey: "AIzaSyDi2M8IuDK84IwtD4D6_B44y490xDugoAI",
+})(MyMap);
+
+// 길찾기 해보자
