@@ -12,7 +12,13 @@ import { AppProps } from "next/dist/shared/lib/router/router";
 import { initializeApp } from "firebase/app";
 import { getDatabase } from "firebase/database";
 import { createUploadLink } from "apollo-upload-client";
-import { useState, createContext, SetStateAction, Dispatch } from "react";
+import {
+  useState,
+  createContext,
+  SetStateAction,
+  Dispatch,
+  useEffect,
+} from "react";
 // Set the configuration for your app
 // TODO: Replace with your project's config object
 const firebaseConfig = {
@@ -43,6 +49,11 @@ function MyApp({ Component, pageProps }: AppProps) {
     accessToken,
     setAccessToken,
   };
+
+  useEffect(() => {
+    const accessToken = localStorage.getItem("accessToken") || "";
+    if (accessToken) setAccessToken(accessToken);
+  });
 
   const uploadLink = createUploadLink({
     uri: "http://backend04.codebootcamp.co.kr/graphql",

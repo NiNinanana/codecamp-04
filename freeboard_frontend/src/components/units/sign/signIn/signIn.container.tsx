@@ -37,6 +37,10 @@ export default function SignIn() {
         },
       });
       console.log(result);
+      localStorage.setItem(
+        "accessToken",
+        result.data?.loginUser.accessToken || ""
+      );
       setAccessToken(result.data?.loginUser.accessToken);
       alert(accessToken);
       router.push(`/boards/list`);

@@ -4,5 +4,8 @@ export interface FormValues {
 }
 
 export interface IMyformUIProps {
-    handleSubmit: 
+  handleSubmit: any;
+  register: any;
+  formState: any;
+  onClickLogin: (data: FormValues) => void;
 }
