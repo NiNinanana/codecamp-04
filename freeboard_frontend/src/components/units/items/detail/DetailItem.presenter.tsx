@@ -6,6 +6,8 @@ export default function DetailItemUI(props) {
       <div>내용: {props.contents}</div>
       <div>가격: {props.price}</div>
       <div>asdf</div>
+      <button onClick={props.update}>수정</button>
+      <button onClick={props.list}>목록</button>
     </>
   );
 }

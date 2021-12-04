@@ -1,23 +1,43 @@
 import { Radio } from "antd";
 import * as S from "./createItem.styles";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
-import TextField from "@material-ui/core/TextField";
+import input from "@material-ui/core/input";
 
 export default function CreateItemUI(props) {
   return (
     <S.Wrapper>
-      <div>상품등록하기</div>
+      <div>상품{props.isEdit ? "수정하기" : "등록하기"}</div>
       <div>
-        <TextField label="상품명" name="name" onChange={props.myInputs} />
+        <input
+          placeholder="상품명"
+          name="name"
+          onChange={props.myInputs}
+          defaultValue={props.data?.fetchUseditem?.name}
+        />
       </div>
       <div>
-        <TextField label="요약" name="remarks" onChange={props.myInputs} />
+        <input
+          placeholder="요약"
+          name="remarks"
+          onChange={props.myInputs}
+          defaultValue={props.data?.fetchUseditem?.remarks}
+        />
       </div>
       <div>
-        <TextField label="설명" name="contents" onChange={props.myInputs} />
+        <input
+          placeholder="설명"
+          name="contents"
+          onChange={props.myInputs}
+          defaultValue={props.data?.fetchUseditem?.contents}
+        />
       </div>
       <div>
-        <TextField type="number" label="가격" onChange={props.myInputsPrice} />
+        <input
+          type="number"
+          placeholder="가격"
+          onChange={props.myInputsPrice}
+          defaultValue={Number(props.data?.fetchUseditem?.price)}
+        />
       </div>
       <div>
         <div>태그</div>
@@ -33,7 +53,8 @@ export default function CreateItemUI(props) {
         <Radio value={2}>사진2</Radio>
       </div>
       <div>
-        <button onClick={props.itemUpload}>등록하기</button>
+        {props.isEdit && <button onClick={props.itemUpdate}>수정하기</button>}
+        {!props.isEdit && <button onClick={props.itemUpload}>등록하기</button>}
       </div>
     </S.Wrapper>
   );

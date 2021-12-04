@@ -145,3 +145,7 @@ export const Image = styled.img`
   width: 320px;
   height: 180px;
 `;
+
+export const Input1 = styled.input`
+  background-color: yellow;
+`;

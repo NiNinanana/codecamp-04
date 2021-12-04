@@ -1,6 +1,6 @@
 import BoardWriteUI from "./BoardWrite.presenter";
 import { useMutation, useQuery } from "@apollo/client";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useState, useRef } from "react";
 import { useRouter } from "next/router";
 import {
   CREATE_BOARD,
@@ -14,6 +14,7 @@ import { Modal, message } from "antd";
 
 export default function BoardWrite(props: IBoardWriteProps) {
   const router = useRouter();
+  // const fileRef = useRef<HTMLInputElement>(null);
   const [createBoard] = useMutation(CREATE_BOARD);
   const [updateBoard] = useMutation(UPDATE_BOARD);
   const [uploadFile] = useMutation(UPLOAD_FILE);
@@ -107,12 +108,23 @@ export default function BoardWrite(props: IBoardWriteProps) {
     setYoutube(event.target.value);
   }
 
+  const onChangeUploadImage = async (event: ChangeEvent<HTMLInputElement>) => {
+    alert("고고");
+    const file = event.target.files?.[0];
+    // console.log(myFile);
+    try {
+      const result = await uploadFile({ variables: { file } });
+      setImages(result.data?.uploadFile.url);
+      // setImages(myFile.url);
+      console.log(result.data.uploadFile);
+      alert("성공");
+    } catch (error) {
+      console.log("error", error.message);
+    }
+  };
   async function upload() {
     try {
-      console.log(writer);
-      console.log(password);
-      console.log(title);
-      console.log(content);
+      console.log(images);
 
       if (writer.length < 1) {
         setErrorWriter("작성자를 입력하세요.");
@@ -185,26 +197,17 @@ export default function BoardWrite(props: IBoardWriteProps) {
     setIsOpen((prev) => !prev);
   };
 
-  const onChangeImage = async (event: ChangeEvent<HTMLInputElement>) => {
-    const myFile = event?.target.files?.[0];
-    const result = await uploadFile({
-      variables: {
-        file: myFile,
-      },
-    });
-    setImages([result.data?.uploadFile.url]);
-  };
-
-  const onChangeDragger = async (event: ChangeEvent<HTMLInputElement>) => {
-    console.log(event?.target);
-    const myFile = event?.target;
-    const result = await uploadFile({
-      variables: {
-        file: myFile,
-      },
-    });
-    setImages([result.data?.uploadFile.url]);
-  };
+  // const onChangeDragger = async (event: ChangeEvent<HTMLInputElement>) => {
+  //   console.log(event?.target);
+  //   const myFile = event?.target;
+  //   const result = await uploadFile({
+  //     variables: {
+  //       file: myFile,
+  //     },
+  //   });
+  //   console.log("result", result);
+  //   // setImages([result.data?.uploadFile.url]);
+  // };
 
   const propaa = {
     name: "file",
@@ -221,7 +224,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
       } else if (status === "error") {
         message.error(`${info.file.name} file upload failed.`);
       }
-      onChangeImage();
+      onChangeUploadImage();
       // console.log(props.images);
     },
     onDrop(e) {
@@ -255,10 +258,11 @@ export default function BoardWrite(props: IBoardWriteProps) {
         onToggleModal={onToggleModal}
         isOpen={isOpen}
         myZoneCode={myZonecode}
-        uploadImage={onChangeImage}
+        uploadImage={onChangeUploadImage}
         images={images}
-        dragger={onChangeDragger}
+        // dragger={onChangeDragger}
         propaa={propaa}
+        fileUrls={fileUrls}
       />
     </>
   );

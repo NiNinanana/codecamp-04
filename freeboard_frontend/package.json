@@ -20,6 +20,7 @@
     "firebase": "^9.5.0",
     "google-maps-react": "^2.0.6",
     "graphql": "^16.0.1",
+    "i": "^0.3.7",
     "install": "^0.13.0",
     "next": "12.0.2",
     "npm": "^8.1.4",
@@ -30,7 +31,8 @@
     "react-infinite-scroller": "^1.2.4",
     "react-slick": "^0.28.1",
     "react-social-login-buttons": "^3.6.0",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^2.2.2",

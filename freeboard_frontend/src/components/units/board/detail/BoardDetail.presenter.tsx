@@ -57,12 +57,21 @@ export default function BoardDetailUI(props: IBoardDetailUIProps) {
           </S.ContentsText>
           <S.ImageWrapper>
             <S.ContentsWrite>- Image -</S.ContentsWrite>
-            {props.ggg && (
+            <S.Image
+              src={`https://storage.googleapis.com/${props.dataImage?.[0]}`}
+            />
+            <S.Image
+              src={`https://storage.googleapis.com/${props.dataImage?.[1]}`}
+            />
+            <S.Image
+              src={`https://storage.googleapis.com/${props.dataImage?.[2]}`}
+            />
+            {/* {props.ggg && (
               <S.Image
                 src={`https://storage.googleapis.com/${props.dataImage?.[0]}`}
               />
-            )}
-            {props.hhh && (
+            )} */}
+            {/* {props.hhh && (
               <S.Image
                 src={`https://storage.googleapis.com/${props.dataImage?.[1]}`}
               />
@@ -71,7 +80,7 @@ export default function BoardDetailUI(props: IBoardDetailUIProps) {
               <S.Image
                 src={`https://storage.googleapis.com/${props.dataImage?.[2]}`}
               />
-            )}
+            )} */}
           </S.ImageWrapper>
           <S.YoutubeWrapper>
             <S.ContentsWrite>- Video -</S.ContentsWrite>

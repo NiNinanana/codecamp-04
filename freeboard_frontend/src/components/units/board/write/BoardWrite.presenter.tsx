@@ -24,11 +24,13 @@ import {
   SettingInput,
   Wrapper,
   SearchButton,
+  Input1,
 } from "./BoardWrite.styles";
 import { IBoardWriteUIProps } from "./BoardWrite.types";
 import { Modal, Upload, message } from "antd";
 import DaumPostcode from "react-daum-postcode";
 import { InboxOutlined } from "@ant-design/icons";
+import { v4 as uuidv4 } from "uuid";
 
 export default function BoardWriteUI(props: IBoardWriteUIProps) {
   const { Dragger } = Upload;
@@ -48,13 +50,14 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
       } else if (status === "error") {
         message.error(`${info.file.name} file upload failed.`);
       }
-      // props.uploadImage();
+      alert("a");
+      props.uploadImage();
       // console.log(props.images);
     },
     onDrop(e) {
       console.log(e.dataTransfer.files);
 
-      // props.uploadImage();
+      props.uploadImage();
       // console.log(props.images);
     },
   };
@@ -147,7 +150,10 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
           <PhoWrapper>
             {/* <Image src={`https://storage.googleapis.com/${props.images[0]}`} /> */}
           </PhoWrapper>
-          <input type="file" onChange={props.propaa} />
+          <Input1 type="file" onChange={props.uploadImage} />
+          {/* {props.fileUrls.map((el, index) => (
+            <input key={uuidv4()} type="file" />
+          ))} */}
           <Dragger {...propaa}>
             <p className="ant-upload-drag-icon">
               <InboxOutlined />

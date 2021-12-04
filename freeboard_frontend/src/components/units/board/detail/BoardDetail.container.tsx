@@ -17,13 +17,13 @@ export default function BoardDetail() {
       boardId: router.query.myId,
     },
   });
-  console.log(data);
   const { data: commentData } = useQuery(FETCH_BOARD_COMMENTS, {
     variables: {
       boardId: router.query.myId,
       page: 1,
     },
   });
+  // console.log("data!!!!", data?.fetchBoard.images[0]);
   const [createBoardComment] = useMutation(CREATE_BOARD_COMMENT);
 
   const [deleteBoardComment] = useMutation(DELETE_BOARD_COMMENT);
