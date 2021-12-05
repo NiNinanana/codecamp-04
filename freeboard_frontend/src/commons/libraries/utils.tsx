@@ -31,3 +31,10 @@ export function getDate(myDate: any) {
 export function youtubeUrl(myYoutubeUrl: any) {
   return String(myYoutubeUrl).split("watch?v=").join("embed/");
 }
+
+export function getPrice(myPrice) {
+  myPrice = String(myPrice).split("");
+  // if(myPrice.length>)
+
+  return;
+}

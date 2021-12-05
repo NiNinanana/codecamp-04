@@ -6,6 +6,7 @@ import {
   CREATE_USED_ITEM,
   FETCH_USED_ITEM,
   UPDATE_USEDITEM,
+  UPLOAD_FILE,
 } from "./createItem.queries";
 
 export default function CreateItem(props) {
@@ -15,9 +16,12 @@ export default function CreateItem(props) {
     remarks: "",
     contents: "",
     price: 0,
+    // images: [],
   });
   const [createUseditem] = useMutation(CREATE_USED_ITEM);
   const [updateItem] = useMutation(UPDATE_USEDITEM);
+  const [uploadFile] = useMutation(UPLOAD_FILE);
+  const [images, setImages] = useState([""]);
   const { data } = useQuery(FETCH_USED_ITEM, {
     variables: { useditemId: router.query.myId },
   });
@@ -28,6 +32,7 @@ export default function CreateItem(props) {
       remarks: myInputs.remarks,
       contents: myInputs.contents,
       price: myInputs.price,
+      // images: myInputs.images,
       [event.target.name]: event.target.value,
     });
     // setMyInputs({
@@ -43,6 +48,7 @@ export default function CreateItem(props) {
       name: myInputs.name,
       remarks: myInputs.remarks,
       contents: myInputs.contents,
+      // images: myInputs.images,
       price: Number(event.target.value),
     });
   };
@@ -52,10 +58,10 @@ export default function CreateItem(props) {
     try {
       const result = await createUseditem({
         variables: {
-          createUseditemInput: { ...myInputs },
+          createUseditemInput: { ...myInputs, images },
         },
       });
-      console.log(result.data);
+      console.log("resultresultresult", result.data);
       router.push(`/items/${result.data.createUseditem._id}`);
     } catch (error) {
       if (error instanceof Error) console.log(error.message);
@@ -85,7 +91,21 @@ export default function CreateItem(props) {
       if (error instanceof Error) alert(error.message);
     }
   };
-  console.log("data!!", data?.fetchUseditem);
+
+  const onChangeUploadImage = async (event: ChangeEvent<HTMLInputElement>) => {
+    alert("고고");
+    const file = event.target.files?.[0];
+    // console.log(myFile);
+    try {
+      const result = await uploadFile({ variables: { file } });
+      setImages(result.data?.uploadFile.url);
+      // setImages(myFile.url);
+      console.log(result.data.uploadFile);
+      alert("성공");
+    } catch (error) {
+      console.log("error", error.message);
+    }
+  };
 
   return (
     <CreateItemUI
@@ -95,6 +115,7 @@ export default function CreateItem(props) {
       myInputs={onChangeMyInputs}
       myInputsPrice={onChangeMyInputsPrice}
       itemUpdate={onClickItemUpdate}
+      uploadImage={onChangeUploadImage}
     />
   );
 }

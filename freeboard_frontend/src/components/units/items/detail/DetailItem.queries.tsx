@@ -8,6 +8,13 @@ export const FETCH_USED_ITEM = gql`
       remarks
       contents
       price
+      images
     }
+  }
+`;
+
+export const DELETE_USED_ITEM = gql`
+  mutation deleteUseditem($useditemId: ID!) {
+    deleteUseditem(useditemId: $useditemId)
   }
 `;

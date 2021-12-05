@@ -33,8 +33,7 @@ export default function Navigation() {
     toggle();
     setIsCarrot(true);
     event.preventDefault();
-    alert("공사중입니다.");
-    // router.push(`/boards/list`);
+    router.push(`/items/list`);
   }
 
   function onClickMyPage(event: MouseEvent<HTMLAnchorElement, MouseEvent>) {
