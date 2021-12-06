@@ -85,3 +85,10 @@ export const CreateButton = styled.button`
   background-color: yellow;
   border-radius: 7px;
 `;
+
+export const BasketButton = styled.button`
+  width: 80px;
+  height: 40px;
+  background-color: yellow;
+  border-radius: 7px;
+`;

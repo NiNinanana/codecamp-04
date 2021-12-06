@@ -1,37 +1,37 @@
-import { Radio } from "antd";
+import { Radio, Upload } from "antd";
 import * as S from "./createItem.styles";
-import { Upload } from "antd";
-import ImgCrop from "antd-img-crop";
-import { useState } from "react";
+// import ImgCrop from "antd-img-crop";
+// import { useState } from "react";
+import { ICreateItemUIProps } from "./CreateItem.types";
 
-export default function CreateItemUI(props) {
-  const [fileList, setFileList] = useState([
-    {
-      uid: "-1",
-      name: "image.png",
-      status: "done",
-      url: "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
-    },
-  ]);
+export default function CreateItemUI(props: ICreateItemUIProps) {
+  // const [fileList, setFileList] = useState([
+  //   {
+  //     uid: "-1",
+  //     name: "image.png",
+  //     status: "done",
+  //     url: "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
+  //   },
+  // ]);
 
-  const onChange = ({ fileList: newFileList }) => {
-    setFileList(newFileList);
-  };
+  // const onChange = ({ fileList: newFileList }) => {
+  //   setFileList(newFileList);
+  // };
 
-  const onPreview = async (file) => {
-    let src = file.url;
-    if (!src) {
-      src = await new Promise((resolve) => {
-        const reader = new FileReader();
-        reader.readAsDataURL(file.originFileObj);
-        reader.onload = () => resolve(reader.result);
-      });
-    }
-    const image = new Image();
-    image.src = src;
-    const imgWindow = window.open(src);
-    imgWindow.document.write(image.outerHTML);
-  };
+  // const onPreview = async (file) => {
+  //   let src = file.url;
+  //   if (!src) {
+  //     src = await new Promise((resolve) => {
+  //       const reader = new FileReader();
+  //       reader.readAsDataURL(file.originFileObj);
+  //       reader.onload = () => resolve(reader.result);
+  //     });
+  //   }
+  //   const image = new Image();
+  //   image.src = src;
+  //   const imgWindow = window.open(src);
+  //   imgWindow.document.write(image.outerHTML);
+  // };
 
   return (
     <S.Wrapper>
@@ -73,7 +73,7 @@ export default function CreateItemUI(props) {
           onChange={props.uploadImage}
           defaultValue={props.data?.fetchUseditem?.images?.[0]}
         />
-        <ImgCrop rotate>
+        {/* <ImgCrop rotate>
           <Upload
             action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
             listType="picture-card"
@@ -83,7 +83,7 @@ export default function CreateItemUI(props) {
           >
             {fileList.length < 5 && "+ Upload"}
           </Upload>
-        </ImgCrop>
+        </ImgCrop> */}
       </div>
       <div>
         <div>나타낼 사진</div>

@@ -1,5 +1,6 @@
 import { useMutation, useQuery } from "@apollo/client";
 import router, { useRouter } from "next/router";
+import { IBoard, IUseditem } from "../../../../commons/types/generated/types";
 import DetailItemUI from "./DetailItem.presenter";
 import { FETCH_USED_ITEM, DELETE_USED_ITEM } from "./DetailItem.queries";
 
@@ -32,7 +33,27 @@ export default function DetailItem() {
       if (error instanceof Error) alert(error.message);
     }
   };
-  console.log("images!!!!", data?.fetchUseditem?.images[0]);
+
+  const onClickBasket = () => {
+    const baskets = JSON.parse(localStorage.getItem("basket") || "[]");
+
+    let isExists = false;
+
+    baskets.forEach((basketEl: IUseditem) => {
+      if (data.fetchUseditem._id === basketEl._id) isExists = true;
+    });
+
+    if (isExists) {
+      alert("이미 장바구니에 담으셨습니다.");
+      return;
+    }
+
+    baskets.push(data.fetchUseditem);
+
+    localStorage.setItem("basket", JSON.stringify(baskets));
+  };
+
+  console.log("images!!!!", data?.fetchUseditem?.images);
   return (
     <DetailItemUI
       name={data?.fetchUseditem?.name}
@@ -45,6 +66,7 @@ export default function DetailItem() {
       update={onClickUpdate}
       list={onClickList}
       delete={onClickDelete}
+      basket={onClickBasket}
     />
   );
 }

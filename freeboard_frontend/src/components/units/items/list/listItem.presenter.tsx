@@ -15,6 +15,7 @@ export default function ListItemUI(props) {
         />
         <S.SearchButton onClick={props.search}>검색</S.SearchButton>
         <S.CreateButton onClick={props.create}>상품 등록하기</S.CreateButton>
+        <S.BasketButton onClick={props.basket}>장바구니</S.BasketButton>
       </S.InputWrapper>
       <S.ListWrapper>
         <InfiniteScroll
@@ -28,7 +29,7 @@ export default function ListItemUI(props) {
               <S.ItemWrapper key={uuidv4}>
                 {el.images?.[0] && (
                   <S.ItemImage
-                    onClick={props.onClickDetail}
+                    onClick={props.onClickDetail(el)}
                     id={el._id}
                     src={`https://storage.googleapis.com/${el.images?.[0]}`}
                   />
@@ -36,12 +37,12 @@ export default function ListItemUI(props) {
                 {!el.images?.[0] && (
                   <S.ItemImage
                     src={`/images/고앵이.gif`}
-                    onClick={props.onClickDetail}
+                    onClick={props.onClickDetail(el)}
                     id={el._id}
                   />
                 )}
                 <S.ItemTextWrapper>
-                  <S.ItemName onClick={props.onClickDetail} id={el._id}>
+                  <S.ItemName onClick={props.onClickDetail(el)} id={el._id}>
                     {el.name}
                   </S.ItemName>
                   <S.ItemGreyWrapper>

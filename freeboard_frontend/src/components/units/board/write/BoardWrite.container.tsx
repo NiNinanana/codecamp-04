@@ -262,7 +262,6 @@ export default function BoardWrite(props: IBoardWriteProps) {
         images={images}
         // dragger={onChangeDragger}
         propaa={propaa}
-        fileUrls={fileUrls}
       />
     </>
   );

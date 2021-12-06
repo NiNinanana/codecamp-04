@@ -62,7 +62,8 @@ export default function Navigation() {
   }
 
   function onClickLogout() {
-    setAccessToken("");
+    setAccessToken(null);
+    localStorage.removeItem("accessToken");
     alert("로그아웃");
     router.push(`/boards/list`);
   }

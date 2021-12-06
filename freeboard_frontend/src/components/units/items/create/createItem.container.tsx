@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useState, ChangeEvent } from "react";
 import CreateItemUI from "./createItem.presenter";
 import {
   CREATE_USED_ITEM,
@@ -8,8 +8,9 @@ import {
   UPDATE_USEDITEM,
   UPLOAD_FILE,
 } from "./createItem.queries";
+import { IcreateItemProps } from "./CreateItem.types";
 
-export default function CreateItem(props) {
+export default function CreateItem(props: IcreateItemProps) {
   const router = useRouter();
   const [myInputs, setMyInputs] = useState({
     name: "",
@@ -26,7 +27,7 @@ export default function CreateItem(props) {
     variables: { useditemId: router.query.myId },
   });
 
-  const onChangeMyInputs = (event) => {
+  const onChangeMyInputs = (event: ChangeEvent<HTMLInputElement>) => {
     setMyInputs({
       name: myInputs.name,
       remarks: myInputs.remarks,
@@ -43,7 +44,7 @@ export default function CreateItem(props) {
     // });
   };
 
-  const onChangeMyInputsPrice = (event) => {
+  const onChangeMyInputsPrice = (event: ChangeEvent<HTMLInputElement>) => {
     setMyInputs({
       name: myInputs.name,
       remarks: myInputs.remarks,
@@ -71,7 +72,12 @@ export default function CreateItem(props) {
   const onClickItemUpdate = async () => {
     try {
       const updateTemp = {
-        updateUseditemInput: {},
+        updateUseditemInput: {
+          name: "",
+          remarks: "",
+          contents: "",
+          price: 0,
+        },
         useditemId: router.query.myId,
       };
       if (myInputs.name !== "")
@@ -83,7 +89,7 @@ export default function CreateItem(props) {
       if (myInputs.price !== 0)
         updateTemp.updateUseditemInput.price = myInputs.price;
 
-      const result = await updateItem({
+      await updateItem({
         variables: updateTemp,
       });
       router.push(`/items/${router.query.myId}`);
@@ -103,7 +109,7 @@ export default function CreateItem(props) {
       console.log(result.data.uploadFile);
       alert("성공");
     } catch (error) {
-      console.log("error", error.message);
+      if (error instanceof Error) alert(error.message);
     }
   };
 
