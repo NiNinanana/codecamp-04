@@ -4,7 +4,7 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 170%;
+  /* width: 170%; */
 `;
 
 export const LoginWrapper = styled.div`

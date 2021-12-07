@@ -12,6 +12,7 @@ export default function ListItemUI(props) {
           type="text"
           placeholder="상품명을 입력하세요"
           onChange={props.searchContents}
+          onKeyUp={props.enterKey}
         />
         <S.SearchButton onClick={props.search}>검색</S.SearchButton>
         <S.CreateButton onClick={props.create}>상품 등록하기</S.CreateButton>
@@ -26,7 +27,7 @@ export default function ListItemUI(props) {
         >
           {!props.isSearch &&
             props.data?.fetchUseditems.map((el) => (
-              <S.ItemWrapper key={uuidv4}>
+              <S.ItemWrapper key={uuidv4()}>
                 {el.images?.[0] && (
                   <S.ItemImage
                     onClick={props.onClickDetail(el)}
@@ -67,7 +68,7 @@ export default function ListItemUI(props) {
           >
             {props.isSearch &&
               props.searchData?.fetchUseditems.map((el) => (
-                <S.ItemWrapper key={uuidv4}>
+                <S.ItemWrapper key={uuidv4()}>
                   {el.images?.[0] && (
                     <S.ItemImage
                       src={`https://storage.googleapis.com/${el.images?.[0]}`}
@@ -84,7 +85,12 @@ export default function ListItemUI(props) {
                       <S.ItemRemarks>{el.remarks} •</S.ItemRemarks>
                       <S.ItemCreatedAt>{getDate(el.createdAt)}</S.ItemCreatedAt>
                     </S.ItemGreyWrapper>
-                    <S.ItemPrice>{el.price}원</S.ItemPrice>
+                    <S.ItemPrice>
+                      {el.price === 0 && "무료나눔💚"}
+                      {el.price > 0 && (
+                        <>{el.price.toLocaleString("ko-KR")}원</>
+                      )}
+                    </S.ItemPrice>
                   </S.ItemTextWrapper>
                 </S.ItemWrapper>
               ))}

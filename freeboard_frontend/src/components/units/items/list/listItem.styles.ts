@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
-  margin-left: 100px;
+  /* margin-left: 100px; */
 `;
 
 export const List = styled.div`
@@ -15,7 +15,7 @@ export const InputWrapper = styled.div`
   margin-bottom: 20px;
   display: flex;
   justify-content: space-between;
-  width: 600px;
+  width: 700px;
 `;
 
 export const ItemWrapper = styled.div`

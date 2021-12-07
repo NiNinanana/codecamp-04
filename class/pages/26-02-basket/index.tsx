@@ -23,7 +23,7 @@ export default function BasketPage() {
   );
 
   const onClickBasket = (el: IBoard) => () => {
-    console.log(el);
+    console.log(JSON.parse(localStorage.getItem("basket")));
 
     const baskets = JSON.parse(localStorage.getItem("basket") || "[]");
 
@@ -46,16 +46,16 @@ export default function BasketPage() {
     localStorage.setItem("basket", JSON.stringify(baskets));
   };
 
-  const onClickLogin = () => {
-    alert("로그인 성공!!");
-    const baskets = JSON.parse(localStorage.getItem("basket") || "[]");
-    if (baskets.length) {
-      const result = confirm(
-        "장바구니에 담으신 상품이 있습니다. 장바구니 페이지로 이동할까요???????"
-      );
-      if (result) router.push(`/26-03-basket-logged-in`);
-    }
-  };
+  // const onClickLogin = () => {
+  //   alert("로그인 성공!!");
+  //   const baskets = JSON.parse(localStorage.getItem("basket") || "[]");
+  //   if (baskets.length) {
+  //     const result = confirm(
+  //       "장바구니에 담으신 상품이 있습니다. 장바구니 페이지로 이동할까요???????"
+  //     );
+  //     if (result) router.push(`/26-03-basket-logged-in`);
+  //   }
+  // };
 
   return (
     <>
@@ -67,7 +67,7 @@ export default function BasketPage() {
           <button onClick={onClickBasket(el)}>장바구니 담기</button>
         </div>
       ))}
-      <button onClick={onClickLogin}>로그인!!!</button>
+      {/* <button onClick={onClickLogin}>로그인!!!</button> */}
     </>
   );
 }

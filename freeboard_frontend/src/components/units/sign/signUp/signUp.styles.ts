@@ -8,7 +8,7 @@ export const Wrapper = styled.div`
   border: 1px solid black;
   border-radius: 10px;
   margin-top: 20px;
-  margin-left: 350px;
+  /* margin-left: 350px; */
 `;
 export const WrapperSignUp = styled.div`
   display: flex;

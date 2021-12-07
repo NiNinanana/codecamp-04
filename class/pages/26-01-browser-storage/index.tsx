@@ -24,7 +24,7 @@ export default function BrowserStoragePage() {
 
     const myCookie = document.cookie
       .split("; ")
-      .filter((el) => el.startsWith("zzz="))[0]
+      .filter((el) => el.startsWith("ggg="))[0]
       .split("=")[1];
     console.log(myCookie);
   };

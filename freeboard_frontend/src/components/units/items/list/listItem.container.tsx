@@ -21,7 +21,6 @@ export default function ListItem(props) {
       },
     }
   );
-  console.log("data", data?.fetchUseditems);
   const onClickDetail = (el) => (event) => {
     router.push(`/items/${event.target.id}`);
   };
@@ -88,6 +87,11 @@ export default function ListItem(props) {
     router.push(`/items/basket`);
   };
 
+  const enterKey = () => {
+    if (window.event.keyCode === 13) {
+      onClickSearch();
+    }
+  };
   return (
     <ListItemUI
       isSearch={props.isSearch}
@@ -101,6 +105,7 @@ export default function ListItem(props) {
       onLoadMoreSearch={onLoadMoreSearch}
       list={onClickList}
       basket={onClickBasket}
+      enterKey={enterKey}
     />
   );
 }

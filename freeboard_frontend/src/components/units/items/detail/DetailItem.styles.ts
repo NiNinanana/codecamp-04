@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
-  margin-left: 100px;
+  /* margin-left: 100px; */
 `;
 
 export const ItemImage = styled.img`

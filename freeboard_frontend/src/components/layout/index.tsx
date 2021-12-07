@@ -10,6 +10,10 @@ import { useRouter } from "next/router";
 const Wrapper = styled.div`
   /* background-color: #93b5c6; */
   background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 const Body = styled.div`
   /* background-color: #93b5c6; */
@@ -56,7 +60,7 @@ export default function Layout(props: ILayoutProps) {
       {!isHiddenNavigation && <Navigation />}
       <BodyWrapper>
         <Body>{props.children}</Body>
-        {!isHiddenSidebar && <Sidebar />}
+        {/* {!isHiddenSidebar && <Sidebar />} */}
       </BodyWrapper>
       {!isHiddenFooter && <Footer />}
     </Wrapper>

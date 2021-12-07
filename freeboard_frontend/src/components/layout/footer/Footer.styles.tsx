@@ -4,7 +4,7 @@ export const Footer = styled.div`
   background-color: #c9ccd5;
   height: 50px;
   margin-top: 80px;
-  margin-left: 100px;
+  /* margin-left: 100px; */
   width: 860px;
 `;
 
