@@ -2,7 +2,11 @@ import { useMutation, useQuery } from "@apollo/client";
 import router, { useRouter } from "next/router";
 import { IBoard, IUseditem } from "../../../../commons/types/generated/types";
 import DetailItemUI from "./DetailItem.presenter";
-import { FETCH_USED_ITEM, DELETE_USED_ITEM } from "./DetailItem.queries";
+import {
+  FETCH_USED_ITEM,
+  DELETE_USED_ITEM,
+  CREATE_POINT_TRANSACTION_OF_BUYING_AND_SELLING,
+} from "./DetailItem.queries";
 
 export default function DetailItem() {
   const router = useRouter();
@@ -13,7 +17,9 @@ export default function DetailItem() {
     },
   });
 
-  console.log("asdf", data?.fetchUseditem);
+  const [createPointTransactionOfBuyingAndSelling] = useMutation(
+    CREATE_POINT_TRANSACTION_OF_BUYING_AND_SELLING
+  );
 
   const onClickUpdate = () => {
     router.push(`/items/${router.query.myId}/edit`);
@@ -53,7 +59,19 @@ export default function DetailItem() {
     localStorage.setItem("basket", JSON.stringify(baskets));
   };
 
-  console.log("images!!!!", data?.fetchUseditem?.images);
+  const onClickBuy = async () => {
+    try {
+      const result = await createPointTransactionOfBuyingAndSelling({
+        variables: {
+          useritemId: router.query.myId,
+        },
+      });
+      console.log(result);
+    } catch (error) {
+      if (error instanceof Error) alert(error.message);
+    }
+  };
+
   return (
     <DetailItemUI
       name={data?.fetchUseditem?.name}
@@ -67,6 +85,7 @@ export default function DetailItem() {
       list={onClickList}
       delete={onClickDelete}
       basket={onClickBasket}
+      buy={onClickBuy}
     />
   );
 }
