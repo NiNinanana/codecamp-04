@@ -19,6 +19,8 @@ export default function CreateItem(props: IcreateItemProps) {
     price: 0,
     // images: [],
   });
+  const [isOpen, setIsOpen] = useState(false);
+
   const [createUseditem] = useMutation(CREATE_USED_ITEM);
   const [updateItem] = useMutation(UPDATE_USEDITEM);
   const [uploadFile] = useMutation(UPLOAD_FILE);
@@ -113,6 +115,17 @@ export default function CreateItem(props: IcreateItemProps) {
     }
   };
 
+  const handleComplete = (data: any) => {
+    console.log(data);
+    // setMyAddress(data.address);
+    // setMyZonecode(data.zonecode);
+    setIsOpen((prev) => !prev);
+  };
+
+  const onToggleModal = () => {
+    setIsOpen((prev) => !prev);
+  };
+
   return (
     <CreateItemUI
       data={data}
@@ -122,6 +135,9 @@ export default function CreateItem(props: IcreateItemProps) {
       myInputsPrice={onChangeMyInputsPrice}
       itemUpdate={onClickItemUpdate}
       uploadImage={onChangeUploadImage}
+      handleComplete={handleComplete}
+      onToggleModal={onToggleModal}
+      isOpen={isOpen}
     />
   );
 }

@@ -1,27 +1,10 @@
-import { gql, useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import { IQuery } from "../../../commons/types/generated/types";
-
-const FETCH_USER_LOGGED_IN = gql`
-  query fetchUserLoggedIn {
-    fetchUserLoggedIn {
-      _id
-      email
-      userPoint {
-        amount
-      }
-    }
-  }
-`;
-
-const FETCH_USED_ITEMS_I_BOUGHT = gql`
-  query fetchUseditemsIBought {
-    fetchUseditemsIBought {
-      _id
-      name
-      price
-    }
-  }
-`;
+import {
+  FETCH_USED_ITEMS_I_BOUGHT,
+  FETCH_USER_LOGGED_IN,
+} from "./myPage.queries";
+import * as S from "./myPage.styles";
 
 export default function MyPageUI() {
   const { data } =
@@ -32,9 +15,8 @@ export default function MyPageUI() {
   console.log(data?.fetchUserLoggedIn);
   return (
     <>
-      <div>닉네임</div>
-      <div>{data?.fetchUserLoggedIn.email}</div>
-      <div>내돈! {data?.fetchUserLoggedIn?.userPoint?.amount}</div>
+      <S.MyName>{data?.fetchUserLoggedIn.email}님</S.MyName>
+      <S.MyAmount>{data?.fetchUserLoggedIn?.userPoint?.amount} pt.</S.MyAmount>
       <div>내가 산거</div>
       {buyData?.fetchUseditemsIBought?.map((el) => (
         <>

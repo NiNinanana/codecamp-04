@@ -1,0 +1,25 @@
+오늘의 커리큘럼
+
+지도
+구글 vs 네이버 vs 카카오
+
+구글은 조금 비싼편
+네이버는 계속 api 개선 중
+
+developers.kakao.com
+내 애플리케이션
+앱 추가
+앱키(javascript)
+
+declare const window: typeof globalThis & {
+  kakao: any;
+};
+
+kakaodevelopers에서 플랫폼에 web에 내 도메인을 입력했기에 그 도메인에서만 내 앱키가 작동한다.
+도용방지!!
+
+정말 앱 키를 숨기고 싶다면 백엔드에다가 앱키를 두는 것이다.
+
+spa
+single page application
+
