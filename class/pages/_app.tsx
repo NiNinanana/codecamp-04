@@ -1,10 +1,12 @@
 // import "../styles/globals.css";
+
 import {
   ApolloClient,
   ApolloProvider,
   InMemoryCache,
   ApolloLink,
 } from "@apollo/client";
+import { onError } from "@apollo/client/link/error";
 import { Global } from "@emotion/react";
 import "antd/dist/antd.css";
 import { AppProps } from "next/dist/shared/lib/router/router";
@@ -22,6 +24,7 @@ import {
   SetStateAction,
   useEffect,
 } from "react";
+import { getAccessToken } from "../src/commons/libraries/getAccessToken";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -70,22 +73,50 @@ function MyApp({ Component, pageProps }: AppProps) {
   // useEffect를 사용하면 어차피 브라우저에서 실행되는 것
 
   useEffect(() => {
-    const accessToken = localStorage.getItem("accessToken") || "";
-    if (accessToken) setMyAccessToken(accessToken);
+    // const accessToken = localStorage.getItem("accessToken") || "";
+    // if (accessToken) setMyAccessToken(accessToken);
+    if (localStorage.getItem("refreshToken")) getAccessToken(setMyAccessToken);
+  }, []);
+
+  const errorLink = onError(({ graphQLErrors, operation, forward }) => {
+    if (graphQLErrors) {
+      for (const err of graphQLErrors) {
+        // 1. 토큰만료 에러 캐치
+        if (err.extensions?.code === "UNAUTHENTICATED") {
+          // 2. refreshToken으로 accessToken 재발급 받기 => restoreAccessToken
+          // const newAccessToken = getAccessToken(setMyAccessToken);
+
+          // 3. 기존 실패한 요청 다시 재요청
+
+          operation.setContext({
+            haeders: {
+              ...operation.getContext().headers,
+              authorization: `Bearer ${getAccessToken(setMyAccessToken)}`,
+            },
+          });
+
+          return forward(operation);
+        }
+      }
+    }
   });
 
   const uploadLink = createUploadLink({
-    uri: "http://backend04.codebootcamp.co.kr/graphql",
+    uri: "https://backend04.codebootcamp.co.kr/graphql",
     headers: {
       authorization: `Bearer ${myAccessToken}`,
     },
+    credentials: "include",
   });
+
   // 저 backend에 요청할 때 마다 모두 token도 같이 날라가게 된다.
 
   const client = new ApolloClient({
-    link: ApolloLink.from([uploadLink as unknown as ApolloLink]),
+    link: ApolloLink.from([errorLink, uploadLink as unknown as ApolloLink]),
+
     cache: new InMemoryCache(),
   });
+
   return (
     <>
       {/* <Head> 모든 페이지에서 카카오맵을 다운받게 되니 비효율적이다.

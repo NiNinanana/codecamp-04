@@ -9,6 +9,9 @@ export const FETCH_USED_ITEM = gql`
       contents
       price
       images
+      useditemAddress {
+        address
+      }
     }
   }
 `;

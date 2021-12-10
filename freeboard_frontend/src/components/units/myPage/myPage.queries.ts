@@ -5,6 +5,7 @@ export const FETCH_USER_LOGGED_IN = gql`
     fetchUserLoggedIn {
       _id
       email
+      name
       userPoint {
         amount
       }
@@ -18,6 +19,8 @@ export const FETCH_USED_ITEMS_I_BOUGHT = gql`
       _id
       name
       price
+      images
+      soldAt
     }
   }
 `;

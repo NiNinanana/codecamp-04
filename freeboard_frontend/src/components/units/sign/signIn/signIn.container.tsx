@@ -43,7 +43,7 @@ export default function SignIn() {
       );
       setAccessToken(result.data?.loginUser.accessToken);
       alert(accessToken);
-      router.push(`/boards/list`);
+      router.back();
     } catch (error) {
       setErrorText("이메일 또는 비밀번호가 잘못 입력 되었습니다.");
       // if (error instanceof Error) alert(error.message);

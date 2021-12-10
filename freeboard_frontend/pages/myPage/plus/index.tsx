@@ -13,7 +13,7 @@ const CREATE_POINT_TRANSACTION_OF_LOADING = gql`
 `;
 
 export default function PlusPage() {
-  //   const router = useRouter();
+  const router = useRouter();
 
   const [createPointTransactionOfLoading] = useMutation(
     CREATE_POINT_TRANSACTION_OF_LOADING
@@ -28,7 +28,7 @@ export default function PlusPage() {
         pg: "html5_inicis",
         pay_method: "card",
         name: "5000 포인트",
-        amount: 100,
+        amount: 5000,
         buyer_email: "yeen00123@gmail.com",
         buyer_name: "강선우",
         buyer_tel: "010-2018-2034",
@@ -43,7 +43,6 @@ export default function PlusPage() {
         if (rsp.success) {
           // 성공
 
-          console.log(rsp);
           // createPointTransactionOfLoading 뮤테이션 실행(impUid 넘기기)
 
           const result = await createPointTransactionOfLoading({
@@ -52,8 +51,7 @@ export default function PlusPage() {
             },
           });
           try {
-            console.log("result!!!!1", result);
-            // router.push(`/myPage`);
+            router.push(`/myPage`);
           } catch (error) {
             if (error instanceof Error) console.log(error.message);
           }
@@ -64,20 +62,92 @@ export default function PlusPage() {
       }
     );
   };
+  const onClickOne = () => {
+    const IMP = window.IMP;
+    IMP.init("imp49910675");
+    IMP.request_pay(
+      {
+        // param
+        pg: "html5_inicis",
+        pay_method: "card",
+        name: "1000 포인트",
+        amount: 1000,
+        buyer_email: "yeen00123@gmail.com",
+        buyer_name: "강선우",
+        buyer_tel: "010-2018-2034",
+        buyer_addr: "서울특별시 구로구 구로3동",
+        buyer_postcode: "00001",
+        m_redirect_url: "",
+        // 모바일일 때는 아예 사이트가 넘어가 버리기 때문에 결제를 완료하면 다시 보내줄 url 을 써줘야 한다
+        // m_redirect_url: """
+      },
+      async (rsp) => {
+        // callback
+        if (rsp.success) {
+          // 성공
 
-  //   const createPoint = async () => {
-  //     try {
-  //       const result = await createPointTransactionOfLoading({
-  //         variables: {
-  //           impUid: "imp_928891218994",
-  //         },
-  //       });
-  //       console.log("result!!!!1", result);
-  //       //   router.push(`/myPage`);
-  //     } catch (error) {
-  //       if (error instanceof Error) console.log(error.message);
-  //     }
-  //   };
+          // createPointTransactionOfLoading 뮤테이션 실행(impUid 넘기기)
+
+          const result = await createPointTransactionOfLoading({
+            variables: {
+              impUid: rsp.imp_uid,
+            },
+          });
+          try {
+            router.push(`/myPage`);
+          } catch (error) {
+            if (error instanceof Error) console.log(error.message);
+          }
+        } else {
+          // 실패
+          alert("tlfvo");
+        }
+      }
+    );
+  };
+  const onClickTen = () => {
+    const IMP = window.IMP;
+    IMP.init("imp49910675");
+    IMP.request_pay(
+      {
+        // param
+        pg: "html5_inicis",
+        pay_method: "card",
+        name: "10000 포인트",
+        amount: 10000,
+        buyer_email: "yeen00123@gmail.com",
+        buyer_name: "강선우",
+        buyer_tel: "010-2018-2034",
+        buyer_addr: "서울특별시 구로구 구로3동",
+        buyer_postcode: "00001",
+        m_redirect_url: "",
+        // 모바일일 때는 아예 사이트가 넘어가 버리기 때문에 결제를 완료하면 다시 보내줄 url 을 써줘야 한다
+        // m_redirect_url: """
+      },
+      async (rsp) => {
+        // callback
+        if (rsp.success) {
+          // 성공
+
+          // createPointTransactionOfLoading 뮤테이션 실행(impUid 넘기기)
+
+          const result = await createPointTransactionOfLoading({
+            variables: {
+              impUid: rsp.imp_uid,
+            },
+          });
+          try {
+            router.push(`/myPage`);
+          } catch (error) {
+            if (error instanceof Error) console.log(error.message);
+          }
+        } else {
+          // 실패
+          alert("tlfvo");
+        }
+      }
+    );
+  };
 
   return (
     <>
@@ -91,7 +161,9 @@ export default function PlusPage() {
           src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"
         ></script>
       </Head>
+      <button onClick={onClickOne}>1000원 충전</button>
       <button onClick={onClickFive}>5000원 충전</button>
+      <button onClick={onClickTen}>10000원 충전</button>
       {/* <button onClick={createPoint}>createPoint</button> */}
     </>
   );

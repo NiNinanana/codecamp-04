@@ -81,6 +81,7 @@ export default function DetailItem() {
       image={data?.fetchUseditem?.images}
       createdAt={data?.fetchUseditem?.createdAt}
       seller={data?.fetchUseditem?.seller}
+      address={data?.fetchUseditem?.useditemAddress?.address}
       update={onClickUpdate}
       list={onClickList}
       delete={onClickDelete}

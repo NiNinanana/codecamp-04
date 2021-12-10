@@ -20,6 +20,7 @@ export default function CreateItem(props: IcreateItemProps) {
     // images: [],
   });
   const [isOpen, setIsOpen] = useState(false);
+  const [myAddress, setMyAddress] = useState("");
 
   const [createUseditem] = useMutation(CREATE_USED_ITEM);
   const [updateItem] = useMutation(UPDATE_USEDITEM);
@@ -61,7 +62,13 @@ export default function CreateItem(props: IcreateItemProps) {
     try {
       const result = await createUseditem({
         variables: {
-          createUseditemInput: { ...myInputs, images },
+          createUseditemInput: {
+            ...myInputs,
+            images,
+            useditemAddress: {
+              address: myAddress,
+            },
+          },
         },
       });
       console.log("resultresultresult", result.data);
@@ -117,7 +124,7 @@ export default function CreateItem(props: IcreateItemProps) {
 
   const handleComplete = (data: any) => {
     console.log(data);
-    // setMyAddress(data.address);
+    setMyAddress(data.address);
     // setMyZonecode(data.zonecode);
     setIsOpen((prev) => !prev);
   };
@@ -138,6 +145,7 @@ export default function CreateItem(props: IcreateItemProps) {
       handleComplete={handleComplete}
       onToggleModal={onToggleModal}
       isOpen={isOpen}
+      myAddress={myAddress}
     />
   );
 }
