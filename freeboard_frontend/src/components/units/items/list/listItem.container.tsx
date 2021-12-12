@@ -7,11 +7,7 @@ import { FETCH_USED_ITEMS, FETCH_USED_ITEMS_SEARCH } from "./listItem.queries";
 export default function ListItem(props) {
   const router = useRouter();
   const [searchItems, setSearchItem] = useState("");
-  const { data, fetchMore } = useQuery(FETCH_USED_ITEMS, {
-    variables: {
-      page: 1,
-    },
-  });
+  const { data, fetchMore } = useQuery(FETCH_USED_ITEMS);
   const { data: searchData, fetchMore: searchFetchMore } = useQuery(
     FETCH_USED_ITEMS_SEARCH,
     {

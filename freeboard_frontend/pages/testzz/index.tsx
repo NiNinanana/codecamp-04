@@ -1,38 +1,19 @@
-import { makeStyles } from "@material-ui/core/styles";
-import TextField from "@material-ui/core/TextField";
+import styled from "@emotion/styled";
 
-const useStyles = makeStyles((theme) => ({
-  container: {
-    display: "flex",
-    flexWrap: "wrap",
-  },
-  textField: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    width: 200,
-  },
-}));
+const Div = styled.div`
+  font-size: 30px;
+  color: blue;
+  border: 3px dotted black;
+  margin-bottom: 30px;
+  background-color: yellow;
+`;
 
-export default function CalendarTestzzPage() {
-  const classes = useStyles();
-  function onClickDate(event) {
-    alert(event.target.value);
-  }
+export default function TestZZPage() {
   return (
     <>
-      <form className={classes.container} noValidate>
-        <TextField
-          id="date"
-          label="시작날짜"
-          type="date"
-          defaultValue="2021-11-17"
-          className={classes.textField}
-          InputLabelProps={{
-            shrink: true,
-          }}
-          onChange={onClickDate}
-        />
-      </form>
+      <Div>안녕하세요</Div>
+      <button>검색</button>
+      <img src="/images/고앵이.gif" />;
     </>
   );
 }

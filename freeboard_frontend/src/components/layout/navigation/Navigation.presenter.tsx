@@ -17,7 +17,11 @@ export default function NavigationUI(props: INavigationUIProps) {
             </div> */}
             <TextWrapper>
               <Link
-                color={props.isFree === true ? "textPrimary" : "inherit"}
+                color={
+                  String(props.location).includes("boards/list")
+                    ? "textPrimary"
+                    : "inherit"
+                }
                 href="/"
                 onClick={props.clickFree}
               >

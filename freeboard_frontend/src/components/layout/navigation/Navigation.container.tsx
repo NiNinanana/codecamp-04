@@ -67,6 +67,13 @@ export default function Navigation() {
     alert("로그아웃");
     router.push(`/boards/list`);
   }
+  let location = "";
+
+  useEffect(() => {
+    location = window.location.href;
+    console.log("현재 페이지!!!", location);
+    console.log("현재 페이지!!!", String(location).includes("boards/list"));
+  }, []);
 
   return (
     <NavigationUI
@@ -80,6 +87,7 @@ export default function Navigation() {
       clickCat={onClickCat}
       clickLogin={onClickLogin}
       clickLogout={onClickLogout}
+      location={location}
     />
   );
 }

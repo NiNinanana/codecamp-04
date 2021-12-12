@@ -24,3 +24,18 @@ export const FETCH_USED_ITEMS_I_BOUGHT = gql`
     }
   }
 `;
+
+export const FETCH_USED_ITEMS_I_SOLD = gql`
+  query fetchUseditmesISold {
+    fetchUseditemsISold {
+      _id
+      name
+      price
+      images
+      createdAt
+      buyer {
+        name
+      }
+    }
+  }
+`;
