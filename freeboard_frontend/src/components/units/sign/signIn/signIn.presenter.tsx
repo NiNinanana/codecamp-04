@@ -6,8 +6,12 @@ import * as S from "./signIn.styles";
 import { ISignInUIProps } from "./signIn.types";
 import { GoogleLogin } from "react-google-login";
 
+declare const window: typeof globalThis & {
+  event: any;
+};
+
 export default function SignInUI(props: ISignInUIProps) {
-  const responseGoogle = (response) => {
+  const responseGoogle = (response: any) => {
     console.log(response);
   };
   function enterkey() {

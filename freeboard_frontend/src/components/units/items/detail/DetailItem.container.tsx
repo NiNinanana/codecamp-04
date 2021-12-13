@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from "@apollo/client";
-import router, { useRouter } from "next/router";
-import { IBoard, IUseditem } from "../../../../commons/types/generated/types";
+import { useRouter } from "next/router";
+import { IUseditem } from "../../../../commons/types/generated/types";
 import DetailItemUI from "./DetailItem.presenter";
 import {
   FETCH_USED_ITEM,
@@ -16,6 +16,8 @@ export default function DetailItem() {
       useditemId: router.query.myId,
     },
   });
+
+  console.log(data?.fetchUseditem);
 
   const [createPointTransactionOfBuyingAndSelling] = useMutation(
     CREATE_POINT_TRANSACTION_OF_BUYING_AND_SELLING

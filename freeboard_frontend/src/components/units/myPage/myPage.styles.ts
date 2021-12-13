@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { IMyPageStylesProps } from "./myPage.types";
 
 export const Wrapper = styled.div`
   display: flex;
@@ -51,8 +52,10 @@ export const ItemSmallWrapper = styled.div`
 export const ItemIsSoldOut = styled.div`
   border: 1px solid black;
   border-radius: 6px;
-  background-color: ${(props) => (props.isSoldOut ? "lightgrey" : "grey")};
-  color: ${(props) => (props.isSoldOut ? "black" : "white")};
+  background-color: ${(props: IMyPageStylesProps) =>
+    props.isSoldOut ? "lightgrey" : "grey"};
+  color: ${(props: IMyPageStylesProps) =>
+    props.isSoldOut ? "black" : "white"};
   padding: 3px;
   margin-bottom: 5px;
   margin-right: 5px;

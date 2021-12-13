@@ -6,8 +6,9 @@ import {
   FETCH_USER_LOGGED_IN,
 } from "./myPage.queries";
 import * as S from "./myPage.styles";
+import { IMyPageUIProps } from "./myPage.types";
 
-export default function MyPageUI(props) {
+export default function MyPageUI(props: IMyPageUIProps) {
   const { data } =
     useQuery<Pick<IQuery, "fetchUserLoggedIn">>(FETCH_USER_LOGGED_IN);
 
@@ -26,13 +27,21 @@ export default function MyPageUI(props) {
       <div>
         <div>구매 목록</div>
         <S.ItemsIBoughtList>
-          {buyData?.fetchUseditemsIBought?.map((el) => (
+          {buyData?.fetchUseditemsIBought?.map((el: any) => (
             <S.ItemWrapper key={el._id}>
               <div>
-                <S.ItemImage
-                  src={`https://storage.googleapis.com/${el.images?.[0]}`}
-                  onClick={props.detailItem(el)}
-                ></S.ItemImage>
+                {el.images?.length >= 1 && (
+                  <S.ItemImage
+                    src={`https://storage.googleapis.com/${el.images?.[0]}`}
+                    onClick={props.detailItem(el)}
+                  ></S.ItemImage>
+                )}
+                {el.images?.length < 1 && (
+                  <S.ItemImage
+                    src={`/images/고앵이.gif`}
+                    onClick={props.detailItem(el)}
+                  ></S.ItemImage>
+                )}
               </div>
               <div>
                 <S.ItemName>{el.name}</S.ItemName>
@@ -48,13 +57,21 @@ export default function MyPageUI(props) {
       <div>
         <div>판매 목록</div>
         <S.ItemsISoldList>
-          {props.soldData?.fetchUseditemsISold?.map((el) => (
+          {props.soldData?.fetchUseditemsISold?.map((el: any) => (
             <S.ItemWrapper key={el._id}>
               <div>
-                <S.ItemImage
-                  src={`https://storage.googleapis.com/${el.images?.[0]}`}
-                  onClick={props.detailItem(el)}
-                ></S.ItemImage>
+                {el.images?.length >= 1 && (
+                  <S.ItemImage
+                    src={`https://storage.googleapis.com/${el.images?.[0]}`}
+                    onClick={props.detailItem(el)}
+                  ></S.ItemImage>
+                )}
+                {el.images?.length < 1 && (
+                  <S.ItemImage
+                    src={`/images/고앵이.gif`}
+                    onClick={props.detailItem(el)}
+                  ></S.ItemImage>
+                )}
               </div>
               <div>
                 <S.ItemName>{el.name}</S.ItemName>

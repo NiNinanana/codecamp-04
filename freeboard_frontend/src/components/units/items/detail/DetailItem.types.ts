@@ -6,8 +6,10 @@ export interface IDetailItemUIProps {
   image: string;
   createdAt: string;
   seller: string;
+  address: string;
   update: () => void;
   list: () => void;
   delete: () => void;
   basket: () => void;
+  buy: () => void;
 }

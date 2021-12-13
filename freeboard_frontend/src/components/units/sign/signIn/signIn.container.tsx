@@ -6,7 +6,7 @@ import { LOGIN_USER } from "./signIn.queries";
 import { GlobalContext } from "../../../../../pages/_app";
 
 export default function SignIn() {
-  const { accessToken, setAccessToken } = useContext(GlobalContext);
+  const { setAccessToken } = useContext(GlobalContext);
   const [myEmail, setMyEmail] = useState("");
   const [myPassword, setMyPassword] = useState("");
   const [errorText, setErrorText] = useState("");
@@ -42,7 +42,6 @@ export default function SignIn() {
         result.data?.loginUser.accessToken || ""
       );
       setAccessToken(result.data?.loginUser.accessToken);
-      alert(accessToken);
       router.back();
     } catch (error) {
       setErrorText("이메일 또는 비밀번호가 잘못 입력 되었습니다.");

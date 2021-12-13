@@ -16,12 +16,31 @@ export default function DetailItemUI(props: IDetailItemUIProps) {
         ></script>
       </Head>
       <S.Wrapper>
-        {props.image && (
-          <S.ItemImage
-            src={`https://storage.googleapis.com/${props.image?.[0]}`}
-          />
+        {props.image?.length >= 1 && (
+          <>
+            {/* <S.ItemImage
+              src={`https://storage.googleapis.com/${props.image?.[0]}`}
+            />
+            {props.image?.[1]?.length > 1 && (
+              <S.ItemImage
+                src={`https://storage.googleapis.com/${props.image?.[1]}`}
+              />
+            )}
+            {props.image?.[2]?.length > 1 && (
+              <S.ItemImage
+                src={`https://storage.googleapis.com/${props.image?.[2]}`}
+              />
+            )} */}
+            {props.image.map((_, index) => (
+              <>
+                <S.ItemImage
+                  src={`https://storage.googleapis.com/${props.image?.[index]}`}
+                />
+              </>
+            ))}
+          </>
         )}
-        {!props.image && <S.ItemImage src={`/images/고앵이.gif`} />}
+        {props.image?.length < 1 && <S.ItemImage src={`/images/고앵이.gif`} />}
         {/* <div>{props.seller}</div> */}
         <S.ItemName>{props.name}</S.ItemName>
         <div>

@@ -107,23 +107,22 @@ export default function CreateItem(props: IcreateItemProps) {
     }
   };
 
-  const onChangeUploadImage = async (event: ChangeEvent<HTMLInputElement>) => {
-    alert("고고");
+  const onChangeUploadImage = async (event) => {
+    alert("event.target.id");
     const file = event.target.files?.[0];
-    // console.log(myFile);
     try {
       const result = await uploadFile({ variables: { file } });
-      setImages(result.data?.uploadFile.url);
+      setImages((prev) => [...prev, result.data?.uploadFile.url]);
+      console.log("내이미지파일", images);
       // setImages(myFile.url);
-      console.log(result.data.uploadFile);
       alert("성공");
     } catch (error) {
       if (error instanceof Error) alert(error.message);
     }
   };
+  console.log(images);
 
   const handleComplete = (data: any) => {
-    console.log(data);
     setMyAddress(data.address);
     // setMyZonecode(data.zonecode);
     setIsOpen((prev) => !prev);

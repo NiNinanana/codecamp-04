@@ -9,7 +9,7 @@ import {
   UPLOAD_FILE,
 } from "./BoardWrite.queries";
 import { IBoardWriteProps, IUpdateTemp } from "./BoardWrite.types";
-import { Modal, message } from "antd";
+import { Modal } from "antd";
 // import {} from "@material-ui/lab/Alert";
 
 export default function BoardWrite(props: IBoardWriteProps) {
@@ -119,7 +119,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
       console.log(result.data.uploadFile);
       alert("성공");
     } catch (error) {
-      console.log("error", error.message);
+      if (error instanceof Error) alert(error.message);
     }
   };
   async function upload() {
@@ -197,44 +197,6 @@ export default function BoardWrite(props: IBoardWriteProps) {
     setIsOpen((prev) => !prev);
   };
 
-  // const onChangeDragger = async (event: ChangeEvent<HTMLInputElement>) => {
-  //   console.log(event?.target);
-  //   const myFile = event?.target;
-  //   const result = await uploadFile({
-  //     variables: {
-  //       file: myFile,
-  //     },
-  //   });
-  //   console.log("result", result);
-  //   // setImages([result.data?.uploadFile.url]);
-  // };
-
-  const propaa = {
-    name: "file",
-    multiple: true,
-    // action: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
-    onChange(info) {
-      console.log(info.file);
-      const { status } = info.file;
-      if (status !== "uploading") {
-        // console.log(info.file, info.fileList);
-      }
-      if (status === "done") {
-        message.success(`${info.file.name} file uploaded successfully.`);
-      } else if (status === "error") {
-        message.error(`${info.file.name} file upload failed.`);
-      }
-      onChangeUploadImage();
-      // console.log(props.images);
-    },
-    onDrop(e) {
-      console.log(e.dataTransfer.files);
-
-      uploadImage();
-      // console.log(props.images);
-    },
-  };
-
   return (
     <>
       <BoardWriteUI
@@ -261,7 +223,6 @@ export default function BoardWrite(props: IBoardWriteProps) {
         uploadImage={onChangeUploadImage}
         images={images}
         // dragger={onChangeDragger}
-        propaa={propaa}
       />
     </>
   );

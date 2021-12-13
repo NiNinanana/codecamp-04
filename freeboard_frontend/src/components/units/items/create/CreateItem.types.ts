@@ -12,4 +12,8 @@ export interface ICreateItemUIProps {
   myInputsPrice: (event: ChangeEvent<HTMLInputElement>) => void;
   itemUpdate: () => void;
   uploadImage: (event: ChangeEvent<HTMLInputElement>) => void;
+  handleComplete: (data: any) => void;
+  onToggleModal: () => void;
+  isOpen: boolean;
+  myAddress: string;
 }

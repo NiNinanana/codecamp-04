@@ -25,6 +25,8 @@ export interface IBoardWriteUIProps {
   onToggleModal: () => void;
   isOpen: boolean;
   myZoneCode: string | number | readonly string[] | undefined;
+  uploadImage: (event: ChangeEvent<HTMLInputElement>) => void;
+  images: string[];
 }
 
 export interface IUploadButtonProps {

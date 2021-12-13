@@ -24,3 +24,7 @@ function onChangeMyWriter(event: ChangeEvent<HTMLInputElement>) {
 }
 
 if (error instanceof Error) alert(error.message);
+
+declare const window: typeof globalThis & {
+  event: any;
+};

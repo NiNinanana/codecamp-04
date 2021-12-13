@@ -1,10 +1,15 @@
 import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { ChangeEvent, MouseEvent, useState } from "react";
 import ListItemUI from "./listItem.presenter";
 import { FETCH_USED_ITEMS, FETCH_USED_ITEMS_SEARCH } from "./listItem.queries";
+import { IListItemProps } from "./listItem.types";
 
-export default function ListItem(props) {
+declare const window: typeof globalThis & {
+  event: any;
+};
+
+export default function ListItem(props: IListItemProps) {
   const router = useRouter();
   const [searchItems, setSearchItem] = useState("");
   const { data, fetchMore } = useQuery(FETCH_USED_ITEMS);
@@ -17,7 +22,7 @@ export default function ListItem(props) {
       },
     }
   );
-  const onClickDetail = (el) => (event) => {
+  const onClickDetail = (el: any) => (event: MouseEvent<HTMLSpanElement>) => {
     router.push(`/items/${event.target.id}`);
   };
 
@@ -25,7 +30,7 @@ export default function ListItem(props) {
     router.push(`/items/create`);
   };
 
-  const onChangeSearchContents = (event) => {
+  const onChangeSearchContents = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchItem(event.target.value);
   };
 
@@ -90,7 +95,6 @@ export default function ListItem(props) {
   };
   return (
     <ListItemUI
-      isSearch={props.isSearch}
       data={data}
       searchData={searchData}
       onClickDetail={onClickDetail}
@@ -102,6 +106,7 @@ export default function ListItem(props) {
       list={onClickList}
       basket={onClickBasket}
       enterKey={enterKey}
+      isSearch={props.isSearch}
     />
   );
 }

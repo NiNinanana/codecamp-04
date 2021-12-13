@@ -13,7 +13,7 @@ export default function MyPage() {
     router.push(`/myPage/plus`);
   };
 
-  const onClickDetail = (el) => () => {
+  const onClickDetail = (el: any) => () => {
     router.push(`/items/${el._id}`);
   };
 

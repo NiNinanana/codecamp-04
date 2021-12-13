@@ -2,8 +2,9 @@ import InfiniteScroll from "react-infinite-scroller";
 import { v4 as uuidv4 } from "uuid";
 import { getDate } from "../../../../commons/libraries/utils";
 import * as S from "./listItem.styles";
+import { IListItemUIProps } from "./listItem.types";
 
-export default function ListItemUI(props) {
+export default function ListItemUI(props: IListItemUIProps) {
   return (
     <>
       <S.Wrapper>
@@ -27,7 +28,7 @@ export default function ListItemUI(props) {
             useWindow={false}
           >
             {!props.isSearch &&
-              props.data?.fetchUseditems.map((el) => (
+              props.data?.fetchUseditems.map((el: any) => (
                 <S.ItemWrapper key={uuidv4()}>
                   {el.images?.[0] && (
                     <S.ItemImage
@@ -70,7 +71,7 @@ export default function ListItemUI(props) {
               useWindow={false}
             >
               {props.isSearch &&
-                props.searchData?.fetchUseditems.map((el) => (
+                props.searchData?.fetchUseditems.map((el: any) => (
                   <S.ItemWrapper key={uuidv4()}>
                     {el.images?.[0] && (
                       <S.ItemImage

@@ -27,41 +27,10 @@ import {
   Input1,
 } from "./BoardWrite.styles";
 import { IBoardWriteUIProps } from "./BoardWrite.types";
-import { Modal, Upload, message } from "antd";
+import { Modal } from "antd";
 import DaumPostcode from "react-daum-postcode";
-import { InboxOutlined } from "@ant-design/icons";
-import { v4 as uuidv4 } from "uuid";
 
 export default function BoardWriteUI(props: IBoardWriteUIProps) {
-  const { Dragger } = Upload;
-
-  const propaa = {
-    name: "file",
-    multiple: true,
-    // action: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
-    onChange(info) {
-      console.log(info.file);
-      const { status } = info.file;
-      if (status !== "uploading") {
-        // console.log(info.file, info.fileList);
-      }
-      if (status === "done") {
-        message.success(`${info.file.name} file uploaded successfully.`);
-      } else if (status === "error") {
-        message.error(`${info.file.name} file upload failed.`);
-      }
-      alert("a");
-      props.uploadImage();
-      // console.log(props.images);
-    },
-    onDrop(e) {
-      console.log(e.dataTransfer.files);
-
-      props.uploadImage();
-      // console.log(props.images);
-    },
-  };
-
   return (
     <Wrapper>
       <HeadTitle>게시물 {props.isEdit ? "수정" : "등록"}</HeadTitle>
@@ -154,13 +123,6 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
           {/* {props.fileUrls.map((el, index) => (
             <input key={uuidv4()} type="file" />
           ))} */}
-          <Dragger {...propaa}>
-            <p className="ant-upload-drag-icon">
-              <InboxOutlined />
-            </p>
-            <p className="ant-upload-text">끌어서 업로드</p>
-            <p className="ant-upload-hint">png, jpeg, gif만 가능합니다</p>
-          </Dragger>
         </PhotoWrapper>
         <div>
           <SmallText>메인 설정</SmallText>
