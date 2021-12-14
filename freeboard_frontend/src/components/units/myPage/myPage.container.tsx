@@ -5,7 +5,10 @@ import {
   IQueryFetchUseditemsISoldArgs,
 } from "../../../commons/types/generated/types";
 import MyPageUI from "./myPage.presenter";
-import { FETCH_USED_ITEMS_I_SOLD } from "./myPage.queries";
+import {
+  FETCH_USED_ITEMS_I_PICKED,
+  FETCH_USED_ITEMS_I_SOLD,
+} from "./myPage.queries";
 
 export default function MyPage() {
   const router = useRouter();
@@ -22,11 +25,20 @@ export default function MyPage() {
     IQueryFetchUseditemsISoldArgs
   >(FETCH_USED_ITEMS_I_SOLD);
 
+  const { data: pickData } = useQuery(FETCH_USED_ITEMS_I_PICKED, {
+    variables: {
+      search: "",
+    },
+  });
+
+  console.log("나리 <3", pickData?.fetchUseditemsIPicked);
+
   return (
     <MyPageUI
       plus={onClickPlus}
       detailItem={onClickDetail}
       soldData={soldItemData}
+      pickData={pickData}
     />
   );
 }

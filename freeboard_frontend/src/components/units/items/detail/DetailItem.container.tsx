@@ -6,6 +6,7 @@ import {
   FETCH_USED_ITEM,
   DELETE_USED_ITEM,
   CREATE_POINT_TRANSACTION_OF_BUYING_AND_SELLING,
+  TOGGLE_USED_ITEM_PICK,
 } from "./DetailItem.queries";
 
 export default function DetailItem() {
@@ -18,6 +19,8 @@ export default function DetailItem() {
   });
 
   console.log(data?.fetchUseditem);
+
+  const [toggleUseditemPick] = useMutation(TOGGLE_USED_ITEM_PICK);
 
   const [createPointTransactionOfBuyingAndSelling] = useMutation(
     CREATE_POINT_TRANSACTION_OF_BUYING_AND_SELLING
@@ -74,6 +77,20 @@ export default function DetailItem() {
     }
   };
 
+  const onClickPick = async () => {
+    try {
+      const result = await toggleUseditemPick({
+        variables: {
+          useditemId: router.query.myId,
+        },
+      });
+      console.log(result);
+    } catch (error) {
+      alert("실패ㅜㅜㅜㅜㅜ");
+      console.log(error.message);
+    }
+  };
+
   return (
     <DetailItemUI
       name={data?.fetchUseditem?.name}
@@ -89,6 +106,7 @@ export default function DetailItem() {
       delete={onClickDelete}
       basket={onClickBasket}
       buy={onClickBuy}
+      pick={onClickPick}
     />
   );
 }

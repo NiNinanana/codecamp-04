@@ -56,6 +56,7 @@ export default function DetailItemUI(props: IDetailItemUIProps) {
         <div>
           <button onClick={props.basket}>장바구니</button>
           <button onClick={props.buy}>구매하기</button>
+          <button onClick={props.pick}>찜하기</button>
           <S.UpdateButton onClick={props.update}>수정</S.UpdateButton>
           <S.ListButton onClick={props.list}>목록</S.ListButton>
           <S.DeleteButton onClick={props.delete}>삭제</S.DeleteButton>
