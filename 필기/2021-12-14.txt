@@ -1,0 +1,21 @@
+오늘의 커리큘럼
+이미지 미리보기 -> 업로드 성능 -> 렌더링 성능
+
+
+lazyload
+처음부터 모두 다 로드가 되는 것이 아니ㅣ라
+그 부분을 보게 되면, 스크롤을 내리게 되면 그때 보여주게
+
+webp는 압축률이 높고 다운로드가 빠르고 데이터 소비량도 적고
+
+이미지가 성능을 느리게 하는데 영향을 많이 끼친다.
+
+pagespeed.web.dev
+
+react-dropzone
+react-avatar-editor
+react-beatuiful-dnd: 트렐로와 같이 카드 등을 넘기고 왔따가싸다 할 수 있는 라이브러리
+
+promise.all
+
+
