@@ -32,7 +32,7 @@ export default function ListItemUI(props: IListItemUIProps) {
                 <S.ItemWrapper key={uuidv4()}>
                   {el.images?.[0] && (
                     <S.ItemImage
-                      onClick={props.onClickDetail(el)}
+                      onClick={props.onClickDetail}
                       id={el._id}
                       src={`https://storage.googleapis.com/${el.images?.[0]}`}
                     />
@@ -40,12 +40,12 @@ export default function ListItemUI(props: IListItemUIProps) {
                   {!el.images?.[0] && (
                     <S.ItemImage
                       src={`/images/고앵이.gif`}
-                      onClick={props.onClickDetail(el)}
+                      onClick={props.onClickDetail}
                       id={el._id}
                     />
                   )}
                   <S.ItemTextWrapper>
-                    <S.ItemName onClick={props.onClickDetail(el)} id={el._id}>
+                    <S.ItemName onClick={props.onClickDetail} id={el._id}>
                       {el.name}
                     </S.ItemName>
                     <S.ItemGreyWrapper>
@@ -79,7 +79,10 @@ export default function ListItemUI(props: IListItemUIProps) {
                       />
                     )}
                     {!el.images?.[0] && (
-                      <S.ItemImage src={`/images/고앵이.gif`} />
+                      <S.ItemImage
+                        src={`/images/고앵이.gif`}
+                        onClick={props.onClickDetail}
+                      />
                     )}
                     <S.ItemTextWrapper>
                       <S.ItemName onClick={props.onClickDetail} id={el._id}>

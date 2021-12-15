@@ -13,6 +13,7 @@ export default function QNALIST() {
   const [questionId, setQuestionId] = useState("");
   const [answer, setAnswer] = useState("");
   const [isAnswer, setIsAnswer] = useState(false);
+  const [isAnswerView, setIsAnswerView] = useState(false);
 
   const [createUseditemQuestionAnswer] = useMutation(
     CREATE_USED_ITEM_QUESTION_ANSWER
@@ -23,16 +24,15 @@ export default function QNALIST() {
     },
   });
 
-  const { data: answersData } = useQuery(FETCH_USED_ITEM_QUESTION_ANSWERS, {
-    variables: {
-      useditemQuestionId: questionId,
-    },
-  });
-
-  const onClickQuestion = (event) => {
+  const onClickOpen = (event) => {
     setQuestionId(event.target.id);
     setIsAnswer(true);
-    console.log(answersData?.fetchUseditemQuestionAnswers?.[0].contents);
+    setIsAnswerView(true);
+  };
+
+  const onClickClose = () => {
+    setIsAnswer(false);
+    setIsAnswerView(false);
   };
 
   const onChangeAnswer = (event) => {
@@ -60,11 +60,12 @@ export default function QNALIST() {
   return (
     <QNAListUI
       questionsData={questionsData}
-      answersData={answersData}
-      onClickQuestion={onClickQuestion}
+      onClickOpen={onClickOpen}
+      onClickClose={onClickClose}
       isAnswer={isAnswer}
       onChangeAnswer={onChangeAnswer}
       onClickAnswer={onClickAnswer}
+      isAnswerView={isAnswerView}
     />
   );
 }

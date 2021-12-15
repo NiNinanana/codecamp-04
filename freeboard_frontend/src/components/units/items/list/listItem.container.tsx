@@ -22,7 +22,7 @@ export default function ListItem(props: IListItemProps) {
       },
     }
   );
-  const onClickDetail = (el: any) => (event: MouseEvent<HTMLSpanElement>) => {
+  const onClickDetail = (event: MouseEvent<HTMLSpanElement>) => {
     router.push(`/items/${event.target.id}`);
   };
 
