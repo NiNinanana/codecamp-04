@@ -109,6 +109,9 @@ export default function MyPageUI(props: IMyPageUIProps) {
               <div>
                 <S.ItemName>{el.name}</S.ItemName>
                 <S.ItemSoldAt>{getDate(el.createdAt)}</S.ItemSoldAt>
+                <S.ItemUnPickButton onClick={props.unPickItem(el)}>
+                  삭제하기
+                </S.ItemUnPickButton>
               </div>
               <S.ItemSmallWrapper>
                 <S.ItemPrice>

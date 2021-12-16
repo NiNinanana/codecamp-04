@@ -62,6 +62,10 @@ export default function DetailItem() {
     baskets.push(data.fetchUseditem);
 
     localStorage.setItem("basket", JSON.stringify(baskets));
+    const basketConfirm = confirm(
+      "장바구니에 담겼습니다. 장바구니로 이동하시겠습니까?"
+    );
+    if (basketConfirm) router.push(`/items/basket`);
   };
 
   const onClickBuy = async () => {
@@ -71,7 +75,8 @@ export default function DetailItem() {
           useritemId: router.query.myId,
         },
       });
-      console.log(result);
+      alert("구매가 완료되었습니다.");
+      router.push(`/myPage`);
     } catch (error) {
       if (error instanceof Error) alert(error.message);
     }
@@ -85,9 +90,10 @@ export default function DetailItem() {
         },
       });
       console.log(result);
+      alert("찜 목록에 담았습니다!");
     } catch (error) {
       alert("실패ㅜㅜㅜㅜㅜ");
-      console.log(error.message);
+      if (error instanceof Error) alert(error.message);
     }
   };
 

@@ -1,9 +1,10 @@
-import { useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import {
   IQuery,
   IQueryFetchUseditemsISoldArgs,
 } from "../../../commons/types/generated/types";
+import { TOGGLE_USED_ITEM_PICK } from "../items/detail/DetailItem.queries";
 import MyPageUI from "./myPage.presenter";
 import {
   FETCH_USED_ITEMS_I_PICKED,
@@ -12,6 +13,9 @@ import {
 
 export default function MyPage() {
   const router = useRouter();
+
+  const [toggleUseditemPick] = useMutation(TOGGLE_USED_ITEM_PICK);
+
   const onClickPlus = () => {
     router.push(`/myPage/plus`);
   };
@@ -31,7 +35,21 @@ export default function MyPage() {
     },
   });
 
-  console.log("나리 <3", pickData?.fetchUseditemsIPicked);
+  const onClickUnPickItem = (el) => async () => {
+    try {
+      const result = await toggleUseditemPick({
+        variables: {
+          useditemId: el._id,
+        },
+      });
+      console.log(result);
+      alert("찜 목록에서 없앴습니다!");
+      router.reload();
+    } catch (error) {
+      alert("실패ㅜㅜㅜㅜㅜ");
+      if (error instanceof Error) alert(error.message);
+    }
+  };
 
   return (
     <MyPageUI
@@ -39,6 +57,7 @@ export default function MyPage() {
       detailItem={onClickDetail}
       soldData={soldItemData}
       pickData={pickData}
+      unPickItem={onClickUnPickItem}
     />
   );
 }

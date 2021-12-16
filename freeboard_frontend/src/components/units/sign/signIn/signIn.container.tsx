@@ -1,9 +1,17 @@
-import { useMutation } from "@apollo/client";
+import { useMutation, gql } from "@apollo/client";
 import router from "next/router";
 import { useState, ChangeEvent, useContext } from "react";
 import SignInUI from "./signIn.presenter";
 import { LOGIN_USER } from "./signIn.queries";
 import { GlobalContext } from "../../../../../pages/_app";
+
+const LOGIN_USER_EXAMPLE = gql`
+  mutation loginUserExample($email: String!, $password: String!) {
+    loginUserExample(email: $email, password: $password) {
+      accessToken
+    }
+  }
+`;
 
 export default function SignIn() {
   const { setAccessToken } = useContext(GlobalContext);
@@ -11,6 +19,7 @@ export default function SignIn() {
   const [myPassword, setMyPassword] = useState("");
   const [errorText, setErrorText] = useState("");
   const [loginUser] = useMutation(LOGIN_USER);
+  // const [loginUserExample] = useMutation(LOGIN_USER_EXAMPLE);
 
   const onChangeMyId = (event: ChangeEvent<HTMLInputElement>) => {
     setMyEmail(event.target.value);
@@ -37,11 +46,12 @@ export default function SignIn() {
         },
       });
       console.log(result);
-      localStorage.setItem(
-        "accessToken",
-        result.data?.loginUser.accessToken || ""
-      );
-      setAccessToken(result.data?.loginUser.accessToken);
+      // localStorage.setItem(
+      //   "accessToken",
+      //   result.data?.loginUser.accessToken || ""
+      // );
+      localStorage.setItem("refreshToken", "true");
+      setAccessToken?.(result.data?.loginUser.accessToken || "");
       router.back();
     } catch (error) {
       setErrorText("이메일 또는 비밀번호가 잘못 입력 되었습니다.");

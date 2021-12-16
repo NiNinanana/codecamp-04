@@ -12,4 +12,5 @@ export interface IDetailItemUIProps {
   delete: () => void;
   basket: () => void;
   buy: () => void;
+  pick: () => void;
 }

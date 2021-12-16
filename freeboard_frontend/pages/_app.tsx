@@ -9,6 +9,8 @@ import "antd/dist/antd.css";
 import Layout from "../src/components/layout";
 import { AppProps } from "next/dist/shared/lib/router/router";
 
+import { onError } from "@apollo/client/link/error";
+
 // import { initializeApp } from "firebase/app";
 // import { getDatabase } from "firebase/database";
 import { createUploadLink } from "apollo-upload-client";
@@ -19,6 +21,7 @@ import {
   Dispatch,
   useEffect,
 } from "react";
+import { getAccessToken } from "../src/commons/libraries/getAccessToken";
 // // Set the configuration for your app
 // // TODO: Replace with your project's config object
 // const firebaseConfig = {
@@ -51,8 +54,32 @@ function MyApp({ Component, pageProps }: AppProps) {
   };
 
   useEffect(() => {
-    const accessToken = localStorage.getItem("accessToken") || "";
-    if (accessToken) setAccessToken(accessToken);
+    // const accessToken = localStorage.getItem("accessToken") || "";
+    // if (accessToken) setAccessToken(accessToken);
+    if (localStorage.getItem("refreshToken")) getAccessToken(setAccessToken);
+  }, []);
+
+  const errorLink = onError(({ graphQLErrors, operation, forward }) => {
+    if (graphQLErrors) {
+      for (const err of graphQLErrors) {
+        // 1. 토큰만료 에러 캐치
+        if (err.extensions?.code === "UNAUTHENTICATED") {
+          // 2. refreshToken으로 accessToken 재발급 받기 => restoreAccessToken
+          // const newAccessToken = getAccessToken(setMyAccessToken);
+
+          // 3. 기존 실패한 요청 다시 재요청
+
+          operation.setContext({
+            haeders: {
+              ...operation.getContext().headers,
+              authorization: `Bearer ${getAccessToken(setAccessToken)}`,
+            },
+          });
+
+          return forward(operation);
+        }
+      }
+    }
   });
 
   const uploadLink = createUploadLink({
@@ -60,10 +87,11 @@ function MyApp({ Component, pageProps }: AppProps) {
     headers: {
       authorization: `Bearer ${accessToken}`,
     },
+    credentials: "include",
   });
 
   const client = new ApolloClient({
-    link: ApolloLink.from([uploadLink as unknown as ApolloLink]),
+    link: ApolloLink.from([errorLink, uploadLink as unknown as ApolloLink]),
     cache: new InMemoryCache(),
   });
 

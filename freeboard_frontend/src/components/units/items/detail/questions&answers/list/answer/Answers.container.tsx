@@ -9,7 +9,7 @@ export default function Answers(props) {
   });
   return (
     <>
-      <div>{answersData?.fetchUseditemQuestionAnswers?.[0]?.contents}</div>
+      <div>A. {answersData?.fetchUseditemQuestionAnswers?.[0]?.contents}</div>
     </>
   );
 }

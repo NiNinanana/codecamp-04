@@ -1,11 +1,12 @@
 import { useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { ChangeEvent, MouseEvent, useState } from "react";
 import QNAListUI from "./Q&AList.presenter";
 import {
   CREATE_USED_ITEM_QUESTION_ANSWER,
+  FETCH_USED_ITEM,
   FETCH_USED_ITEM_QUESTIONS,
-  FETCH_USED_ITEM_QUESTION_ANSWERS,
+  FETCH_USER_LOGGED_IN,
 } from "./Q&AList.queries";
 
 export default function QNALIST() {
@@ -23,8 +24,14 @@ export default function QNALIST() {
       useditemId: router.query.myId,
     },
   });
+  const { data: userData } = useQuery(FETCH_USER_LOGGED_IN);
+  const { data: itemData } = useQuery(FETCH_USED_ITEM, {
+    variables: {
+      useditemId: router.query.myId,
+    },
+  });
 
-  const onClickOpen = (event) => {
+  const onClickOpen = (event: MouseEvent<HTMLSpanElement>) => {
     setQuestionId(event.target.id);
     setIsAnswer(true);
     setIsAnswerView(true);
@@ -35,7 +42,7 @@ export default function QNALIST() {
     setIsAnswerView(false);
   };
 
-  const onChangeAnswer = (event) => {
+  const onChangeAnswer = (event: ChangeEvent<HTMLInputElement>) => {
     setAnswer(event.target.value);
   };
 
@@ -53,19 +60,21 @@ export default function QNALIST() {
       console.log(result.data);
     } catch (error) {
       alert("실패ㅜㅜㅜㅜㅜㅜ");
-      console.log(error.message);
+      if (error instanceof Error) alert(error.message);
     }
   };
 
   return (
     <QNAListUI
       questionsData={questionsData}
+      userData={userData}
+      itemData={itemData}
+      isAnswer={isAnswer}
+      isAnswerView={isAnswerView}
       onClickOpen={onClickOpen}
       onClickClose={onClickClose}
-      isAnswer={isAnswer}
       onChangeAnswer={onChangeAnswer}
       onClickAnswer={onClickAnswer}
-      isAnswerView={isAnswerView}
     />
   );
 }

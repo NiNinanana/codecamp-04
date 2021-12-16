@@ -43,6 +43,8 @@ export const ItemPrice = styled.div`
 
 export const ItemSoldAt = styled.div``;
 
+export const ItemUnPickButton = styled.button``;
+
 export const ItemSmallWrapper = styled.div`
   display: flex;
   flex-direction: column;

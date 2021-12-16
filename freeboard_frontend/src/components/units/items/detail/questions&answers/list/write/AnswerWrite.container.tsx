@@ -30,6 +30,7 @@ export default function AnswerWrite(props) {
   };
   return (
     <>
+      {/* <button onClick={onClickOpen}>답변달기</button> */}
       <input type="text" onChange={onChangeAnswer} />
       <button onClick={onClickAnswer}>답변달기</button>
     </>
