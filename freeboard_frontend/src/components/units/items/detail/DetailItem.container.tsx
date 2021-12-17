@@ -7,6 +7,7 @@ import {
   DELETE_USED_ITEM,
   CREATE_POINT_TRANSACTION_OF_BUYING_AND_SELLING,
   TOGGLE_USED_ITEM_PICK,
+  FETCH_USER_LOGGED_IN,
 } from "./DetailItem.queries";
 
 export default function DetailItem() {
@@ -18,7 +19,7 @@ export default function DetailItem() {
     },
   });
 
-  console.log(data?.fetchUseditem);
+  const { data: userData } = useQuery(FETCH_USER_LOGGED_IN);
 
   const [toggleUseditemPick] = useMutation(TOGGLE_USED_ITEM_PICK);
 
@@ -70,7 +71,7 @@ export default function DetailItem() {
 
   const onClickBuy = async () => {
     try {
-      const result = await createPointTransactionOfBuyingAndSelling({
+      await createPointTransactionOfBuyingAndSelling({
         variables: {
           useritemId: router.query.myId,
         },
@@ -107,6 +108,8 @@ export default function DetailItem() {
       createdAt={data?.fetchUseditem?.createdAt}
       seller={data?.fetchUseditem?.seller}
       address={data?.fetchUseditem?.useditemAddress?.address}
+      sellerName={data?.fetchUseditem?.seller.name}
+      userData={userData}
       update={onClickUpdate}
       list={onClickList}
       delete={onClickDelete}

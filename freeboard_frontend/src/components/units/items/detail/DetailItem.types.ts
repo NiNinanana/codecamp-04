@@ -7,6 +7,8 @@ export interface IDetailItemUIProps {
   createdAt: string;
   seller: string;
   address: string;
+  sellerName: string;
+  userData: any;
   update: () => void;
   list: () => void;
   delete: () => void;

@@ -37,15 +37,10 @@ export const UpdateButton = styled.button`
   height: 40px;
   width: 60px;
 `;
-export const ListButton = styled.button`
+
+export const NavButton = styled.button`
   background-color: yellow;
-  font-size: 16px;
+  font-size: 15px;
   height: 40px;
-  width: 60px;
-`;
-export const DeleteButton = styled.button`
-  background-color: yellow;
-  font-size: 16px;
-  height: 40px;
-  width: 60px;
+  width: 70px;
 `;

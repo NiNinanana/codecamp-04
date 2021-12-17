@@ -102,16 +102,34 @@ export default function CreateItemUI(props: ICreateItemUIProps) {
         </div>
         <div>
           <div>사진</div>
-
-          {new Array(3).fill(1).map((_, index) => (
-            <>
-              <input
-                type="file"
-                onChange={props.uploadImage}
-                // defaultValue={props.data?.fetchUseditem?.images?.[0]}
+          <S.ImageWrapper>
+            <div>
+              {new Array(3).fill(1).map((_, index) => (
+                <>
+                  <input
+                    type="file"
+                    onChange={props.uploadImage}
+                    id={index}
+                    ref={props.fileRef}
+                  />
+                  <S.PreviewImage
+                    src={props.imageUrl?.[index]}
+                    onClick={props.onClickUpload}
+                  />
+                </>
+              ))}
+            </div>
+            <div>
+              {/* <S.PreviewImage
+                src={props.imageUrl?.[1]}
+                onClick={props.onClickUpload}
               />
-            </>
-          ))}
+              <S.PreviewImage
+                src={props.imageUrl?.[2]}
+                onClick={props.onClickUpload}
+              /> */}
+            </div>
+          </S.ImageWrapper>
           {/* <ImgCrop rotate>
           <Upload
             action="https://www.mocky.io/v2/5cc8019d300000980a055e76"

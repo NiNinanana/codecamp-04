@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
-import { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent, useRef } from "react";
 import CreateItemUI from "./createItem.presenter";
 import {
   CREATE_USED_ITEM,
@@ -12,6 +12,7 @@ import { IcreateItemProps } from "./CreateItem.types";
 
 export default function CreateItem(props: IcreateItemProps) {
   const router = useRouter();
+  const fileRef = useRef<HTMLInputElement>(null);
   const [myInputs, setMyInputs] = useState({
     name: "",
     remarks: "",
@@ -21,6 +22,7 @@ export default function CreateItem(props: IcreateItemProps) {
   });
   const [isOpen, setIsOpen] = useState(false);
   const [myAddress, setMyAddress] = useState("");
+  const [imageUrl, setImageUrl] = useState([]);
 
   const [createUseditem] = useMutation(CREATE_USED_ITEM);
   const [updateItem] = useMutation(UPDATE_USEDITEM);
@@ -107,9 +109,19 @@ export default function CreateItem(props: IcreateItemProps) {
     }
   };
 
+  const onClickUpload = () => {
+    fileRef.current?.click();
+  };
+
+  // 이미지 올리기 함수
   const onChangeUploadImage = async (event) => {
-    alert("event.target.id");
     const file = event.target.files?.[0];
+    const fileReader = new FileReader();
+    fileReader.readAsDataURL(file);
+    fileReader.onload = (data: any) => {
+      imageUrl[event.target.id] = data.target?.result;
+    };
+
     try {
       const result = await uploadFile({ variables: { file } });
       setImages((prev) => [...prev, result.data?.uploadFile.url]);
@@ -120,7 +132,6 @@ export default function CreateItem(props: IcreateItemProps) {
       if (error instanceof Error) alert(error.message);
     }
   };
-  console.log(images);
 
   const handleComplete = (data: any) => {
     setMyAddress(data.address);
@@ -143,8 +154,11 @@ export default function CreateItem(props: IcreateItemProps) {
       uploadImage={onChangeUploadImage}
       handleComplete={handleComplete}
       onToggleModal={onToggleModal}
+      onClickUpload={onClickUpload}
       isOpen={isOpen}
       myAddress={myAddress}
+      imageUrl={imageUrl}
+      fileRef={fileRef}
     />
   );
 }

@@ -12,6 +12,9 @@ export const FETCH_USED_ITEM = gql`
       useditemAddress {
         address
       }
+      seller {
+        name
+      }
     }
   }
 `;
@@ -33,5 +36,15 @@ export const CREATE_POINT_TRANSACTION_OF_BUYING_AND_SELLING = gql`
 export const TOGGLE_USED_ITEM_PICK = gql`
   mutation toggleUseditemPick($useditemId: ID!) {
     toggleUseditemPick(useditemId: $useditemId)
+  }
+`;
+
+export const FETCH_USER_LOGGED_IN = gql`
+  query fetchUserLoggedIn {
+    fetchUserLoggedIn {
+      _id
+      email
+      name
+    }
   }
 `;
