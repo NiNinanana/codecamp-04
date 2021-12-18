@@ -49,3 +49,14 @@ export const ItemPrice = styled.input`
   border: none;
   border-bottom: 1px solid black;
 `;
+
+export const TagsInput = styled.input`
+  width: 400px;
+  height: 40px;
+  border: none;
+  border-bottom: 1px solid black;
+`;
+
+export const Tags = styled.span`
+  background-color: pink;
+`;

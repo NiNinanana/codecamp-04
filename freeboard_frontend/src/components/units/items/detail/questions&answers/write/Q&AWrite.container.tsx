@@ -42,11 +42,22 @@ export default function QNAWrite() {
     }
   };
 
+  const onFocusInput = () => {
+    if (!localStorage.getItem("refreshToken")) {
+      alert("로그인하세요");
+      router.push(`/signIn`);
+    }
+  };
+
   return (
     <>
       {userData?.fetchUserLoggedIn.email !==
         itemData?.fetchUseditem.seller.email && (
-        <QNAWriteUI myQuestion={onChangeMyQuestion} submit={onClickSubmit} />
+        <QNAWriteUI
+          myQuestion={onChangeMyQuestion}
+          submit={onClickSubmit}
+          focusInput={onFocusInput}
+        />
       )}
     </>
   );

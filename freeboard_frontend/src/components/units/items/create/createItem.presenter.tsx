@@ -97,8 +97,18 @@ export default function CreateItemUI(props: ICreateItemUIProps) {
           />
         </S.InputWrapper>
         <div>
-          <div>태그</div>
-          <input type="text" />
+          <S.TagsInput
+            type="text"
+            placeholder="태그(엔터를 입력하여 태그를 입력할 수 있습니다.)"
+            onKeyUp={props.tagUp}
+          />
+          <div>
+            {props.myTags.map((el, index) => (
+              <S.Tags key={index} onClick={props.deleteTag(index)}>
+                {el}&nbsp;
+              </S.Tags>
+            ))}
+          </div>
         </div>
         <div>
           <div>사진</div>

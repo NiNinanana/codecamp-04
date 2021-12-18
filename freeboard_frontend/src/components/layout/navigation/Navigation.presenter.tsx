@@ -2,11 +2,15 @@ import { TextWrapper, Navigation, Wrapper } from "./Navigation.styles";
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import Link from "@material-ui/core/Link";
 import { INavigationUIProps } from "./Navigation.types";
-import { useContext } from "react";
-import { GlobalContext } from "../../../../pages/_app";
+import { useEffect, useState } from "react";
 
 export default function NavigationUI(props: INavigationUIProps) {
-  const { accessToken } = useContext(GlobalContext);
+  const [isLogin, setIsLogin] = useState(false);
+  useEffect(() => {
+    if (localStorage.getItem("refreshToken")) setIsLogin(true);
+    if (!localStorage.getItem("refreshToken")) setIsLogin(false);
+  }, []);
+
   return (
     <>
       <Navigation>
@@ -47,8 +51,8 @@ export default function NavigationUI(props: INavigationUIProps) {
               >
                 냥이
               </Link>
-              {!accessToken && <Link onClick={props.clickLogin}>로그인</Link>}
-              {accessToken && <Link onClick={props.clickLogout}>로그아웃</Link>}
+              {!isLogin && <Link onClick={props.clickLogin}>로그인</Link>}
+              {isLogin && <Link onClick={props.clickLogout}>로그아웃</Link>}
             </TextWrapper>
           </Wrapper>
         </Breadcrumbs>

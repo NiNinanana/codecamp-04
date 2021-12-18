@@ -23,6 +23,7 @@ export default function CreateItem(props: IcreateItemProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [myAddress, setMyAddress] = useState("");
   const [imageUrl, setImageUrl] = useState([]);
+  const [myTags, setMyTags] = useState([]);
 
   const [createUseditem] = useMutation(CREATE_USED_ITEM);
   const [updateItem] = useMutation(UPDATE_USEDITEM);
@@ -143,6 +144,20 @@ export default function CreateItem(props: IcreateItemProps) {
     setIsOpen((prev) => !prev);
   };
 
+  const onKeyUpTag = (event: any) => {
+    if (event.keyCode === 13) {
+      if (!event.target.value) return;
+      setMyTags([...myTags, "#" + event.target.value]);
+      event.target.value = "";
+      console.log(myTags);
+    }
+  };
+
+  const onClickDeleteTag = (index) => () => {
+    myTags.splice(index, 1);
+    setMyTags([...myTags]);
+  };
+
   return (
     <CreateItemUI
       data={data}
@@ -155,10 +170,13 @@ export default function CreateItem(props: IcreateItemProps) {
       handleComplete={handleComplete}
       onToggleModal={onToggleModal}
       onClickUpload={onClickUpload}
+      tagUp={onKeyUpTag}
+      deleteTag={onClickDeleteTag}
       isOpen={isOpen}
       myAddress={myAddress}
       imageUrl={imageUrl}
       fileRef={fileRef}
+      myTags={myTags}
     />
   );
 }
