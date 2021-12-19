@@ -20,7 +20,7 @@ export default function DetailItem() {
   });
 
   const { data: userData } = useQuery(FETCH_USER_LOGGED_IN);
-
+  console.log(data);
   const [toggleUseditemPick] = useMutation(TOGGLE_USED_ITEM_PICK);
 
   const [createPointTransactionOfBuyingAndSelling] = useMutation(
@@ -109,6 +109,8 @@ export default function DetailItem() {
       seller={data?.fetchUseditem?.seller}
       address={data?.fetchUseditem?.useditemAddress?.address}
       sellerName={data?.fetchUseditem?.seller.name}
+      buyerName={data?.fetchUseditem?.buyer?.name}
+      tags={data?.fetchUseditem?.tags}
       userData={userData}
       update={onClickUpdate}
       list={onClickList}

@@ -45,7 +45,7 @@ export default function DetailItemUI(props: IDetailItemUIProps) {
         <S.ItemName>{props.name}</S.ItemName>
         <div>
           <S.ItemRemarks>
-            {props.remarks} ; {props.address}
+            {props.remarks} ; {props.address} ; {props.tags}
           </S.ItemRemarks>
         </div>
         {/* <S.ItemCreatedAt>{props.createdAt}</S.ItemCreatedAt> */}
@@ -56,9 +56,13 @@ export default function DetailItemUI(props: IDetailItemUIProps) {
         <div>
           {props.sellerName !== props.userData?.fetchUserLoggedIn.name && (
             <>
-              <S.NavButton onClick={props.buy}>구매하기</S.NavButton>
-              <S.NavButton onClick={props.basket}>장바구니</S.NavButton>
-              <S.NavButton onClick={props.pick}>찜하기</S.NavButton>
+              {!props.buyerName && (
+                <>
+                  <S.NavButton onClick={props.buy}>구매하기</S.NavButton>
+                  <S.NavButton onClick={props.basket}>장바구니</S.NavButton>
+                  <S.NavButton onClick={props.pick}>찜하기</S.NavButton>
+                </>
+              )}
             </>
           )}
           {props.sellerName === props.userData?.fetchUserLoggedIn.name && (

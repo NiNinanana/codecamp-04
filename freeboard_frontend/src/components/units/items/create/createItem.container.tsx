@@ -71,6 +71,7 @@ export default function CreateItem(props: IcreateItemProps) {
             useditemAddress: {
               address: myAddress,
             },
+            tags: myTags,
           },
         },
       });
