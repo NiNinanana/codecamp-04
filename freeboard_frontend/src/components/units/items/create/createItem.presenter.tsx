@@ -126,6 +126,7 @@ export default function CreateItemUI(props: ICreateItemUIProps) {
                     src={props.imageUrl?.[index]}
                     onClick={props.onClickUpload}
                   />
+                  <br />
                 </>
               ))}
             </div>

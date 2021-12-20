@@ -1,8 +1,17 @@
 import * as S from "./DetailItem.styles";
 import { IDetailItemUIProps } from "./DetailItem.types";
 import Head from "next/head";
+import Slider from "react-slick";
 
 export default function DetailItemUI(props: IDetailItemUIProps) {
+  const settings = {
+    dots: true,
+    fade: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
   return (
     <>
       <Head>
@@ -31,13 +40,14 @@ export default function DetailItemUI(props: IDetailItemUIProps) {
                 src={`https://storage.googleapis.com/${props.image?.[2]}`}
               />
             )} */}
-            {props.image.map((_, index) => (
-              <>
+            <Slider {...settings}>
+              {props.image.map((_, index) => (
                 <S.ItemImage
                   src={`https://storage.googleapis.com/${props.image?.[index]}`}
+                  key={index}
                 />
-              </>
-            ))}
+              ))}
+            </Slider>
           </>
         )}
         {props.image?.length < 1 && <S.ItemImage src={`/images/고앵이.gif`} />}

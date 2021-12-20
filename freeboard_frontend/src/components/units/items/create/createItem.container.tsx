@@ -62,6 +62,8 @@ export default function CreateItem(props: IcreateItemProps) {
 
   const onClickItemUpload = async () => {
     console.log(myInputs);
+    images.shift();
+    console.log(images);
     try {
       const result = await createUseditem({
         variables: {

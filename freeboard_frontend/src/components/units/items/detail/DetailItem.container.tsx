@@ -1,3 +1,6 @@
+import { Component } from "react";
+
+import { baseUrl } from "./config";
 import { useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import { IUseditem } from "../../../../commons/types/generated/types";
@@ -12,6 +15,16 @@ import {
 
 export default function DetailItem() {
   const router = useRouter();
+
+  const settings = {
+    dots: true,
+    fade: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
+
   const [deleteUsedItem] = useMutation(DELETE_USED_ITEM);
   const { data } = useQuery(FETCH_USED_ITEM, {
     variables: {
@@ -20,7 +33,6 @@ export default function DetailItem() {
   });
 
   const { data: userData } = useQuery(FETCH_USER_LOGGED_IN);
-  console.log(data);
   const [toggleUseditemPick] = useMutation(TOGGLE_USED_ITEM_PICK);
 
   const [createPointTransactionOfBuyingAndSelling] = useMutation(
@@ -112,6 +124,7 @@ export default function DetailItem() {
       buyerName={data?.fetchUseditem?.buyer?.name}
       tags={data?.fetchUseditem?.tags}
       userData={userData}
+      settings={settings}
       update={onClickUpdate}
       list={onClickList}
       delete={onClickDelete}

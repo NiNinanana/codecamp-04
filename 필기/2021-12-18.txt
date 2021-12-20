@@ -1,0 +1,23 @@
+ssg배포
+
+pages/index.js에서 이미지 관련 주석처리
+패키지.json 설정
+  "scripts": {
+    "dev": "next dev",
+    "build:ssg": "next build && next export",
+    "build:ssr": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+next.config.js 트레일링 슬레쉬 트루
+yarn build:ssg
+out 폴더가 생기는데 out/404에 인덱스, out에 인덱스가 생겨야 한다.
+out 폴더를 스토리지에 옮기자
+    1. gcp
+    2. 햄버거
+    3. cloud storage
+    4. 버킷만들기
+    5. out폴더 안에있는 것들을 끌어서 올리자
+        a. 안되면 gcp의 터미널을 열자
+        b. vs에서 깃 푸쉬하고 gcp 터미널에서 깃 클론하고
+        c. gs://nanana-1
