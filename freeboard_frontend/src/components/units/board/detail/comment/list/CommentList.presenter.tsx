@@ -1,14 +1,15 @@
 import { getDate } from "../../../../../../commons/libraries/utils";
 import * as S from "./CommentList.styles";
 import CommentWriteUI from "../write/CommentWrite.presenter";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { Modal } from "antd";
 import { DELETE_BOARD_COMMENT } from "../../BoardDetail.queries";
 
 import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
+import { ICommentListUIItemProps } from "./CommentList.types";
 
-export default function CommentListUIItem(props) {
+export default function CommentListUIItem(props: ICommentListUIItemProps) {
   const [isEdit, setIsEdit] = useState(false);
   const [password, setPassword] = useState("");
 
@@ -20,7 +21,7 @@ export default function CommentListUIItem(props) {
   function onClickUpdateComment() {
     setIsEdit(true);
   }
-  function onChangePassword(event) {
+  function onChangePassword(event: ChangeEvent<HTMLInputElement>) {
     setPassword(event.target.value);
     console.log(password);
     pass = event.target.value;
@@ -52,7 +53,7 @@ export default function CommentListUIItem(props) {
       alert("삭제되었습니다.");
       router.push(`/boards/${router.query.myId}`);
     } catch (error) {
-      alert(error.message);
+      if (error instanceof Error) alert(error.message);
     }
   }
 

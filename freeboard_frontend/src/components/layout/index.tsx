@@ -4,7 +4,6 @@ import Header from "./header/Header.contatiner";
 import Banner from "./banner/Banner.container";
 import Navigation from "./navigation/Navigation.container";
 import Footer from "./footer/Footer.contatiner";
-import Sidebar from "./sidebar/Sidebar.contatiner";
 import { useRouter } from "next/router";
 
 const Wrapper = styled.div`
@@ -33,7 +32,6 @@ const HIDDEN_HEADERS: string | string[] = [`/`];
 
 const HIDDEN_NAVIGATION = ["/boards/new", `/signIn`, `/`];
 const HIDDEN_BANNER = ["/boards/list", "/boards/new", `/signIn`, `/`];
-const HIDDEN_SIDEBAR = [`/signIn`, `/`];
 const HIDDEN_FOOTER = [`/`];
 
 interface ILayoutProps {
@@ -49,7 +47,6 @@ export default function Layout(props: ILayoutProps) {
 
   const isHiddenNavigation = HIDDEN_NAVIGATION.includes(router.asPath);
   const isHiddenBanner = HIDDEN_BANNER.includes(router.asPath);
-  const isHiddenSidebar = HIDDEN_SIDEBAR.includes(router.asPath);
   const isHiddenFooter = HIDDEN_FOOTER.includes(router.asPath);
 
   return (

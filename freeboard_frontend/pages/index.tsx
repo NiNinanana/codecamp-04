@@ -1,23 +1,5 @@
 import styled from "@emotion/styled";
 
-const Item = styled.div`
-  /* font-size: 20px; */
-  display: flex;
-  height: 100%;
-  align-items: center;
-  justify-content: center;
-  font-size: 5em;
-  scroll-snap-align: start;
-`;
-
-const Wrapper = styled.div`
-  width: 300px;
-  height: 200px;
-  border: 1px solid #000;
-  overflow: auto;
-  scroll-snap-type: y mandatory;
-`;
-
 const ImagesWrapper = styled.div`
   overflow: scroll;
   position: relative;

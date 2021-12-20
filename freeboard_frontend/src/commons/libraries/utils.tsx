@@ -32,9 +32,7 @@ export function youtubeUrl(myYoutubeUrl: any) {
   return String(myYoutubeUrl).split("watch?v=").join("embed/");
 }
 
-export function getPrice(myPrice) {
+export function getPrice(myPrice: any) {
   myPrice = String(myPrice).split("");
   // if(myPrice.length>)
-
-  return;
 }

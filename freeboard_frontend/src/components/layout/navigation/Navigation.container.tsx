@@ -1,7 +1,6 @@
 import { useRouter } from "next/router";
-import { useState, MouseEvent, useEffect, useContext } from "react";
+import { useState, MouseEvent, useEffect } from "react";
 import NavigationUI from "./Navigation.presenter";
-import { GlobalContext } from "../../../../pages/_app";
 import { gql, useMutation } from "@apollo/client";
 
 const LOGOUT_USER = gql`
@@ -12,14 +11,12 @@ const LOGOUT_USER = gql`
 
 export default function Navigation() {
   const router = useRouter();
-  const { accessToken, setAccessToken } = useContext(GlobalContext);
   const [isFree, setIsFree] = useState(true);
   const [isCarrot, setIsCarrot] = useState(false);
   const [isMyPage, setIsMyPage] = useState(false);
   const [isCat, setIsCat] = useState(false);
 
   const [logoutUser] = useMutation(LOGOUT_USER);
-
   useEffect(() => {
     console.log(router.query);
   }, []);
@@ -73,14 +70,14 @@ export default function Navigation() {
   const onClickLogout = async () => {
     // setAccessToken(null);
     try {
-      // await logoutUser();
+      await logoutUser();
       localStorage.removeItem("refreshToken");
       alert("로그아웃");
       // router.push(`/boards/list`);
       router.reload();
     } catch (error) {
       alert("error");
-      console.log(error.message);
+      if (error instanceof Error) console.log(error.message);
     }
   };
   let location = "";

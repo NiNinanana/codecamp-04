@@ -8,8 +8,9 @@ import { useRouter } from "next/router";
 import styled from "@emotion/styled";
 import { useState } from "react";
 import InfiniteScroll from "react-infinite-scroller";
+import { ICommentListUIProps } from "./CommentList.types";
 
-export default function CommentListUI(props) {
+export default function CommentListUI(props: ICommentListUIProps) {
   const [deleteBoardComment] = useMutation(DELETE_BOARD_COMMENT);
   const [password, setPassword] = useState("");
   const router = useRouter();
@@ -35,7 +36,7 @@ export default function CommentListUI(props) {
       alert("삭제되었습니다.");
       router.push(`/boards/${router.query.myId}`);
     } catch (error) {
-      alert(error.message);
+      if (error instanceof Error) alert(error.message);
     }
   }
 

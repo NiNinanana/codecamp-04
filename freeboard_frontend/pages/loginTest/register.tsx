@@ -1,6 +1,4 @@
 import styled from "@emotion/styled";
-import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
-import TextField from "@material-ui/core/TextField";
 
 const Wrapper = styled.div`
   display: flex;
@@ -11,17 +9,6 @@ const FirstDiv = styled.div`
   font-weight: bold;
   font-size: 30px;
   margin-right: 100px;
-`;
-
-const SecondDiv = styled.div`
-  font-weight: bold;
-  font-size: 30px;
-`;
-
-const LoginImage = styled.img`
-  margin-top: 20px;
-  width: 400px;
-  height: 100px;
 `;
 
 const MaImage = styled.img`
@@ -51,11 +38,6 @@ const MyButton = styled.button`
   height: 40px;
   border: none;
   color: white;
-`;
-
-const MyDiv = styled.div`
-  margin-right: 160px;
-  font-size: 15px;
 `;
 
 export default function RegisterTestPage() {

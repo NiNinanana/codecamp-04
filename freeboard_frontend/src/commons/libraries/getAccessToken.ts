@@ -11,8 +11,9 @@ const RESTORE_ACCESS_TOKEN = gql`
 `;
 
 export const getAccessToken = async (
-  setMyAccessToken: Dispatch<SetStateAction<string>>
+  setAccessToken: Dispatch<SetStateAction<string>>
 ) => {
+  console.log("AAAAA");
   try {
     const graphQLClient = new GraphQLClient(
       "https://backend04.codebootcamp.co.kr/graphql",
@@ -23,7 +24,8 @@ export const getAccessToken = async (
     const result = await graphQLClient.request(RESTORE_ACCESS_TOKEN);
     const newAccessToken = result.restoreAccessToken.accessToken;
     console.log("dasdasdasd", newAccessToken);
-    setMyAccessToken(newAccessToken);
+    setAccessToken(newAccessToken);
+    return newAccessToken;
   } catch (error) {
     if (error instanceof Error) console.log(error.message);
   }

@@ -1,37 +1,57 @@
-import { Map, GoogleApiWrapper, Marker } from "google-maps-react";
-import styled from "@emotion/styled";
+import { useContext, useState } from "react";
+import { gql, useMutation } from "@apollo/client";
+import { GlobalContext } from "../_app";
+import { useRouter } from "next/router";
 
-const mapStyles = {
-  width: "800px",
-  height: "450px",
-};
-
-const Wrapper = styled.div`
-  width: 300px;
-  height: 400px;
-  display: flex;
-  margin-left: 130px;
-  margin-top: 30px;
+export const LOGIN_USER = gql`
+  mutation loginUser($password: String!, $email: String!) {
+    loginUser(password: $password, email: $email) {
+      accessToken
+    }
+  }
 `;
 
-const MyMap = (props) => {
+export default function TestPage() {
+  const router = useRouter();
+  const { setAccessToken } = useContext(GlobalContext);
+  const [myId, setMyId] = useState("");
+  const [myPw, setMyPw] = useState("");
+
+  const [loginUser] = useMutation(LOGIN_USER);
+
+  const cId = (event) => {
+    setMyId(event.target.value);
+  };
+  const cPw = (event) => {
+    setMyPw(event.target.value);
+  };
+  const onClickLoginButton = async () => {
+    try {
+      const result = await loginUser({
+        variables: {
+          email: myId,
+          password: myPw,
+        },
+      });
+      console.log(result);
+      localStorage.setItem("refreshToken", "true");
+      setAccessToken?.(result.data?.loginUser.accessToken || "");
+      alert("로그인 성공");
+    } catch (error) {
+      alert("로그인 실패");
+      if (error instanceof Error) console.log(error.message);
+    }
+  };
+  const dlehd = () => {
+    router.push(`/testLog`);
+  };
+
   return (
-    <Wrapper>
-      <Map
-        google={props.google}
-        zoom={10}
-        style={mapStyles}
-        initialCenter={{ lat: 37.556, lng: 126.972 }}
-      >
-        <Marker position={{ lat: 37.485, lng: 126.896 }} />
-        <Marker position={{ lat: 37.556, lng: 126.972 }} />
-      </Map>
-    </Wrapper>
+    <>
+      <input type="text" onChange={cId} />
+      <input type="text" onChange={cPw} />
+      <button onClick={onClickLoginButton}>로그인</button>
+      <button onClick={dlehd}>이동</button>
+    </>
   );
-};
-
-export default GoogleApiWrapper({
-  apiKey: "AIzaSyDi2M8IuDK84IwtD4D6_B44y490xDugoAI",
-})(MyMap);
-
-// 길찾기 해보자
+}

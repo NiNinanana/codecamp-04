@@ -1,16 +1,14 @@
-import CommentListUIItem from "./CommentList.presenter";
 import { useQuery, useMutation } from "@apollo/client";
 import {
   FETCH_BOARD_COMMENTS,
   DELETE_BOARD_COMMENT,
 } from "../../BoardDetail.queries";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import CommentListUI from "./CommentList.presenterMap";
-import { Modal } from "antd";
 
 export default function CommentList() {
-  const [isEdit, setIsEdit] = useState(false);
+  const [isEdit] = useState(false);
   const [password, setPassword] = useState("");
   const router = useRouter();
 
@@ -23,7 +21,7 @@ export default function CommentList() {
     },
   });
 
-  function onChangePassword(event) {
+  function onChangePassword(event: ChangeEvent<HTMLInputElement>) {
     setPassword(event.target.value); // password에는 들억나느데 새로 실행이 됨
     console.log(event.target.value);
   }
@@ -43,7 +41,7 @@ export default function CommentList() {
       alert("삭제되었습니다.");
       router.push(`/boards/${router.query.myId}`);
     } catch (error) {
-      alert(error.message);
+      if (error instanceof Error) alert(error.message);
     }
   }
   console.log(commentData);

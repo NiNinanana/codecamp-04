@@ -2,6 +2,10 @@ import Head from "next/head";
 import { gql, useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
 
+declare const window: typeof globalThis & {
+  IMP: any;
+};
+
 const CREATE_POINT_TRANSACTION_OF_LOADING = gql`
   mutation createPointTransactionOfLoading($impUid: ID!) {
     createPointTransactionOfLoading(impUid: $impUid) {
@@ -38,14 +42,14 @@ export default function PlusPage() {
         // 모바일일 때는 아예 사이트가 넘어가 버리기 때문에 결제를 완료하면 다시 보내줄 url 을 써줘야 한다
         // m_redirect_url: """
       },
-      async (rsp) => {
+      async (rsp: any) => {
         // callback
         if (rsp.success) {
           // 성공
 
           // createPointTransactionOfLoading 뮤테이션 실행(impUid 넘기기)
 
-          const result = await createPointTransactionOfLoading({
+          await createPointTransactionOfLoading({
             variables: {
               impUid: rsp.imp_uid,
             },
@@ -81,14 +85,14 @@ export default function PlusPage() {
         // 모바일일 때는 아예 사이트가 넘어가 버리기 때문에 결제를 완료하면 다시 보내줄 url 을 써줘야 한다
         // m_redirect_url: """
       },
-      async (rsp) => {
+      async (rsp: any) => {
         // callback
         if (rsp.success) {
           // 성공
 
           // createPointTransactionOfLoading 뮤테이션 실행(impUid 넘기기)
 
-          const result = await createPointTransactionOfLoading({
+          await createPointTransactionOfLoading({
             variables: {
               impUid: rsp.imp_uid,
             },
@@ -124,14 +128,14 @@ export default function PlusPage() {
         // 모바일일 때는 아예 사이트가 넘어가 버리기 때문에 결제를 완료하면 다시 보내줄 url 을 써줘야 한다
         // m_redirect_url: """
       },
-      async (rsp) => {
+      async (rsp: any) => {
         // callback
         if (rsp.success) {
           // 성공
 
           // createPointTransactionOfLoading 뮤테이션 실행(impUid 넘기기)
 
-          const result = await createPointTransactionOfLoading({
+          await createPointTransactionOfLoading({
             variables: {
               impUid: rsp.imp_uid,
             },

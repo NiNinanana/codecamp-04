@@ -70,7 +70,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           // 3. 기존 실패한 요청 다시 재요청
 
           operation.setContext({
-            haeders: {
+            headers: {
               ...operation.getContext().headers,
               authorization: `Bearer ${getAccessToken(setAccessToken)}`,
             },

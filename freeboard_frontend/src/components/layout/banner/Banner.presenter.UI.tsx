@@ -1,7 +1,8 @@
-import router, { useRouter } from "next/router";
+import { useRouter } from "next/router";
 import { Contents } from "./Banner.styles";
+import { IBannerTitleUIProps } from "./Banner.types";
 
-export default function BannerTitleUI(props) {
+export default function BannerTitleUI(props: IBannerTitleUIProps) {
   const router = useRouter();
   const onClickTitle = () => {
     router.push(`/boards/${props.el._id}`);
