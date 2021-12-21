@@ -24,7 +24,6 @@ const FETCH_USEDITEM = gql`
       name
       remarks
       images
-      price
     }
   }
 `;
@@ -43,7 +42,6 @@ export const getServerSideProps = async (context) => {
       fetchUseditem: {
         name: result.fetchUseditem.name,
         remarks: result.fetchUseditem.remarks,
-        price: result.fetchUseditem.price,
         images: result.fetchUseditem.images[0],
       },
     },
