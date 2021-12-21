@@ -34,7 +34,7 @@ export const getServerSideProps = async (context) => {
     "https://backend04.codebootcamp.co.kr/graphql",
     FETCH_USEDITEM,
     {
-      useditemId: router.query.useditemId,
+      useditemId: context.query.useditemId,
     }
   );
 
