@@ -77,3 +77,5 @@ compute engine - vm
 vm 들어가서 수정 누르자
 네트워크 태그 들어가서 아까 쓴 스티커 이름을 넣어주자
 
+----
+generateBuildId: () => "nanana",

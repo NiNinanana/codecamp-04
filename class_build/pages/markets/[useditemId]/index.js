@@ -12,6 +12,7 @@ export default function BoardsPage(props) {
           content={`https://storage.googleapis.com/${props.fetchUseditem.images}`}
         />
         <meta property="og:description" content={props.fetchUseditem.remarks} />
+        <meta property="og:url" content="nanana.shop" />
       </Head>
       <div>안녕하세요 상품페이지입니당</div>
     </>
