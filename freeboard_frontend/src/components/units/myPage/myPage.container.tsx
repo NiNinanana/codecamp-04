@@ -7,6 +7,9 @@ import {
 import { TOGGLE_USED_ITEM_PICK } from "../items/detail/DetailItem.queries";
 import MyPageUI from "./myPage.presenter";
 import {
+  FETCH_POINT_TRANSACTIONS_OF_BUYING,
+  FETCH_POINT_TRANSACTIONS_OF_LOADING,
+  FETCH_POINT_TRANSACTIONS_OF_SELLING,
   FETCH_USED_ITEMS_I_PICKED,
   FETCH_USED_ITEMS_I_SOLD,
 } from "./myPage.queries";
