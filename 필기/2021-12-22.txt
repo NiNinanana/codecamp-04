@@ -74,6 +74,22 @@ vscode소스를 docker안에 복사
 yarn install
 yarn start
 
+docker compose up
+
+docker ps
+docker exec -it 컨테이너 아이디 /bin/bash
 
 
+시작 sudo docker-compose up -d
+종료 sudo docker-compose stop
 
+부하분산 http수정
+호스트에 고급
+다른~~
+https리디렉션 설정 완료
+
+
+cloud dns
+레코드 만들기
+cname
+www로 왔더라도 보내버리게 할  수 있따.

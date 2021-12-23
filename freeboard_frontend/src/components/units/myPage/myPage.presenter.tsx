@@ -23,6 +23,7 @@ export default function MyPageUI(props: IMyPageUIProps) {
           {data?.fetchUserLoggedIn?.userPoint?.amount} pt.
         </S.MyAmount>
         <button onClick={props.plus}>충전하기</button>
+        <button>포인트 내역</button>
       </div>
       <div>
         <div>구매 목록</div>
